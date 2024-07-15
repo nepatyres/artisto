@@ -12,6 +12,7 @@ export default function Collections() {
         gsap.registerPlugin(ScrollTrigger);
 
         refs.current.forEach((ref, i) => {
+            console.log(ref)
             const bgTimeline = gsap.timeline({
                 scrollTrigger: {
                     trigger: ref.bg,
