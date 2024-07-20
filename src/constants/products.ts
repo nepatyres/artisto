@@ -1,3 +1,6 @@
+//FOR NAVBAR
+export const navbar = ['Products', 'About us']
+
 export const collection = [
     {
         id: 1,

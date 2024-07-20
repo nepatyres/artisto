@@ -45,7 +45,7 @@ export default function Collections() {
     }, [])
 
     return (
-        <div className="w-full overflow-hidden bg-black">
+        <div className="w-full overflow-hidden bg-white">
 
             {collection.map((product, i) => (
                 <div key={i} className="w-full h-[50vh] xl:h-screen flex mx-auto">
