@@ -1,7 +1,7 @@
 import React, { useLayoutEffect, useRef } from "react";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
-import { collection } from "@/constants/products";
+import { collection } from "@/constants/index";
 
 gsap.registerPlugin(ScrollTrigger);
 export default function Collections() {
@@ -12,7 +12,7 @@ export default function Collections() {
         gsap.registerPlugin(ScrollTrigger);
 
         refs.current.forEach((ref, i) => {
-            console.log(ref)
+            // console.log(ref)
             const bgTimeline = gsap.timeline({
                 scrollTrigger: {
                     trigger: ref.bg,
