@@ -7,12 +7,12 @@ interface ProductAttributes {
   description?: string;
   price: number;
   stock: number;
-  image?: string;
+  images?: string[]; // Ensure this is an array of strings
   createdAt?: Date;
   updatedAt?: Date;
 }
 
-interface ProductCreationAttributes extends Optional<ProductAttributes, 'id' | 'description' | 'image' | 'createdAt' | 'updatedAt'> { }
+interface ProductCreationAttributes extends Optional<ProductAttributes, 'id' | 'description' | 'images' | 'createdAt' | 'updatedAt'> { }
 
 class Product extends Model<ProductAttributes, ProductCreationAttributes> implements ProductAttributes {
   public id!: number;
@@ -20,7 +20,7 @@ class Product extends Model<ProductAttributes, ProductCreationAttributes> implem
   public description?: string;
   public price!: number;
   public stock!: number;
-  public image?: string;
+  public images?: string[]; // Array of strings for images
 
   // timestamps!
   public readonly createdAt!: Date;
@@ -50,8 +50,9 @@ Product.init(
       allowNull: false,
       defaultValue: 0,
     },
-    image: {
-      type: DataTypes.STRING(255),
+    images: {
+      type: DataTypes.JSON, // Use JSON to store arrays
+      allowNull: true, // Allow null if there are no images
     },
     createdAt: {
       type: DataTypes.DATE,
@@ -70,4 +71,5 @@ Product.init(
 );
 
 export default Product;
+
 
