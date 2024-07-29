@@ -51,15 +51,27 @@ export default function CreateProduct({ setCreate }) {
                             d="M777.856 280.192l-33.92-33.952-231.872 231.872-231.84-231.872-33.984 33.888 231.872 231.904-231.84 231.84 33.888 33.984 231.904-231.904 231.84 231.872 33.952-33.888-231.872-231.904z" />
                     </svg>
                     <form onSubmit={handleSubmit} className='w-[80%] flex flex-col pt-5'>
-                        <span className='text-2xl'>Create new product</span>
-                        <div className='flex flex-col gap-5 pt-8 text-lg'>
-                            <input className='border rounded-md px-2 py-3' type="text" id="name" value={name} onChange={(e) => setName(e.target.value)} placeholder='Product title' required />
-                            <textarea className='border rounded-md px-2 py-1' placeholder='Product description' id="description" value={description} onChange={(e) => setDescription(e.target.value)} />
-                            <input className='border rounded-md px-2 py-3' type="number" step="0.01" id="price" value={price} onChange={(e) => setPrice(e.target.value)} placeholder='Product price' required />
-                            <input className='border rounded-md px-2 py-3' type="number" id="stock" value={stock} onChange={(e) => setStock(e.target.value)} placeholder='Product stock' required />
-                            <ImgInput images={images} setImages={setImages} setImagePreviews={setImagePreviews} />
+                        <span className='text-2xl'>Add product</span>
+                        <div className='flex flex-col gap-5 pt-8'>
+                            <div className="flex flex-col">
+                                <label className="text-black/40 mb ml-1" htmlFor="name">Product title</label>
+                                <input className='border rounded-md px-2 py-1.5' type="text" id="name" value={name} onChange={(e) => setName(e.target.value)} placeholder='Product title' required />
+                            </div>
+                            <div className="flex flex-col">
+                                <label className="text-black/40 mb ml-1" htmlFor="description">Product description</label>
+                                <textarea className='border rounded-md px-2 py-1 overflow-hidden max-h-[4.5em]' rows={3} placeholder='Product description' id="description" value={description} onChange={(e) => setDescription(e.target.value)} />
+                            </div>
+                            <div className="flex flex-col">
+                                <label className="text-black/40 mb ml-1" htmlFor="price">Product price</label>
+                                <input className='border rounded-md px-2 py-1.5' type="number" step="0.01" id="price" value={price} onChange={(e) => setPrice(e.target.value)} placeholder='Product price' required />
+                            </div>
+                            <div className="flex flex-col">
+                                <label className="text-black/40 mb ml-1" htmlFor="stock">Product stock</label>
+                                <input className='border rounded-md px-2 py-1.5' type="number" id="stock" value={stock} onChange={(e) => setStock(e.target.value)} placeholder='Product stock' required />
+                            </div>
+                            <ImgInput images={images} setImages={setImages} imagePreviews={imagePreviews} setImagePreviews={setImagePreviews} />
                         </div>
-                        <button className='absolute bottom-5 right-5 px-3 py-2 rounded-full bg-green-300' type="submit">Create Product</button>
+                        <button className='absolute bottom-5 right-5 px-3 py-2 rounded-full bg-green-300' type="submit">Create</button>
                     </form>
                 </div>
             </div>
