@@ -1,14 +1,20 @@
 import React, { useRef } from "react";
 
-export default function ImgInput({ images, setImages, imagePreviews = [], setImagePreviews }) {
+interface props {
+    setImages: any,
+    imagePreviews: any,
+    setImagePreviews: any
+}
+
+export default function ImgInput({ setImages, imagePreviews, setImagePreviews }: props) {
     const fileInputRef = useRef(null);
 
-    const handleImageChange = (e) => {
+    const handleImageChange = (e: any) => {
         if (e.target.files && e.target.files.length > 0) {
             const newImages = Array.from(e.target.files);
-            const imageUrls = newImages.map(file => URL.createObjectURL(file));
-            setImages(prevImages => [...prevImages, ...newImages]);
-            setImagePreviews(prevPreviews => [...prevPreviews, ...imageUrls]);
+            const imageUrls = newImages.map((file: any) => URL.createObjectURL(file));
+            setImages((prevImages: string[]) => [...prevImages, ...newImages]);
+            setImagePreviews((prevPreviews: string[]) => [...prevPreviews, ...imageUrls]);
         }
     };
 
@@ -18,16 +24,16 @@ export default function ImgInput({ images, setImages, imagePreviews = [], setIma
         }
     };
 
-    const removeImgBtn = (index) => {
-        setImages(prevImages => prevImages.filter((_, i) => i !== index));
-        setImagePreviews(prevPreviews => prevPreviews.filter((_, i) => i !== index));
+    const removeImgBtn = (index: number) => {
+        setImages((prevImages: string[]) => prevImages.filter((_: any, i: number) => i !== index));
+        setImagePreviews((prevPreviews: string[]) => prevPreviews.filter((_: any, i: number) => i !== index));
     };
 
     return (
         <div className='flex flex-col mx-auto pt-3'>
             <div className='flex flex-row w-full gap-3'>
                 <div className='grid grid-cols-4 gap-3'>
-                    {imagePreviews.map((preview, i) => (
+                    {imagePreviews.map((preview: string, i:any) => (
                         <div key={i} className='w-[100px] h-[100px] rounded-md relative'>
                             <svg onClick={() => removeImgBtn(i)}
                                 className="fill-white mix-blend-difference z-50 w-6 h-6 flex cursor-pointer absolute right-0 top-0 rounded-full"

@@ -2,7 +2,7 @@ import { NextApiRequest, NextApiResponse } from 'next';
 import multer from 'multer';
 import path from 'path';
 import fs from 'fs';
-import Product from '../../models/product';
+import Product from '../../../models/product';
 
 const upload = multer({
     storage: multer.diskStorage({
@@ -75,8 +75,16 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
             console.error('Database error:', error);
             res.status(500).json({ error: (error as Error).message });
         }
+    } else if (req.method === 'GET') {
+        try {
+            const products = await Product.findAll();
+            res.status(200).json(products);
+        } catch (error) {
+            console.error('Database error:', error);
+            res.status(500).json({ error: (error as Error).message });
+        }
     } else {
-        res.setHeader('Allow', ['PUT', 'DELETE']);
+        res.setHeader('Allow', ['GET', 'PUT', 'DELETE']);
         res.status(405).end(`Method ${req.method} Not Allowed`);
     }
 };

@@ -2,7 +2,7 @@ import { NextApiRequest, NextApiResponse } from 'next';
 import multer from 'multer';
 import path from 'path';
 import fs from 'fs';
-import Product from '../../models/product';
+import Product from '../../../models/product';
 
 const upload = multer({
     storage: multer.diskStorage({
@@ -37,10 +37,10 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 
             try {
                 const product = await Product.create({
-                    name, 
-                    description, 
-                    price: parseFloat(price), 
-                    stock: parseInt(stock, 10), 
+                    name,
+                    description,
+                    price: parseFloat(price),
+                    stock: parseInt(stock, 10),
                     images: imagePaths
                 });
                 res.status(201).json(product);
@@ -49,8 +49,5 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
                 res.status(500).json({ error: error.message });
             }
         });
-    } else {
-        res.setHeader('Allow', ['POST']);
-        res.status(405).end(`Method ${req.method} Not Allowed`);
     }
-};
+}
