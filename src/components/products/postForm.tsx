@@ -44,14 +44,14 @@ export default function PostForm({ setPopup }: props) {
     return (
         <form onSubmit={handleSubmit} className='w-[80%] flex flex-col pt-5'>
             <span className='text-2xl'>Add product</span>
-            <div className='flex flex-col gap-5 pt-8'>
+            <div className='flex flex-col gap-3 pt-4'>
                 <div className="flex flex-col">
                     <label className="text-black/60 mb ml-1" htmlFor="name">Product title</label>
                     <input className='border rounded-md px-2 py-1.5' type="text" id="name" value={name} onChange={(e) => setName(e.target.value)} placeholder='Title' required />
                 </div>
                 <div className="flex flex-col">
                     <label className="text-black/60 mb ml-1" htmlFor="description">Product description</label>
-                    <textarea className='border rounded-md px-2 py-1 overflow-hidden max-h-[4.5em]' rows={3} placeholder='Description' id="description" value={description} onChange={(e) => setDescription(e.target.value)} />
+                    <textarea className='border rounded-md px-2 py-1 overflow-y-auto max-h-[4.5em]' rows={3} placeholder='Description' id="description" value={description} onChange={(e) => setDescription(e.target.value)} />
                 </div>
                 <div className="flex flex-col">
                     <label className="text-black/60 mb ml-1" htmlFor="price">Product price</label>
@@ -63,7 +63,7 @@ export default function PostForm({ setPopup }: props) {
                 </div>
                 <ImgInput images={images} setImages={setImages} imagePreviews={imagePreviews} setImagePreviews={setImagePreviews} />
             </div>
-            <button className='absolute bottom-5 right-5 px-3 py-2 rounded-full bg-green-300' type="submit">Create</button>
+            <button className='absolute bottom-5 right-5 px-3 py-2 rounded-full text-white/90 bg-green-300' type="submit">Create</button>
         </form>
     )
 }

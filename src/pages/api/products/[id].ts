@@ -24,6 +24,15 @@ export const config = {
     },
 };
 
+const deleteFiles = (filePaths: string[]) => {
+    filePaths.forEach(filePath => {
+        const fullPath = path.join(process.cwd(), 'public', filePath);
+        if (fs.existsSync(fullPath)) {
+            fs.unlinkSync(fullPath);
+        }
+    });
+};
+
 export default async (req: NextApiRequest, res: NextApiResponse) => {
     const { id } = req.query;
 
@@ -33,20 +42,21 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
                 console.error('Multer error:', err);
                 return res.status(500).json({ error: err.message });
             }
-
-            const { name, description, price, stock } = req.body;
+            const { name, description, price, stock, deletedImages } = req.body;
             let imagePaths = req.files.map(file => `/uploads/${file.filename}`);
+            const deletedImagesArray = JSON.parse(deletedImages || "[]");
 
             try {
                 const product = await Product.findByPk(id as string);
                 if (!product) {
                     return res.status(404).json({ error: 'Product not found' });
                 }
-
-                // If no new images are uploaded, keep the existing images
-                if (imagePaths.length === 0) {
-                    imagePaths = product.images;
+                if (imagePaths.length > 0) {
+                    imagePaths = [...product.images.filter(img => !deletedImagesArray.includes(img)), ...imagePaths];
+                } else {
+                    imagePaths = product.images.filter(img => !deletedImagesArray.includes(img));
                 }
+                deleteFiles(deletedImagesArray.map(img => img.replace('/uploads/', 'public/uploads/')));
 
                 await product.update({
                     name,
@@ -59,21 +69,36 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
                 res.status(200).json(product);
             } catch (error) {
                 console.error('Database error:', error);
-                res.status(500).json({ error: (error as Error).message });
             }
         });
-    } else if (req.method === 'DELETE') {
+
+    } else if (req.method === 'PATCH') {
         try {
             const product = await Product.findByPk(id as string);
             if (!product) {
                 return res.status(404).json({ error: 'Product not found' });
             }
 
-            await product.destroy();
-            res.status(200).json({ message: 'Product deleted successfully' });
+            // Toggle the display field
+            const newDisplayValue = !product.display;
+
+            await product.update({ display: newDisplayValue });
+
+            res.status(200).json({ success: true, display: newDisplayValue });
         } catch (error) {
             console.error('Database error:', error);
-            res.status(500).json({ error: (error as Error).message });
+            res.status(500).json({ error: 'Internal Server Error' });
+        }
+    } else if (req.method === 'DELETE') {
+        try {
+            const product = await Product.findByPk(id as string);
+            if (!product) {
+                return res.status(404).json({ error: 'Product not found' });
+            }
+            deleteFiles(product.images.map(img => img.replace('/uploads/', 'public/uploads/')));
+            await product.destroy();
+        } catch (error) {
+            console.error('Database error:', error);
         }
     } else if (req.method === 'GET') {
         try {
@@ -81,10 +106,10 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
             res.status(200).json(products);
         } catch (error) {
             console.error('Database error:', error);
-            res.status(500).json({ error: (error as Error).message });
         }
     } else {
-        res.setHeader('Allow', ['GET', 'PUT', 'DELETE']);
+        res.setHeader('Allow', ['GET', 'PUT', 'PATCH', 'DELETE']);
         res.status(405).end(`Method ${req.method} Not Allowed`);
     }
 };
+

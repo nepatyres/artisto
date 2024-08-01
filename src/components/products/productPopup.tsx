@@ -16,7 +16,7 @@ export default function ProductPopup({ setPopup, product, form }: props) {
     return (
         <div className='h-screen absolute overflow-hidden m-0 z-20'>
             <div className='flex fixed w-full h-screen backdrop-blur-md top-0 left-0 justify-center items-center z-10 transition-opacity-transform duration-1000 ease-in-out transform'>
-                <div className='flex relative justify-center bg-white w-[600px] h-[700px] shadow-md rounded-lg'>
+                <div className='flex relative justify-center bg-white w-[600px] h-[700px] shadow-2xl rounded-lg'>
                     <svg onClick={closeBtn}
                         className="fill-zinc-400 h-11 w-11 flex cursor-pointer absolute right-0 top-0 mr-3 mt-3 rounded-full"
                         xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" version="1.1">
