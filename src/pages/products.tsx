@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import Navbar from "@/components/navbar";
 import '../app/globals.css'
 import axios from "axios";
+import Router from "next/router";
 
 export default function Products() {
     const [products, setProducts] = useState<any>([]);
@@ -22,6 +23,18 @@ export default function Products() {
         };
         fetchProducts();
     }, []);
+
+    const redirectBtn = (id) => {
+        Router.push(`/products/${id}`);
+    }
+
+    const formatPrice = (price) => {
+        return new Intl.NumberFormat('en-US', {
+            style: 'decimal',
+            minimumFractionDigits: 0,  // No decimal places
+            maximumFractionDigits: 0,
+        }).format(price);
+    };
     return (
         <div className="flex h-auto bg-white">
             <Navbar />
@@ -30,13 +43,13 @@ export default function Products() {
                 <div className="w-full grid md:grid-cols-2 xl:grid-cols-2 2xl:grid-cols-3 mx-auto gap-5">
                     {products.filter(product => product.display).map((product: any, i: number) => (
                         <div key={i} className="w-full flex space-between">
-                            <div className="flex mx-auto flex-col cursor-pointer">
+                            <div className="flex mx-auto flex-col cursor-pointer" onClick={(e) => redirectBtn(product.id)}>
                                 <div className="lg:w-[380px] lg:h-[400px] w-[280px] h-[300px] rounded-lg mx-auto">
                                     <img src={product.images[0]} className="h-full w-full object-cover object-center rounded-lg" alt="" />
                                 </div>
                                 <div className="flex flex-col text-center pt-2 pb-3">
                                     <span className="text-sm 2xl:text-md w-[70%] mx-auto">{product.name}</span>
-                                    <span>€{product.price}</span>
+                                    <span>€{formatPrice(product.price)}</span>
                                 </div>
                             </div>
                         </div>
