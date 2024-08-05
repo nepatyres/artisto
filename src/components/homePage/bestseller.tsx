@@ -5,22 +5,31 @@ import axios from "axios";
 
 gsap.registerPlugin(ScrollTrigger);
 
-export default function Collections() {
+export default function Bestseller() {
     const [products, setProducts] = useState<any>([]);
-    const refs = useRef([]);
-    const [bestseller, setBestseller] = useState([]);
+    const refs = useRef<{ bg: HTMLDivElement | null, info: HTMLDivElement | null }[]>([]);
+    const [bestseller, setBestseller] = useState<any[]>([]);
 
     useEffect(() => {
         const fetchProducts = async () => {
             const response = await axios.get('/api/products/get');
             setProducts(response.data);
-            refs.current = response.data.map(() => ({ bg: null, info: null })); // Initialize refs based on products
         };
         fetchProducts();
     }, []);
 
     useEffect(() => {
-        if (refs.current.length === 0) return; // Wait until refs are initialized
+        const fetchBestseller = async () => {
+            const response = await axios.get('/api/bestseller/get');
+            setBestseller(response.data);
+
+            refs.current = response.data.map(() => ({ bg: null, info: null }));
+        };
+        fetchBestseller();
+    }, []);
+
+    useEffect(() => {
+        if (refs.current.length === 0) return;
 
         refs.current.forEach((ref, i) => {
             if (!ref.bg || !ref.info) return;
@@ -48,13 +57,13 @@ export default function Collections() {
                 { x: '-5vw', opacity: 0 }, { x: '0vw', opacity: 1 }
             );
         });
-    }, [products]);
+    }, [products, bestseller]);
 
-    const redirectBtn = (id) => {
+    const redirectBtn = (id: string) => {
         window.location.href = `/products/${id}`;
     }
 
-    const formatPrice = (price) => {
+    const formatPrice = (price: number) => {
         return new Intl.NumberFormat('en-US', {
             style: 'decimal',
             minimumFractionDigits: 0,
@@ -62,20 +71,15 @@ export default function Collections() {
         }).format(price);
     };
 
-    useEffect(() => {
-        const fetchBestseller = async () => {
-            const response = await axios.get('/api/bestseller/get');
-            setBestseller(response.data);
-        };
-        fetchBestseller();
-    }, []);
-
     return (
-        <div className="w-full overflow-hidden bg-white">
+        <div className="w-full overflow-hidden bg-white mt-12">
+            <div className="flex w-[80%] mx-auto mt-12 mb-4">
+                <span className="text-5xl">BESTSELLER</span>
+            </div>
             {bestseller.map((product, i) => (
-                <div key={i} className="w-full h-[50vh] xl:h-screen flex mx-auto cursor-pointer" onClick={(e) => redirectBtn(product.id)}>
+                <div key={i} className="w-full h-[50vh] xl:h-screen flex mx-auto cursor-pointer" onClick={() => redirectBtn(product.id)}>
                     <div className="w-[80%] h-[90%] m-auto relative">
-                        <div ref={el => refs.current[i].info = el} className="absolute flex inset-0 justify-end items-end p-12 z-50">
+                        <div ref={el => refs.current[i] && (refs.current[i].info = el)} className="absolute flex inset-0 justify-end items-end p-12 z-50">
                             <div className="py-2 px-2 bg-white/70 z-40 rounded-2xl shadow-2xl">
                                 <div className="p-4 mx-auto flex flex-col">
                                     <span className="text-[18px] leading-5">{product.name.toUpperCase()}</span>
@@ -88,7 +92,7 @@ export default function Collections() {
                                 </div>
                             </div>
                         </div>
-                        <div ref={el => refs.current[i].bg = el} className="w-full h-full rounded-2xl">
+                        <div ref={el => refs.current[i] && (refs.current[i].bg = el)} className="w-full h-full rounded-2xl">
                             <img src={product.image} className="w-full h-full object-cover object-center rounded-2xl transition-transform duration-300 ease-in-out zoom" alt="" />
                         </div>
                     </div>
@@ -97,4 +101,3 @@ export default function Collections() {
         </div>
     );
 }
-

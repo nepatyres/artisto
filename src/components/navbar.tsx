@@ -47,7 +47,7 @@ export default function Navbar() {
                     </div>
                 </div>
             </nav>
-            <div className={`fixed top-0 left-0 w-screen h-screen z-[70] md:hidden backdrop-blur-lg select-none ${toggler ? 'flex' : 'hidden'}`}>
+            <div className={`fixed top-0 left-0 w-screen h-screen z-[9999] md:hidden backdrop-blur-lg select-none ${toggler ? 'flex' : 'hidden'}`}>
                 <div className="flex flex-col w-full h-full">
                     <svg onClick={togglerBtn}
                         className="fill-white h-11 w-11 flex cursor-pointer absolute right-[30px] top-[10px] mr-3 mt-3 rounded-full"
@@ -57,8 +57,9 @@ export default function Navbar() {
                     </svg>
                     <ul className="flex flex-col items-center justify-center h-full gap-8">
                         {navbar.map((nav, i) => (
-                            <a key={i} href={nav.link} className="text-7xl text-black/50">{nav.name}</a>
+                            <a key={i} href={nav.link} className="text-7xl text-white/50 stroke-2 stroke-black">{nav.name}</a>
                         ))}
+                        <a className="fill-white/50" href="/cart"><CartSvg /></a>
                     </ul>
                 </div>
             </div>

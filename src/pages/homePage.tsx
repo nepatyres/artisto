@@ -1,13 +1,13 @@
 import React from "react";
-import Hero from "../components/hero";
-import Collections from "../components/collection";
-import MoreProducts from "@/components/moreProducts";
+import Hero from "../components/homePage/hero";
+import Bestseller from "../components/homePage/bestseller";
+import MoreProducts from "@/components/homePage/moreProducts";
 
 export default function HomePage() {
     return (
         <>
             <Hero />
-            <Collections />
+            <Bestseller />
             <MoreProducts />
         </>
     )

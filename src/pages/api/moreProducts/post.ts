@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import MoreProducts from "../../../models/bestseller";
+import MoreProducts from "../../../models/moreProducts";
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
   if (req.method === "POST") {
