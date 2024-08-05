@@ -8,6 +8,7 @@ gsap.registerPlugin(ScrollTrigger);
 export default function Collections() {
     const [products, setProducts] = useState<any>([]);
     const refs = useRef([]);
+    const [bestseller, setBestseller] = useState([]);
 
     useEffect(() => {
         const fetchProducts = async () => {
@@ -61,9 +62,17 @@ export default function Collections() {
         }).format(price);
     };
 
+    useEffect(() => {
+        const fetchBestseller = async () => {
+            const response = await axios.get('/api/bestseller/get');
+            setBestseller(response.data);
+        };
+        fetchBestseller();
+    }, []);
+
     return (
         <div className="w-full overflow-hidden bg-white">
-            {products.map((product, i) => (
+            {bestseller.map((product, i) => (
                 <div key={i} className="w-full h-[50vh] xl:h-screen flex mx-auto cursor-pointer" onClick={(e) => redirectBtn(product.id)}>
                     <div className="w-[80%] h-[90%] m-auto relative">
                         <div ref={el => refs.current[i].info = el} className="absolute flex inset-0 justify-end items-end p-12 z-50">
@@ -80,7 +89,7 @@ export default function Collections() {
                             </div>
                         </div>
                         <div ref={el => refs.current[i].bg = el} className="w-full h-full rounded-2xl">
-                            <img src={product.images[0]} className="w-full h-full object-cover object-center rounded-2xl transition-transform duration-300 ease-in-out zoom" alt="" />
+                            <img src={product.image} className="w-full h-full object-cover object-center rounded-2xl transition-transform duration-300 ease-in-out zoom" alt="" />
                         </div>
                     </div>
                 </div>

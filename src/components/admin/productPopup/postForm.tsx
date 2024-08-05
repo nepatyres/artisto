@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { useRouter } from "next/router";
 import ImgInput from './imgInput';
 import axios from "axios";
 
