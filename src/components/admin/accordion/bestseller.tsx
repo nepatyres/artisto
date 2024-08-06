@@ -22,7 +22,7 @@ export default function Bestseller({product, popupBtn}) {
 
     return (
         <div className="flex flex-col sm:w-[80%] lg:w-full mx-auto px-8 py-5 mb-5">
-            <span className="text-xl mb-3">Bestsellers</span>
+            <span className="text-xl mb-3">Edit bestsellers</span>
             <div className="grid grid-cols-1 lg:grid-cols-3 w-full h-full gap-5 mb-5">
                 {bestseller && bestseller.map((bestseller, i) => (
                     <div key={i} className="h-[20vh] md:h-[20vh] xl:h-[30vh] w-full border rounded-lg cursor-pointer flex relative">

@@ -23,7 +23,7 @@ export default function MoreProducts({product, popupBtn}) {
 
     return (
         <div className="flex flex-col w-full px-8 py-5 mb-5">
-            <span className="text-xl mb-3">More products</span>
+            <span className="text-xl mb-3">Edit more products</span>
             <div className="grid grid-cols-2 md:grid-cols-4 w-full h-full gap-3 lg:gap-5 mb-5">
                 {moreProducts && moreProducts.map((moreProduct, i) => (
                     <div key={i} className="h-[170px] w-[170px] md:h-[135px] md:w-[135px] lg:h-[180px] lg:w-[180px] xl:h-[220px] xl:w-[220px] 2xl:w-[300px] 2xl:h-[300px] border rounded-lg cursor-pointer flex relative">
