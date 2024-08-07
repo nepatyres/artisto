@@ -5,12 +5,12 @@ import axios from "axios";
 
 gsap.registerPlugin(ScrollTrigger);
 
-export default function Bestseller() {
+export default function Bestseller({ setIsLoading }) {
     const [products, setProducts] = useState<any>([]);
     const refs = useRef<{ bg: HTMLDivElement | null, info: HTMLDivElement | null }[]>([]);
     const [bestseller, setBestseller] = useState<any[]>([]);
-
     useEffect(() => {
+        setIsLoading(false)
         const fetchProducts = async () => {
             const response = await axios.get('/api/products/get');
             setProducts(response.data);

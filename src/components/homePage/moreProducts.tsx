@@ -27,7 +27,7 @@ export default function MoreProducts() {
                     <span className="text-5xl">MORE PRODUCTS</span>
                 </div>
                 <div className="flex flex-col w-full items-center justify-center">
-                    <div className="grid grid-cols-2 lg:grid-cols-4 w-[85%] items-center justify-center">
+                    <div className="grid grid-cols-2 lg:grid-cols-4 w-[85%] items-start justify-center">
                         {products.map((product: any, i: number) => (
                             i <= 4 && <div key={i} className="w-full flex items-center">
                                 <div className="flex mx-auto flex-col cursor-pointer">
