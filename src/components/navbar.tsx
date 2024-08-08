@@ -10,7 +10,7 @@ export default function Navbar() {
 
     return (
         <>
-            <nav className="fixed h-16 top-3 w-[95%] bg-black/40 backdrop-blur-md rounded-3xl z-[60] left-1/2 transform -translate-x-1/2 select-none">
+            <nav className="fixed h-16 top-3 w-[95%] bg-black/40 backdrop-blur-md rounded-3xl z-[20] left-1/2 transform -translate-x-1/2 select-none">
                 <div className="grid grid-cols-2 md:grid-cols-3 h-full">
                     <a href="/" className="flex justify-start items-center text-white mix-blend-difference text-3xl uppercase pl-10 cursor-pointer">ARTISTO</a>
                     <ul className="hidden md:flex flex-row justify-center items-center gap-8">
@@ -36,7 +36,7 @@ export default function Navbar() {
                     </div>
                 </div>
             </nav>
-            <div className={`fixed top-0 left-0 w-screen h-screen z-[9999] md:hidden backdrop-blur-lg select-none justify-end ${toggler ? 'flex' : 'hidden'}`}>
+            <div className={`fixed top-0 left-0 w-screen h-screen z-[20] md:hidden backdrop-blur-lg select-none justify-end ${toggler ? 'flex' : 'hidden'}`}>
                 <div className="w-[80%] h-full right-0 bg-black/60">
                     <div className="flex flex-col w-full h-full">
                         <svg onClick={togglerBtn}
