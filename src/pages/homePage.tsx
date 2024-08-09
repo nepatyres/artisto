@@ -10,6 +10,7 @@ export default function HomePage() {
         window.scrollTo(0, 0);
         const timer = setTimeout(() => {
             setIsLoading(false);
+            document.body.classList.add("overflow-hidden");
         }, 1000);
         return () => clearTimeout(timer);
     }, []);
