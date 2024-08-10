@@ -12,7 +12,7 @@ export default function HomePage() {
             setIsLoading(false);
             document.body.classList.add("overflow-hidden");
         }, 1000);
-        return () => clearTimeout(timer);
+        return () => clearTimeout(timer );
     }, []);
 
     return (
