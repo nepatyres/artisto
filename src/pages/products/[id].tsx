@@ -20,7 +20,7 @@ export default function ProductPage() {
                 const productData = response.data.find((data: any) => data.id === parseInt(id));
                 setProduct(productData);
                 if (productData && productData.images) {
-                    setImg(productData.images[0]); // Set the initial image after fetching the product
+                    setImg(productData.images[0]);
                 }
                 setLoading(false);
             } catch (err) {
@@ -28,8 +28,7 @@ export default function ProductPage() {
                 setLoading(false);
             }
         };
-
-        if (id) { // Ensure that the ID is available
+        if (id) {
             fetchProduct();
         }
     }, [id]);
@@ -41,6 +40,14 @@ export default function ProductPage() {
             }
         )()
     }, [])
+
+    const formatPrice = (price) => {
+        return new Intl.NumberFormat('en-US', {
+            style: 'decimal',
+            minimumFractionDigits: 0,
+            maximumFractionDigits: 0,
+        }).format(price);
+    };
 
     const selectImg = (i) => {
         setImg(product.images[i])
@@ -61,19 +68,27 @@ export default function ProductPage() {
     return (
         <div className="min-h-screen w-screen flex overflow-hidden">
             <Navbar />
-            <div className="flex mt-20 w-[80%] mx-auto flex-row">
-                <div className="w-[65%] h-full mt-20">
-                    <div className="w-full rounded-lg mx-auto">
-                        <img src={img} className="w-full object-cover object-center rounded-lg" alt={product.name} />
+            <div className="flex mt-20 w-[90%] lg:w-[80%] mx-auto flex-col">
+                {/* <a href="/products" className="py-4 flex text-xl">Products</a> */}
+                <div className="flex flex-col lg:flex-row w-full h-full mt-10">
+                    <div className="w-full lg:w-[80%]">
+                        <div className="w-full lg:w-[90%] h-[400px] sm:h-[450px] md:h-[500px] lg:h-[650px] flex">
+                            <img src={img} className="w-full h-full object-center rounded-lg" alt={product.name} />
+                        </div>
                         <div className="flex flex-row w-full gap-3 mt-5">
                             {product.images.map((image, i) => (
-                                <img key={i} src={image} className="w-[150px] h-[150px] cursor-pointer rounded-lg" onClick={() => selectImg(i)} alt="" />
+                                <img key={i} src={image} className="w-[80px] lg:w-[110px] h-[80px] lg:h-[110px] cursor-pointer rounded-lg object-center" onClick={() => selectImg(i)} alt="" />
                             ))}
                         </div>
                     </div>
-                </div>
-                <div className="w-[35%] h-full">
-
+                    <div className="w-full lg:w-[30%] lg:pl-12 pt-12 flex flex-col">
+                        <span className="text-3xl">{product.name}</span>
+                        <span className="text-3xl text-black/70">€{formatPrice(product.price)}</span>
+                        <div className="flex flex-col lg:flex-row w-[90%] lg:w-full gap-3 pt-16 mx-auto">
+                            <button className="w-full border border-black rounded-full px-4 py-2 text-xl">Buy now</button>
+                            <button className="w-full border border-black rounded-full px-4 py-2 text-xl">Add to Cart</button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

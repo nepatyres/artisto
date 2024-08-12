@@ -10,17 +10,16 @@ export default function HomePage() {
         window.scrollTo(0, 0);
         const timer = setTimeout(() => {
             setIsLoading(false);
-            document.body.classList.add("overflow-hidden");
         }, 1000);
-        return () => clearTimeout(timer );
+        return () => clearTimeout(timer);
     }, []);
 
     return (
         <>
             {/* <div className={`absolute top-0 left-0 w-full transition-transform duration-1500 ease-in-out ${isLoading ? 'translate-y-full' : 'translate-y-0'}`}> */}
-                <Hero />
-                <Bestseller setIsLoading={setIsLoading} />
-                <MoreProducts />
+            <Hero />
+            <Bestseller setIsLoading={setIsLoading} />
+            <MoreProducts />
             {/* </div> */}
         </>
     );

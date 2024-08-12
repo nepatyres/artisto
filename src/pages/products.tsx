@@ -31,7 +31,7 @@ export default function Products() {
     const formatPrice = (price) => {
         return new Intl.NumberFormat('en-US', {
             style: 'decimal',
-            minimumFractionDigits: 0,  // No decimal places
+            minimumFractionDigits: 0,
             maximumFractionDigits: 0,
         }).format(price);
     };

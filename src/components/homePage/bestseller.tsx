@@ -12,34 +12,28 @@ export default function Bestseller({ setIsLoading }) {
 
     useEffect(() => {
         const fetchAllData = async () => {
-            console.log('Bestseller component loaded'); // Log to verify component load
             try {
                 const [productsResponse, bestsellerResponse] = await Promise.all([
                     axios.get('/api/products/get'),
                     axios.get('/api/bestseller/get')
                 ]);
-
                 setProducts(productsResponse.data);
                 setBestseller(bestsellerResponse.data);
-
                 refs.current = bestsellerResponse.data.map(() => ({ bg: null, info: null }));
-
-                setIsLoading(false); // Set loading to false once data is fetched
+                setIsLoading(false);
+                document.body.classList.remove("overflow-hidden");
             } catch (error) {
-                console.error("Error fetching data:", error);
-                setIsLoading(false); // Ensure loading state is cleared on error
+                setIsLoading(false);
+                document.body.classList.add("overflow-hidden");
             }
         };
-
         fetchAllData();
     }, [setIsLoading]);
 
     useEffect(() => {
         if (refs.current.length === 0) return;
-
         refs.current.forEach((ref, i) => {
             if (!ref.bg || !ref.info) return;
-
             const bgTimeline = gsap.timeline({
                 scrollTrigger: {
                     trigger: ref.bg,
@@ -49,22 +43,18 @@ export default function Bestseller({ setIsLoading }) {
                     markers: true
                 }
             });
-
             const infoTimeline = gsap.timeline({
                 scrollTrigger: {
                     trigger: ref.info,
                     start: 'center center+=100',
                     end: '+=100px',
                     scrub: true,
-                    
                 }
             });
-
             bgTimeline.fromTo(ref.bg,
                 { x: '25vw', y: '10vh' },
                 { x: '0vw', y: '0vh' }
             );
-
             infoTimeline.fromTo(ref.info,
                 { x: '-5vw', opacity: 0 }, { x: '0vw', opacity: 1 }
             );
