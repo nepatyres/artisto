@@ -66,22 +66,21 @@ export default function ProductPage() {
     }
 
     return (
-        <div className="min-h-screen w-screen flex overflow-hidden">
+        <div className="min-h-screen flex">
             <Navbar />
-            <div className="flex mt-20 w-[90%] lg:w-[80%] mx-auto flex-col">
-                {/* <a href="/products" className="py-4 flex text-xl">Products</a> */}
+            <div className="flex mt-20 w-[95%] md:w-[80%] lg:w-[80%] mx-auto flex-col mb-40">
                 <div className="flex flex-col lg:flex-row w-full h-full mt-10">
-                    <div className="w-full lg:w-[80%]">
-                        <div className="w-full lg:w-[90%] h-[400px] sm:h-[450px] md:h-[500px] lg:h-[650px] flex">
-                            <img src={img} className="w-full h-full object-center rounded-lg" alt={product.name} />
+                    <div className="w-full lg:w-[80%] mx-auto">
+                        <div className="w-[450px] md:w-[500px] md:h-[500px] lg:w-[90%] h-[450px] lg:h-[650px] flex mx-auto lg:mx-0">
+                            <img src={img} className="w-full h-full object-center rounded-lg overflow-hidden" alt={product.name} />
                         </div>
-                        <div className="flex flex-row w-full gap-3 mt-5">
+                        <div className="flex flex-row w-full gap-3 mt-5 justify-center lg:justify-start">
                             {product.images.map((image, i) => (
-                                <img key={i} src={image} className="w-[80px] lg:w-[110px] h-[80px] lg:h-[110px] cursor-pointer rounded-lg object-center" onClick={() => selectImg(i)} alt="" />
+                               i < 4 && <img key={i} src={image} className="w-[80px] lg:w-[110px] h-[80px] lg:h-[110px] cursor-pointer rounded-lg object-center" onClick={() => selectImg(i)} alt="" />
                             ))}
                         </div>
                     </div>
-                    <div className="w-full lg:w-[30%] lg:pl-12 pt-12 flex flex-col">
+                    <div className="w-full xl:w-[30%] lg:pl-12 pt-12 flex flex-col">
                         <span className="text-3xl">{product.name}</span>
                         <span className="text-3xl text-black/70">€{formatPrice(product.price)}</span>
                         <div className="flex flex-col lg:flex-row w-[90%] lg:w-full gap-3 pt-16 mx-auto">
