@@ -21,10 +21,8 @@ export default function Bestseller({ setIsLoading }) {
                 setBestseller(bestsellerResponse.data);
                 refs.current = bestsellerResponse.data.map(() => ({ bg: null, info: null }));
                 setIsLoading(false);
-                document.body.classList.remove("overflow-hidden");
             } catch (error) {
                 setIsLoading(false);
-                document.body.classList.add("overflow-hidden");
             }
         };
         fetchAllData();

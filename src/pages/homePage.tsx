@@ -5,22 +5,26 @@ import MoreProducts from "@/components/homePage/moreProducts";
 
 export default function HomePage() {
     const [isLoading, setIsLoading] = useState(true);
+    const [textSize, setTextSize] = useState(80);
 
     useEffect(() => {
-        window.scrollTo(0, 0);
-        const timer = setTimeout(() => {
-            setIsLoading(false);
-        }, 1000);
-        return () => clearTimeout(timer);
-    }, []);
+        if (isLoading && textSize) {
+            const timer = setTimeout(() => {
+                setTextSize((prevSize) => prevSize + 6);
+            }, 1);
+            return () => clearTimeout(timer);
+        }
+    }, [isLoading, textSize]);
 
     return (
         <>
-            {/* <div className={`absolute top-0 left-0 w-full transition-transform duration-1500 ease-in-out ${isLoading ? 'translate-y-full' : 'translate-y-0'}`}> */}
-            <Hero />
+            {!isLoading && <Hero />}
             <Bestseller setIsLoading={setIsLoading} />
             <MoreProducts />
-            {/* </div> */}
+            {isLoading &&
+                <div className="fixed w-screen h-screen flex top-0 left-0 z-[9999] bg-black justify-center items-center">
+                    <span className="text-white" style={{ fontSize: `${textSize}px` }}>Artisto</span>
+                </div>}
         </>
     );
 }
