@@ -10,7 +10,7 @@ export default function HomePage() {
     useEffect(() => {
         if (isLoading && textSize) {
             const timer = setTimeout(() => {
-                setTextSize((prevSize) => prevSize + 6);
+                setTextSize((prevSize) => prevSize + 7);
             }, 1);
             return () => clearTimeout(timer);
         }
