@@ -2,32 +2,31 @@ import React, { useState, useEffect } from "react";
 import Hero from "../components/homePage/hero";
 import Bestseller from "../components/homePage/bestseller";
 import MoreProducts from "@/components/homePage/moreProducts";
+import Preloader from "@/components/preloader/preloader"; // Importing Preloader component
+import { AnimatePresence } from "framer-motion";
 
 export default function HomePage() {
     const [isLoading, setIsLoading] = useState(true);
-    const [textSize, setTextSize] = useState(80);
 
     useEffect(() => {
-        if (isLoading && textSize) {
-            const timer = setTimeout(() => {
-                setTextSize((prevSize) => prevSize + 7);
-            }, 1);
-            return () => clearTimeout(timer);
-        }
-    }, [isLoading, textSize]);
+        setTimeout(() => {
+            setIsLoading(false);
+            document.body.style.cursor = 'default';
+        }, 2000);
+    }, []);
 
     return (
         <>
-            {!isLoading && <Hero />}
+            <AnimatePresence mode="wait">
+                {isLoading && <Preloader />}
+            </AnimatePresence>
+            <Hero />
             <Bestseller setIsLoading={setIsLoading} />
             <MoreProducts />
-            {isLoading &&
-                <div className="fixed w-screen h-screen flex top-0 left-0 z-[9999] bg-black justify-center items-center">
-                    <span className="text-white" style={{ fontSize: `${textSize}px` }}>Artisto</span>
-                </div>}
         </>
     );
 }
+
 
 
 

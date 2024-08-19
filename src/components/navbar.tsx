@@ -1,7 +1,7 @@
 import { navbar } from "@/constants";
 import React, { useState, useEffect } from "react";
 import CartSvg from "./svg/cart";
-import Cart from "./cart";
+import Cart from "./cart/cart";
 
 export default function Navbar() {
     const [toggler, setToggler] = useState(false);
@@ -37,7 +37,7 @@ export default function Navbar() {
                     </div>
                 </div>
             </nav>
-            {cart && <Cart cartBtn={cartBtn}/>}
+            {cart && <Cart cart={cart} cartBtn={cartBtn}/>}
 
             <div className={`fixed top-0 left-0 w-screen h-screen z-[50] md:hidden backdrop-blur-lg select-none justify-end ${toggler ? 'flex' : 'hidden'}`}>
                 <div className="w-[80%] h-full right-0 bg-black/60">

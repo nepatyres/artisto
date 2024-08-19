@@ -5,3 +5,11 @@
 .no-scroll {
     overflow: hidden;
 }
+
+body {
+    cursor: wait;
+}
+
+.svg-preload{
+    height: calc(100% + 300px);
+}
