@@ -27,11 +27,11 @@ export default function MoreProducts() {
                     <span className="text-5xl">MORE PRODUCTS</span>
                 </div>
                 <div className="flex flex-col w-full items-center justify-center">
-                    <div className="grid grid-cols-2 lg:grid-cols-4 w-[85%] items-start justify-center">
+                    <div className="grid grid-cols-2 lg:grid-cols-4 w-[85%] 2xl:w-[82.5%] items-start justify-center">
                         {products.map((product: any, i: number) => (
                             i <= 4 && <div key={i} className="w-full flex items-center">
                                 <div className="flex mx-auto flex-col cursor-pointer">
-                                    <div className=" w-[160px] h-[160px] sm:w-[230px] sm:h-[230px] md:w-[280px] md:h-[280px] lg:w-[200px] lg:h-[200px] xl:w-[260px] xl:h-[260px] 2xl:w-[300px] 2xl:h-[300px] rounded-lg mx-auto">
+                                    <div className=" w-[160px] h-[160px] sm:w-[230px] sm:h-[230px] md:w-[280px] md:h-[280px] lg:w-[200px] lg:h-[200px] xl:w-[260px] xl:h-[260px] 2xl:w-[350px] 2xl:h-[350px] rounded-lg mx-auto">
                                         <img src={product.image} className="h-full w-full object-cover object-center rounded-lg" alt="" />
                                     </div>
                                     <div className="flex flex-col text-center pt-2 pb-3">

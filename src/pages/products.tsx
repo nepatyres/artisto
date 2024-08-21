@@ -4,14 +4,22 @@ import Navbar from "@/components/navbar";
 import '../app/globals.css'
 import axios from "axios";
 import Router from "next/router";
+import { AnimatePresence } from "framer-motion";
+import PreloaderLeft from "@/components/preloader/preloaderLeft";
 
 export default function Products() {
     const [products, setProducts] = useState<any>([]);
+    const [isLoading, setIsLoading] = useState(true);
     useEffect(() => {
         (
             async () => {
                 const LocomotiveScroll = (await import('locomotive-scroll')).default
                 const locomotiveScroll = new LocomotiveScroll();
+                setTimeout(() => {
+                    setIsLoading(false);
+                    document.body.style.cursor = 'default'
+                    window.scrollTo(0, 0);
+                }, 2000)
             }
         )()
     }, [])
@@ -22,6 +30,7 @@ export default function Products() {
             setProducts(response.data);
         };
         fetchProducts();
+        setIsLoading(false);
     }, []);
 
     const redirectBtn = (id) => {
@@ -37,6 +46,9 @@ export default function Products() {
     };
     return (
         <div className="flex h-auto bg-white">
+            <AnimatePresence mode='wait'>
+                {isLoading && <PreloaderLeft />}
+            </AnimatePresence>
             <Navbar />
             <div className="flex h-auto lg:w-[80%] md:w-[90%] mx-auto mt-20 flex-col">
                 <span className="text-4xl px-3 py-10">Products</span>
@@ -44,7 +56,7 @@ export default function Products() {
                     {products.filter(product => product.display).map((product: any, i: number) => (
                         <div key={i} className="w-full flex space-between">
                             <div className="flex mx-auto flex-col cursor-pointer" onClick={(e) => redirectBtn(product.id)}>
-                                <div className="lg:w-[380px] lg:h-[400px] w-[280px] h-[300px] rounded-lg mx-auto">
+                                <div className="lg:w-[400px] lg:h-[400px] w-[300px] h-[300px] rounded-lg mx-auto">
                                     <img src={product.images[0]} className="h-full w-full object-cover object-center rounded-lg" alt="" />
                                 </div>
                                 <div className="flex flex-col text-center pt-2 pb-3">

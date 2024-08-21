@@ -5,6 +5,7 @@ import '../../app/globals.css'
 import axios from "axios";
 import { useRouter } from 'next/router';
 import MainProduct from "@/components/products/mainProduct";
+import Preloader from "@/components/preloader/preloader";
 
 export default function ProductPage() {
     const [product, setProduct] = useState<any>(null);
@@ -42,12 +43,12 @@ export default function ProductPage() {
         )()
     }, [])
 
-    // const selectImg = (i) => {
-    //     setImg(product.images[i])
-    // }
+    const selectImg = (i) => {
+        setImg(product.images[i])
+    }
 
     if (loading) {
-        return <div>Loading...</div>;
+        return <div>asdfasdfasd</div>;
     }
 
     if (error) {
@@ -61,7 +62,7 @@ export default function ProductPage() {
     return (
         <div className="h-screen flex flex-col">
             <Navbar />
-            <MainProduct product={product} img={img}/>
+            <MainProduct selectImg={selectImg} product={product} img={img}/>
         </div>
     )
 }

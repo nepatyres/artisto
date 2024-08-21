@@ -7,7 +7,8 @@
 }
 
 body {
-    cursor: wait;
+    /* cursor: wait; */
+    /* overflow: hidden; */
 }
 
 .svg-preload{
