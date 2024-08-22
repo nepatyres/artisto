@@ -9,19 +9,21 @@ export default function MainProduct({ product, img, selectImg }) {
     };
 
     return (
-        <div className="flex w-full h-screen mx-auto flex-col pt-[80px]">
-            <div className="flex flex-col lg:flex-row w-[95%] h-full lg:w-full mx-auto lg:border-y lg:border-black">
-                <div className="w-full lg:h-full lg:w-[55%] xl:w-[65%] mx-auto lg:border-r lg:border-black items-center justify-center">
-                    <div className="w-full flex-col h-[350px] sm:h-[400px] md:h-[500px] lg:h-[80%] 2xl:h-full flex mx-auto xl:mx-0 border">
-                        <img src={img} className="w-full h-full object-center overflow-hidden" />
-                        <div className="flex flex-row w-full gap-3 mt-2 justify-start lg:justify-start">
-                            {product.images.map((image, i) => (
-                                i < 4 && <img key={i} src={image} className="w-[80px] h-[80px] xl:w-[120px] xl:h-[120px] cursor-pointer rounded-sm object-center" onClick={() => selectImg(i)} alt="" />
-                            ))}
-                        </div>
-                    </div>
+        <div className="flex flex-wrap flex-col lg:flex-row w-[95%] h-auto lg:w-full mx-auto">
+            <div className="w-full flex flex-row lg:h-full lg:w-[55%] xl:w-[65%] mx-auto lg:border-r lg:border-top-black justify-center">
+                <div className="flex flex-col gap-3 justify-start sticky h-screen top-0 mt-20 border-y border-black pr-1">
+                    {product.images.map((image, i) => (
+                        <img key={i} src={image} className="w-[100px] h-[80px] cursor-pointer rounded-sm object-center" onClick={() => selectImg(i)} alt="" />
+                    ))}
                 </div>
-                <div className="w-full h-full lg:justify-center 2xl:justify-start lg:w-[45%] xl:w-[35%] lg:pl-8 xl:pl-12 pt-12 flex flex-col">
+                <div className="w-full flex-col h-[350px] sm:h-[400px] md:h-[500px] lg:h-[80%] 2xl:h-full flex mx-auto xl:mx-0 gap-1 pt-20">
+                    {product.images.map((img, i) => (
+                        <img src={img} key={i} className="w-full h-full object-center" />
+                    ))}
+                </div>
+            </div>
+            <div className="w-full h-screen lg:w-[45%] xl:w-[35%] lg:pl-8 xl:pl-12 flex flex-col sticky top-0 mt-20 border-l border-y border-black">
+                <div className="w-full flex-col flex mt-20">
                     <span className="text-3xl 2xl:text-4xl">{product.name}</span>
                     <span className="text-3xl text-black/70 pt-2">€{formatPrice(product.price)}</span>
                     <div className="flex flex-col w-[90%] gap-3 mt-auto pb-12">
@@ -29,6 +31,7 @@ export default function MainProduct({ product, img, selectImg }) {
                         <CartBtn product={product} />
                     </div>
                 </div>
+
             </div>
         </div>
     )
