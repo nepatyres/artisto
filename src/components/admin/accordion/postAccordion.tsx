@@ -76,11 +76,10 @@ export default function PostAccordion({ setPopup, products, form }) {
             {products.length === 0 && <span className="text-xl pt-16 text-black/70">Add product first</span>}
             <div className='grid grid-cols-4 gap-3 pt-8'>
                 {products && filteredProducts.map((product, i) => (
-                    <button key={i} className='w-[100px] h-[120px] rounded-md relative cursor-pointer' onClick={() => updateBtn(product.id, product.name, product.price, product.images[0])}>
-                        <div className="w-full h-full flex flex-col">
+                    <button key={i} className='w-[100px] h-[100px] rounded-md relative cursor-pointer' onClick={() => updateBtn(product.id, product.name, product.price, product.images[0])}>
+                    
                             <img src={product.images[0]} alt={`Uploaded ${i}`} className='w-full h-full object-cover object-center rounded-md' />
                             <span>{product.name.slice(0, 7)}...</span>
-                        </div>
                     </button>
                 ))}
             </div>

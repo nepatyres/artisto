@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { getCart, addToCart, removeFromCart } from '../../lib/cart';
 
-export default function Cart({ cart, cartBtn }) {
+export default function Cart({ cart, cartBtn, updateCartItems }) {
     const [cartItems, setCartItems] = useState([]);
     const [sum, setSum] = useState(0);
 
@@ -25,11 +25,13 @@ export default function Cart({ cart, cartBtn }) {
     const handleAdd = (item) => {
         addToCart(item);
         setCartItems(getCart());
+        updateCartItems();
     };
 
     const handleRemove = (itemId) => {
         removeFromCart(itemId);
         setCartItems(getCart());
+        updateCartItems();
     };
 
     return (

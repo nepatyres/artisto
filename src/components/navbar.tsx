@@ -2,17 +2,29 @@ import { navbar } from "@/constants";
 import React, { useState, useEffect } from "react";
 import CartSvg from "./svg/cart";
 import Cart from "./cart/cart";
+import { getCart } from "@/lib/cart";
 
 export default function Navbar() {
     const [toggler, setToggler] = useState(false);
     const [cart, setCart] = useState(false);
+    const [cartItems, setCartItems] = useState([]);
+
     const togglerBtn = () => {
-        setToggler(!toggler)
-    }
+        setToggler(!toggler);
+    };
 
     const cartBtn = () => {
-        setCart(!cart)
-    }
+        setCart(!cart);
+    };
+
+    const updateCartItems = () => {
+        const items = getCart();
+        setCartItems(items);
+    };
+
+    useEffect(() => {
+        updateCartItems();
+    }, []);
 
     return (
         <>
@@ -27,7 +39,7 @@ export default function Navbar() {
                         ))}
                     </ul>
                     <div className="flex justify-end items-center pr-5">
-                        <button className="mr-2 pb-[2px]" onClick={cartBtn}><CartSvg /></button>
+                        <button className="mr-2 pb-[2px]" onClick={cartBtn}><CartSvg updateCartItems={updateCartItems} numItems={cartItems.reduce((acc, item) => acc + item.quantity, 0)} /></button>
                         <svg xmlns="http://www.w3.org/2000/svg" onClick={togglerBtn} className='md:hidden h-[33px] w-[33px] rounded-full stroke-white stroke-[1.5] cursor-pointer'
                             viewBox="0 0 23 16">
                             <g className='h-4 w-4' fillRule="evenodd" strokeLinecap="round">
@@ -37,7 +49,7 @@ export default function Navbar() {
                     </div>
                 </div>
             </nav>
-            {cart && <Cart cart={cart} cartBtn={cartBtn} />}
+            {cart && <Cart cart={cart} cartBtn={cartBtn} updateCartItems={updateCartItems} />}
 
             <div className={`fixed top-0 left-0 w-screen h-screen z-[150] md:hidden backdrop-blur-lg select-none justify-end ${toggler ? 'flex' : 'hidden'}`}>
                 <div className="w-[80%] h-full right-0 bg-black/60">

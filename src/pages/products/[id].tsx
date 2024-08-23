@@ -6,6 +6,7 @@ import axios from "axios";
 import { useRouter } from 'next/router';
 import MainProduct from "@/components/products/mainProduct";
 import Preloader from "@/components/preloader/preloader";
+import MoreProducts from "@/components/homePage/moreProducts";
 
 export default function ProductPage() {
     const [product, setProduct] = useState<any>(null);
@@ -62,7 +63,8 @@ export default function ProductPage() {
     return (
         <div className="h-screen flex flex-col">
             <Navbar />
-            <MainProduct selectImg={selectImg} product={product} img={img}/>
+            <MainProduct selectImg={selectImg} product={product} img={img} />
+            <MoreProducts product='related-products'/>
         </div>
     )
 }
