@@ -74,7 +74,7 @@ export default function Bestseller({ setIsLoading }) {
     return (
         <div className="w-full overflow-hidden bg-white mt-12">
             <div className="flex w-[80%] mx-auto mt-12 mb-4">
-                <span className="text-5xl">BESTSELLERS</span>
+                <span className="text-5xl">Bestsellers</span>
             </div>
             {bestseller.length > 0 ? (
                 bestseller.map((product, i) => (

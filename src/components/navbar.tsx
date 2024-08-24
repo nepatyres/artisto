@@ -4,17 +4,12 @@ import CartSvg from "./svg/cart";
 import Cart from "./cart/cart";
 import { getCart } from "@/lib/cart";
 
-export default function Navbar() {
+export default function Navbar({ cartBtn, cart }) {
     const [toggler, setToggler] = useState(false);
-    const [cart, setCart] = useState(false);
     const [cartItems, setCartItems] = useState([]);
 
     const togglerBtn = () => {
         setToggler(!toggler);
-    };
-
-    const cartBtn = () => {
-        setCart(!cart);
     };
 
     const updateCartItems = () => {
@@ -28,7 +23,7 @@ export default function Navbar() {
 
     return (
         <>
-            <nav className="fixed h-16 top-3 w-[95%] bg-black/40 backdrop-blur-md rounded-3xl z-[20] left-1/2 transform -translate-x-1/2 select-none">
+            <nav className="fixed h-16 top-3 w-[95%] bg-black/40 backdrop-blur-md rounded-3xl left-1/2 transform -translate-x-1/2 select-none z-[40]">
                 <div className="grid grid-cols-2 md:grid-cols-3 h-full">
                     <a href="/" className="flex justify-start items-center text-white mix-blend-difference text-3xl uppercase pl-10 cursor-pointer">ARTISTO</a>
                     <ul className="hidden md:flex flex-row justify-center items-center gap-8">

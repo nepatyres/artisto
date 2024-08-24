@@ -15,6 +15,7 @@ export default function ProductPage() {
     const [img, setImg] = useState<string | null>(null);
     const router = useRouter();
     const { id } = router.query;
+    const [cart, setCart] = useState(false);
 
     useEffect(() => {
         const fetchProduct = async () => {
@@ -44,6 +45,10 @@ export default function ProductPage() {
         )()
     }, [])
 
+    const cartBtn = () => {
+        setCart(!cart);
+    };
+
     const selectImg = (i) => {
         setImg(product.images[i])
     }
@@ -62,8 +67,8 @@ export default function ProductPage() {
 
     return (
         <div className="h-screen flex flex-col">
-            <Navbar />
-            <MainProduct selectImg={selectImg} product={product} img={img} />
+            <Navbar cartBtn={cartBtn} cart={cart}/>
+            <MainProduct selectImg={selectImg} product={product} img={img} cartBtn={cartBtn} />
             <MoreProducts product='related-products'/>
         </div>
     )
