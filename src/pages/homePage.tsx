@@ -4,6 +4,7 @@ import Bestseller from "../components/homePage/bestseller";
 import MoreProducts from "@/components/homePage/moreProducts";
 import Preloader from "@/components/preloader/preloader";
 import { AnimatePresence } from "framer-motion";
+import Footer from "@/components/footer";
 
 export default function HomePage() {
     const [isLoading, setIsLoading] = useState(true);
@@ -23,6 +24,7 @@ export default function HomePage() {
             <Hero />
             <Bestseller setIsLoading={setIsLoading} />
             <MoreProducts />
+            <Footer />
         </>
     );
 }
