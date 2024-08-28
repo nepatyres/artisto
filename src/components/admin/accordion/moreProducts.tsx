@@ -26,7 +26,7 @@ export default function MoreProducts({product, popupBtn}) {
             <span className="text-xl mb-3">Edit more products</span>
             <div className="grid grid-cols-2 md:grid-cols-4 w-full h-full gap-3 lg:gap-5 mb-5">
                 {moreProducts && moreProducts.map((moreProduct, i) => (
-                    <div key={i} className="h-[170px] w-[170px] md:h-[135px] md:w-[135px] lg:h-[180px] lg:w-[180px] xl:h-[220px] xl:w-[220px] 2xl:w-[300px] 2xl:h-[300px] border rounded-lg cursor-pointer flex relative">
+                    <div key={i} className="place-self-center h-[130px] w-[130px] md:h-[135px] md:w-[135px] lg:h-[180px] lg:w-[180px] xl:h-[220px] xl:w-[220px] 2xl:w-[300px] 2xl:h-[300px] border rounded-lg cursor-pointer flex relative">
                         <img className="bg-cover w-full h-full object-center rounded-lg" src={moreProduct.image} alt="" />
                         <div className="flex absolute top-3 right-3">
                             <svg xmlns="http://www.w3.org/2000/svg" onClick={() => removeBtn(moreProduct.id)} className="fill-white w-[30px] h-[30px]" viewBox="0 0 24 24">
@@ -39,7 +39,8 @@ export default function MoreProducts({product, popupBtn}) {
                         </div>
                     </div>
                 ))}
-                {moreProducts.length < 4 && <div className="h-[170px] w-[170px] md:h-[135px] md:w-[135px] lg:h-[180px] lg:w-[180px] xl:h-[220px] xl:w-[220px] 2xl:w-[300px] 2xl:h-[300px] border border-black/30 rounded-lg cursor-pointer flex justify-center items-center" onClick={() => popupBtn(product, 'GETMOREPRODUCTS')}>
+                {moreProducts.length <= 10 && 
+                <div className="place-self-center h-[160px] w-[160px] md:h-[135px] md:w-[135px] lg:h-[180px] lg:w-[180px] xl:h-[220px] xl:w-[220px] 2xl:w-[300px] 2xl:h-[300px] border border-black/30 rounded-lg cursor-pointer flex justify-center items-center" onClick={() => popupBtn(product, 'GETMOREPRODUCTS')}>
                     <svg xmlns="http://www.w3.org/2000/svg" className="h-24 w-24" viewBox="0 0 24 24" fill="none">
                         <g id="Edit / Add_Plus">
                             <path id="Vector" d="M6 12H12M12 12H18M12 12V18M12 12V6" className="stroke-black/70 stroke-[.6]" strokeLinecap="round" strokeLinejoin="round" />

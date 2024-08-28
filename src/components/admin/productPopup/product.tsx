@@ -23,9 +23,9 @@ export default function Product({ setProducts, products, popupBtn }) {
     return (
         <div className="flex flex-col mb-40">
             <span className="text-2xl px-5">Products</span>
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 h-auto w-full mx-auto">
+            <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 h-auto w-full mx-auto">
                 {products.map((product: any, i: number) => (
-                    <div key={product.id} onClick={() => popupBtn(product, 'PUT')} className="flex flex-row relative mt-5 ml-5 h-[180px] w-[180px] md:h-[200px] md:w-[200px] 2xl:h-[250px] 2xl:w-[250px] shadow-2xl rounded-lg cursor-pointer">
+                    <div key={product.id} onClick={() => popupBtn(product, 'PUT')} className="flex flex-row place-self-center relative mt-5 ml-5 w-[180px] h-[180px] md:h-[180px] md:w-[180px] xl:w-[230px] xl:h-[230px] 2xl:w-[290px] 2xl:h-[290px] shadow-2xl rounded-lg cursor-pointer">
                         <div className="top-0 left-0 w-full h-full">
                             <div className="cursor-pointer" onClick={(e) => { e.stopPropagation(); togglerBtn(product.id); }}>
                                 <svg className={` absolute top-0 right-2 w-[48] h-[48px] fill-none stoke-1 stroke-black/30 ${product.display ? 'hidden' : 'flex'}`} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" strokeLinecap="round" strokeLinejoin="round">

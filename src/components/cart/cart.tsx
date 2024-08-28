@@ -50,14 +50,14 @@ export default function Cart({ cart, cartBtn, updateCartItems }) {
                     </div>
                     <div className="flex flex-col py-6 overflow-y-auto">
                         {cartItems.length === 0 ? (
-                            <p className="text-center text-gray-500">Your cart is empty.</p>
+                            <p className="text-center text-white/90 text-[24px]">Your cart is empty.</p>
                         ) : (
                             cartItems.map((item, index) => (
                                 <div key={index} className="flex flex-row items-center justify-between my-4 border-b border-b-white/10 pb-4">
                                     <div className="flex">
                                         <img src={item.images[0]} alt={item.name} className="w-[80px] h-[80px] rounded-lg object-cover" />
                                         <div className="flex flex-col ml-8 justify-between">
-                                            <span className="lg:text-lg place-self-start text-white">{item.name}</span>
+                                            <span className="lg:text-lg place-self-start text-white/80">{item.name}</span>
                                             <div className="flex flex-row border border-white/20 w-min rounded-md">
                                                 <button onClick={() => handleRemove(item.id)} className="px-2 text-lg text-white">-</button>
                                                 <span className="text-lg px-2 text-white">{item.quantity}</span>
@@ -65,7 +65,7 @@ export default function Cart({ cart, cartBtn, updateCartItems }) {
                                             </div>
                                         </div>
                                     </div>
-                                    <span className="text-white/70 place-self-start text-xl">€{formatPrice(item.price)}</span>
+                                    <span className="text-white/90 place-self-start text-xl pr-3">€{formatPrice(item.price)}</span>
                                 </div>
                             ))
                         )}

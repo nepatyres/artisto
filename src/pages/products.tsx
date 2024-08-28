@@ -55,9 +55,15 @@ export default function Products() {
             <AnimatePresence mode='wait'>
                 {isLoading && <PreloaderLeft />}
             </AnimatePresence>
-            <Navbar cartBtn={cartBtn} cart={cart}/>
+            <Navbar cartBtn={cartBtn} cart={cart} />
             <div className="flex h-auto lg:w-[80%] md:w-[90%] mx-auto mt-20 flex-col mb-20">
-                <span className="text-4xl px-3 py-10">Products</span>
+                <div className="flex flex-row w-full justify-between items-center">
+                    <span className="text-4xl px-3 py-10">Products</span>
+                    <div className="flex flex-row pt-8">
+                        <span className="text-black/80 pr-6">{products.length} Items</span>
+                        <div className="cursor-pointer">Sort by</div>
+                    </div>
+                </div>
                 <div className="w-full grid md:grid-cols-2 xl:grid-cols-2 2xl:grid-cols-3 mx-auto gap-5">
                     {products.filter(product => product.display).map((product: any, i: number) => (
                         <div key={i} className="w-full flex space-between">

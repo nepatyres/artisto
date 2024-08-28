@@ -25,7 +25,12 @@ export default function MainProduct({ product, img, selectImg, cartBtn }) {
                     ))}
                 </div>
             </div>
-            <div className="w-full lg:h-screen lg:w-[45%] xl:w-[35%] lg:pl-8 xl:pl-12 flex flex-col sticky top-0 pt-24">
+            <div className="w-full lg:h-screen lg:w-[45%] xl:w-[35%] lg:pl-8 xl:pl-12 flex flex-col sticky top-0 pt-28">
+                <div className="flex flex-row text-black/70 pb-6 w-[150px] justify-between">
+                    <a href="/products" className="hover:text-black">products</a>
+                    <span>/</span>
+                    <span>{product.name}</span>
+                </div>
                 <span className="text-3xl 2xl:text-4xl">{product.name}</span>
                 <span className="text-3xl text-black/70 pt-2">€{formatPrice(product.price)}</span>
                 <div className="flex flex-col w-[90%] gap-3 lg:mt-auto pb-12">

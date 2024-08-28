@@ -7,6 +7,7 @@ import { useRouter } from 'next/router';
 import MainProduct from "@/components/products/mainProduct";
 import Preloader from "@/components/preloader/preloader";
 import MoreProducts from "@/components/homePage/moreProducts";
+import Footer from "@/components/footer";
 
 export default function ProductPage() {
     const [product, setProduct] = useState<any>(null);
@@ -67,9 +68,10 @@ export default function ProductPage() {
 
     return (
         <div className="h-screen flex flex-col">
-            <Navbar cartBtn={cartBtn} cart={cart}/>
+            <Navbar cartBtn={cartBtn} cart={cart} />
             <MainProduct selectImg={selectImg} product={product} img={img} cartBtn={cartBtn} />
-            <MoreProducts product='related-products'/>
+            <MoreProducts product='related-products' />
+            <Footer />
         </div>
     )
 }

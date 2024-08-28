@@ -1,8 +1,5 @@
-// lib/cart.js
-import Cookies from 'js-cookie';
-
 export const addToCart = (item) => {
-    let cart = JSON.parse(Cookies.get('cart') || '[]');
+    let cart = JSON.parse(localStorage.getItem('cart') || '[]');
 
     const existingItemIndex = cart.findIndex(cartItem => cartItem.id === item.id);
 
@@ -12,11 +9,11 @@ export const addToCart = (item) => {
         cart.push({ ...item, quantity: 1 });
     }
 
-    Cookies.set('cart', JSON.stringify(cart), { expires: 7 });
+    localStorage.setItem('cart', JSON.stringify(cart));
 };
 
 export const removeFromCart = (itemId) => {
-    let cart = JSON.parse(Cookies.get('cart') || '[]');
+    let cart = JSON.parse(localStorage.getItem('cart') || '[]');
 
     const existingItemIndex = cart.findIndex(cartItem => cartItem.id === itemId);
 
@@ -28,10 +25,10 @@ export const removeFromCart = (itemId) => {
         }
     }
 
-    Cookies.set('cart', JSON.stringify(cart), { expires: 7 });
+    localStorage.setItem('cart', JSON.stringify(cart));
 };
 
 export const getCart = () => {
-    return JSON.parse(Cookies.get('cart') || '[]');
+    return JSON.parse(localStorage.getItem('cart') || '[]');
 };
 

@@ -40,7 +40,7 @@ export default function ImgInput({ setImages, imagePreviews, setImagePreviews, e
             <div className='flex flex-row w-full gap-3'>
                 <div className='grid grid-cols-4 gap-3'>
                     {imagePreviews.map((preview: string, i: any) => (
-                        <div key={i} className='w-[100px] h-[100px] rounded-md relative'>
+                        <div key={i} className='w-[80px] h-[80px] sm:h-[100px] sm:w-[100px] rounded-md relative'>
                             <svg onClick={() => removeImgBtn(i)}
                                 className="mix-blend-difference fill-white shadow-2xl z-50 w-6 h-6 flex cursor-pointer absolute right-0 top-0 rounded-full"
                                 xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" version="1.1">
@@ -52,7 +52,7 @@ export default function ImgInput({ setImages, imagePreviews, setImagePreviews, e
                         </div>
                     ))}
                     <input className='hidden' type="file" multiple onChange={handleImageChange} ref={fileInputRef} />
-                    <button type="button" onClick={handleCustomButtonClick} className={`border rounded-md px-4 py-2 w-[100px] h-[100px] cursor-pointer ${imagePreviews.length > 7 ? 'hidden' : ''}`}>Add images</button>
+                    <button type="button" onClick={handleCustomButtonClick} className={`border rounded-md px-4 py-2 w-[80px] h-[80px] sm:h-[100px] sm:w-[100px] cursor-pointer ${imagePreviews.length > 7 ? 'hidden' : ''}`}>Add images</button>
                 </div>
             </div>
         </div>

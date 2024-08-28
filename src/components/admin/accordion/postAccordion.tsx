@@ -74,7 +74,7 @@ export default function PostAccordion({ setPopup, products, form }) {
         <form onSubmit={handleSubmit} className="w-[80%] flex flex-col pt-5">
             <span className="text-2xl">{form === 'GETBESTSELLER' ? 'Choose bestseller' : form === 'GETMOREPRODUCTS' ? 'Choose more product' : ''}</span>
             {products.length === 0 && <span className="text-xl pt-16 text-black/70">Add product first</span>}
-            <div className='grid grid-cols-4 gap-3 pt-8'>
+            <div className='grid grid-cols-3 sm:grid-cols-4 gap-8 pt-8'>
                 {products && filteredProducts.map((product, i) => (
                     <button key={i} className='w-[100px] h-[100px] rounded-md relative cursor-pointer' onClick={() => updateBtn(product.id, product.name, product.price, product.images[0])}>
                     
