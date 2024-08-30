@@ -39,7 +39,7 @@ export default function MoreProducts({product, popupBtn}) {
                         </div>
                     </div>
                 ))}
-                {moreProducts.length <= 10 && 
+                {moreProducts.length <= 3 && 
                 <div className="place-self-center h-[160px] w-[160px] md:h-[135px] md:w-[135px] lg:h-[180px] lg:w-[180px] xl:h-[220px] xl:w-[220px] 2xl:w-[300px] 2xl:h-[300px] border border-black/30 rounded-lg cursor-pointer flex justify-center items-center" onClick={() => popupBtn(product, 'GETMOREPRODUCTS')}>
                     <svg xmlns="http://www.w3.org/2000/svg" className="h-24 w-24" viewBox="0 0 24 24" fill="none">
                         <g id="Edit / Add_Plus">

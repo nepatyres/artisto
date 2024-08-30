@@ -26,7 +26,7 @@ export default function MainProduct({ product, img, selectImg, cartBtn }) {
                 </div>
             </div>
             <div className="w-full lg:h-screen lg:w-[45%] xl:w-[35%] lg:pl-8 xl:pl-12 flex flex-col sticky top-0 pt-28">
-                <div className="flex flex-row text-black/70 pb-6 w-[150px] justify-between">
+                <div className="flex flex-row text-black/70 pb-6 w-full gap-1">
                     <a href="/products" className="hover:text-black">products</a>
                     <span>/</span>
                     <span>{product.name}</span>
