@@ -36,7 +36,7 @@ export default function MoreProducts({ product }) {
                                     </div>
                                 </div>
                                 <div className="flex flex-col text-start pt-2 pb-3 mx-2">
-                                    <span className="text-sm 2xl:text-xl font-light w-full">{p.name}</span>
+                                    <span className="text-sm 2xl:text-xl font-light w-full">{p.name} </span>
                                     <span className="font-normal">€{formatPrice(p.price)} </span>
                                 </div>
                             </a>
