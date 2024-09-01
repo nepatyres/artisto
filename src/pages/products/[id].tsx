@@ -5,18 +5,33 @@ import '../../app/globals.css'
 import axios from "axios";
 import { useRouter } from 'next/router';
 import MainProduct from "@/components/products/mainProduct";
+import { AnimatePresence } from "framer-motion";
 import Preloader from "@/components/preloader/preloader";
 import MoreProducts from "@/components/homePage/moreProducts";
 import Footer from "@/components/footer";
 
 export default function ProductPage() {
     const [product, setProduct] = useState<any>(null);
-    const [loading, setLoading] = useState<boolean>(true);
+    const [isLoading, setIsLoading] = useState<boolean>(true);
     const [error, setError] = useState<string | null>(null);
     const [img, setImg] = useState<string | null>(null);
     const router = useRouter();
     const { id } = router.query;
     const [cart, setCart] = useState(false);
+
+    useEffect(() => {
+        (
+            async () => {
+                const LocomotiveScroll = (await import('locomotive-scroll')).default
+                const locomotiveScroll = new LocomotiveScroll();
+                setTimeout(() => {
+                    setIsLoading(false);
+                    document.body.style.cursor = 'default'
+                    window.scrollTo(0, 0);
+                }, 2000)
+            }
+        )()
+    }, [])
 
     useEffect(() => {
         const fetchProduct = async () => {
@@ -27,24 +42,16 @@ export default function ProductPage() {
                 if (productData && productData.images) {
                     setImg(productData.images[0]);
                 }
-                setLoading(false);
+                setIsLoading(false);
             } catch (err) {
                 setError("Failed to load product data");
-                setLoading(false);
+                setIsLoading(false);
             }
         };
         if (id) {
             fetchProduct();
         }
     }, [id]);
-    useEffect(() => {
-        (
-            async () => {
-                const LocomotiveScroll = (await import('locomotive-scroll')).default
-                const locomotiveScroll = new LocomotiveScroll();
-            }
-        )()
-    }, [])
 
     const cartBtn = () => {
         setCart(!cart);
@@ -54,24 +61,26 @@ export default function ProductPage() {
         setImg(product.images[i])
     }
 
-    if (loading) {
-        return <div>asdfasdfasd</div>;
-    }
-
-    if (error) {
-        return <div>{error}</div>;
-    }
-
-    if (!product) {
-        return <div>Product not found</div>;
-    }
-
     return (
         <div className="h-screen flex flex-col">
+            <AnimatePresence mode='wait'>
+                {isLoading && <Preloader />}
+            </AnimatePresence>
             <Navbar cartBtn={cartBtn} cart={cart} />
-            <MainProduct selectImg={selectImg} product={product} img={img} cartBtn={cartBtn} />
-            <MoreProducts product='related-products' />
-            <Footer />
+            <>
+                {product ? (
+                    <>
+                        <MainProduct selectImg={selectImg} product={product} img={img} cartBtn={cartBtn} />
+                        <MoreProducts product='related-products' />
+                    </>
+                ) : error ? (
+                    <div className="text-center text-red-500 mt-10">Error: {error}</div>
+                ) : (
+                    <div className="text-center mt-10">Loading...</div>
+                )}
+                <Footer />
+            </>
         </div>
     )
+
 }
