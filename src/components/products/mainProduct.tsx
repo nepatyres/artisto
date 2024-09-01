@@ -34,7 +34,9 @@ export default function MainProduct({ product, img, selectImg, cartBtn }) {
                 <span className="text-3xl 2xl:text-4xl">{product.name}</span>
                 <span className="text-3xl text-black/70 pt-2">€{formatPrice(product.price)}</span>
                 <div className="flex flex-col w-[90%] gap-3 lg:mt-auto pb-12">
-                    <button className="w-full border border-black rounded-md px-2 py-2 text-md">BUY NOW</button>
+                    <button className="w-full rounded-md px-2 py-2 text-md btn relative text-center cursor-pointer">
+                        <span className="relative z-10 text-md">BUY NOW</span>
+                    </button>
                     <CartBtn product={product} cartBtn={cartBtn}/>
                 </div>
             </div>

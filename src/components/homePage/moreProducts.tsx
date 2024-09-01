@@ -22,21 +22,22 @@ export default function MoreProducts({ product }) {
 
     return (
         <div className="w-full h-auto bg-grey flex items-center mt-12 mb-20">
-            <div className="justify-center w-[95%] lg:w-[80%] rounded-lg mx-auto flex flex-col self-center">
-                <div className={`flex ${product === 'related-products' ? 'w-[95%]' : 'w-[80%]'} mb-10 mt-10`}>
-                    <span className="text-4xl font-light">{product === 'related-products' ? 'Related products' : 'More products'}</span>
+            <div className="justify-center w-[85%] lg:w-[80%] rounded-lg mx-auto flex flex-col self-center">
+                <div className={`flex flex-row ${product === 'related-products' ? 'w-[95%]' : 'w-[80%]'} mb-10 mt-10`}>
+                    <span className="text-3xl lg:text-4xl font-light">{product === 'related-products' ? 'Related products' : 'More products'}</span>
+                    <a href="products" className="border border-black/80 rounded-md p-0 h-6 text-sm px-1 ml-3 mt-1 self-center flex items-center">Products</a>
                 </div>
                 <div className='gap-6 grid grid-cols-2 xl:grid-cols-4'>
                     {products.map((p: any, i: number) => (
                         <div key={i} className="w-full flex items-center">
                             <a className="flex mx-auto flex-col cursor-pointer" href={`/products/${p.id}`}>
-                                <div className="relative w-[180px] h-[180px] sm:w-[250px] sm:h-[250px] xl:w-[360px] xl:h-[360px] rounded-lg mx-auto transition-transform duration-[1000ms] ease-in-out hover:scale-105">
+                                <div className="relative w-[180px] h-[180px] sm:w-[250px] sm:h-[250px] md:w-[300px] md:h-[300px] lg:w-[380px] lg:h-[380px] xl:w-[250px] xl:h-[250px] 2xl:w-[300px] 2xl:h-[300px] rounded-lg mx-auto transition-transform duration-[1000ms] ease-in-out hover:scale-105">
                                     <div className="absolute inset-0 w-full h-full rounded-lg">
                                         <img src={p.image} className="h-full w-full object-cover object-center rounded-lg" alt="" />
                                     </div>
                                 </div>
                                 <div className="flex flex-col text-start pt-2 pb-3 mx-2">
-                                    <span className="text-sm 2xl:text-xl font-light w-full">{p.name} </span>
+                                    <span className="text-sm 2xl:text-xl font-normal w-full">{p.name} </span>
                                     <span className="font-normal">€{formatPrice(p.price)} </span>
                                 </div>
                             </a>

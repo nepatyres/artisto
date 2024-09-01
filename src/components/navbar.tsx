@@ -50,7 +50,7 @@ export default function Navbar({ cartBtn, cart }) {
                 <div className="w-[80%] h-full right-0 bg-black/60">
                     <div className="flex flex-col w-full h-full">
                         <svg onClick={togglerBtn}
-                            className="fill-white h-11 w-11 flex cursor-pointer absolute right-[18px] top-[10px] mr-6 mt-3 rounded-full"
+                            className="fill-white h-11 w-11 flex cursor-pointer absolute right-[18px] top-[10px] mr-6 mt-3 rounded-full z-[9999]"
                             xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" version="1.1">
                             <path
                                 d="M777.856 280.192l-33.92-33.952-231.872 231.872-231.84-231.872-33.984 33.888 231.872 231.904-231.84 231.84 33.888 33.984 231.904-231.904 231.84 231.872 33.952-33.888-231.872-231.904z" />

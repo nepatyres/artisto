@@ -6,11 +6,34 @@
     overflow: hidden;
 }
 
-body {
-    /* cursor: wait; */
-    /* overflow: hidden; */
+.svg-preload {
+    height: calc(100% + 300px);
+}
+.btn {
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
 }
 
-.svg-preload{
-    height: calc(100% + 300px);
+.btn::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 1%;
+    width: 98%;
+    height: 100%;
+    background: black; /* Change this color as needed */
+    transition: transform 0.2s ease, width 0.2s ease, left 0.2s ease, background-color 0.2s ease;
+    transform-origin: bottom;
+    transform: scaleY(0) translateY(-20px);
+    z-index: 0;
+    border-radius: 8px;
+    color: white;
+}
+
+.btn:hover::after {
+    transform: scaleY(1) translateY(0);
+    width: 100%;
+    left: 0;
+    color: white;
 }

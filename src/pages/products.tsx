@@ -56,19 +56,19 @@ export default function Products() {
                 {isLoading && <PreloaderLeft />}
             </AnimatePresence>
             <Navbar cartBtn={cartBtn} cart={cart} />
-            <div className="flex h-auto lg:w-[80%] md:w-[90%] mx-auto mt-20 flex-col mb-20">
+            <div className="flex h-auto w-[90%] lg:w-[85%] mx-auto mt-20 flex-col mb-20">
                 <div className="flex flex-row w-full justify-between items-center">
                     <span className="text-4xl px-3 py-10">Products</span>
-                    <div className="flex flex-row pt-8">
-                        <span className="text-black/80 pr-6">{products.length} Items</span>
+                    <div className="flex flex-row lg:pt-8 self-center">
+                        <span className="text-black/80 pr-3 lg:pr-6">{products.length} Items</span>
                         <div className="cursor-pointer">Sort by</div>
                     </div>
                 </div>
-                <div className="w-full grid md:grid-cols-2 xl:grid-cols-2 2xl:grid-cols-3 mx-auto gap-5">
+                <div className="w-full grid grid-cols-2 lg:grid-cols-3 mx-auto gap-5">
                     {products.filter(product => product.display).map((product: any, i: number) => (
                         <div key={i} className="w-full flex space-between">
                             <div className="flex mx-auto flex-col cursor-pointer" onClick={(e) => redirectBtn(product.id)}>
-                                <div className="lg:w-[400px] lg:h-[400px] w-[300px] h-[300px] rounded-lg mx-auto">
+                                <div className="w-[180px] h-[180px] sm:w-[250px] sm:h-[250px] md:w-[300px] md:h-[300px] lg:w-[280px] lg:h-[280px] xl:w-[320px] xl:h-[320px] 2xl:w-[400px] 2xl:h-[400px] rounded-lg mx-auto">
                                     <img src={product.images[0]} className="h-full w-full object-cover object-center rounded-md" alt="" />
                                 </div>
                                 <div className="flex flex-col text-center pt-2 pb-3">

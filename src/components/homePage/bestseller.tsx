@@ -78,8 +78,8 @@ export default function Bestseller({ setIsLoading }) {
             </div>
             {bestseller.length > 0 ? (
                 bestseller.map((product, i) => (
-                    <div key={i} className="w-full h-[50vh] xl:h-screen flex mx-auto cursor-pointer" onClick={() => redirectBtn(product.id)}>
-                        <div className="w-[85%] lg:w-[80%] h-[90%] m-auto relative">
+                    <div key={i} className="w-full h-[50vh] lg:h-[60vh] xl:h-screen flex mx-auto cursor-pointer" onClick={() => redirectBtn(product.id)}>
+                        <div className="w-[85%] lg:w-[80%] h-[90%] xl:h-[80%] m-auto relative">
                             <div ref={el => refs.current[i] && (refs.current[i].info = el)} className="absolute flex inset-0 justify-end items-end p-12 z-20">
                                 <div className="py-2 px-2 bg-white/70 z-30 rounded-2xl shadow-2xl">
                                     <div className="p-4 mx-auto flex flex-col">
