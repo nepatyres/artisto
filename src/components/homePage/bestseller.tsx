@@ -38,7 +38,7 @@ export default function Bestseller({ setIsLoading }) {
                     start: 'top bottom',
                     end: '+=600px',
                     scrub: true,
-                    markers: true
+                    // markers: true
                 }
             });
             const infoTimeline = gsap.timeline({
