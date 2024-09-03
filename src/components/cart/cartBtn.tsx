@@ -6,6 +6,8 @@ export default function CartBtn({ product, cartBtn }) {
         cartBtn();
     };
     return (
-        <button onClick={() => handleAddToCart()} className="w-full border border-black bg-black text-white rounded-md px-2 py-2 text-md btnw">ADD TO CART</button>
+        <button onClick={() => handleAddToCart()} className="w-full rounded-md px-2 py-2 text-md btn relative text-center cursor-pointer bg-black">
+            <span className="relative z-10 text-md span inline-block text-center transition-colors text-white">ADD TO CART</span>
+        </button>
     )
 }

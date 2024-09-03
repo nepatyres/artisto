@@ -57,8 +57,8 @@ export default function ProductPage() {
         setCart(!cart);
     };
 
-    const selectImg = (i) => {
-        setImg(product.images[i])
+    const screenImg = (i) => {
+        screenImg(product.images[i])
     }
 
     return (
@@ -70,7 +70,7 @@ export default function ProductPage() {
             <>
                 {product ? (
                     <>
-                        <MainProduct selectImg={selectImg} product={product} img={img} cartBtn={cartBtn} />
+                        <MainProduct screenImg={screenImg} product={product} img={img} cartBtn={cartBtn} />
                         <MoreProducts product='related-products' />
                     </>
                 ) : error ? (
@@ -80,6 +80,7 @@ export default function ProductPage() {
                 )}
                 <Footer />
             </>
+            {screenImg && <div className="absolute bg-black w-full h-screen z-[9999]">{screenImg}</div>}
         </div>
     )
 

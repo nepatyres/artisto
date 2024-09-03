@@ -45,21 +45,23 @@ export default function Products() {
     }
 
     const sortClose = () => {
-        setSort(false);
+        if (sort) {
+            setSort(false);
+        }
     }
 
     const sortLowBtn = () => {
-        setProducts([...products].sort((a,b) => a.price - b.price));
+        setProducts([...products].sort((a, b) => a.price - b.price));
         setSort(false);
     }
 
     const sortHighBtn = () => {
-        setProducts([...products].sort((a,b) => b.price - a.price));
+        setProducts([...products].sort((a, b) => b.price - a.price));
         setSort(false);
     }
 
     const sortNewestBtn = () => {
-        setProducts([...products].sort((a,b) => new Date(a.createdAt) - new Date(b.createdAt)));
+        setProducts([...products].sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt)));
         setSort(false);
     }
 
@@ -75,24 +77,28 @@ export default function Products() {
         }).format(price);
     };
     return (
-        <div className="flex h-auto bg-white flex-col">
+        <div className="flex h-auto bg-white flex-col" onClick={sortClose}>
             <AnimatePresence mode='wait'>
                 {isLoading && <PreloaderLeft />}
             </AnimatePresence>
             <Navbar cartBtn={cartBtn} cart={cart} />
-            <div className="flex min-h-[80vh] w-[90%] lg:w-[85%] mx-auto mt-20 flex-col mb-20">
+            <div className="flex min-h-[80vh] w-[90%] lg:w-[85%] 2xl:w-[80%] mx-auto mt-20 flex-col mb-20">
                 <div className="flex flex-row w-full justify-between items-center">
                     <span className="text-4xl px-3 py-10">Products</span>
                     <div className="flex flex-row lg:pt-8 self-center">
                         <span className="text-black/60 pr-3 lg:pr-6">{products.filter(products => products.display).length} Items</span>
                         <div>
-                            <button onClick={sortBtn} className="cursor-pointer">Sort by</button>
-                            {sort && 
-                            <ul className="shadow-xl mt-1 px-3 py-1.5 absolute z-[100] bg-white text-nowrap right-0 xl:right-auto rounded-md">
-                                <li className="cursor-pointer" onClick={sortLowBtn}>Price, low to high</li>
-                                <li className="cursor-pointer" onClick={sortHighBtn}>Price, high to low</li>
-                                <li className="cursor-pointer" onClick={sortNewestBtn}>Newest</li>
-                            </ul>}
+                            <button onClick={sortBtn} className={`z-[9999] cursor-pointer flex items-center ${sort ? 'text-black/70' : 'text-black'}`}>Sort by
+                                <svg xmlns="http://www.w3.org/2000/svg" className="w-[18px] h-[18px] ml-0.5 mt-0.5" viewBox="0 0 24 24" fill="none">
+                                    <path d="M5.70711 9.71069C5.31658 10.1012 5.31658 10.7344 5.70711 11.1249L10.5993 16.0123C11.3805 16.7927 12.6463 16.7924 13.4271 16.0117L18.3174 11.1213C18.708 10.7308 18.708 10.0976 18.3174 9.70708C17.9269 9.31655 17.2937 9.31655 16.9032 9.70708L12.7176 13.8927C12.3271 14.2833 11.6939 14.2832 11.3034 13.8927L7.12132 9.71069C6.7308 9.32016 6.09763 9.32016 5.70711 9.71069Z" fill="#0F0F0F" />
+                                </svg>
+                            </button>
+                            {sort &&
+                                <ul className="shadow-xl mt-1 px-3 py-1.5 absolute z-[100] bg-white/85  text-nowrap right-0 xl:right-auto rounded-md">
+                                    <li className="cursor-pointer" onClick={sortLowBtn}>Price, low to high</li>
+                                    <li className="cursor-pointer" onClick={sortHighBtn}>Price, high to low</li>
+                                    <li className="cursor-pointer" onClick={sortNewestBtn}>Newest</li>
+                                </ul>}
                         </div>
                     </div>
                 </div>

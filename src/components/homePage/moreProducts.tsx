@@ -25,7 +25,9 @@ export default function MoreProducts({ product }) {
             <div className="justify-center w-[85%] lg:w-[80%] rounded-lg mx-auto flex flex-col self-center">
                 <div className={`flex flex-row ${product === 'related-products' ? 'w-[95%]' : 'w-[80%]'} mb-10 mt-10`}>
                     <span className="text-3xl lg:text-4xl font-light">{product === 'related-products' ? 'Related products' : 'More products'}</span>
-                    <a href="products" className="border border-black/80 rounded-md p-0 h-6 text-sm px-1 ml-3 mt-1 self-center flex items-center">Products</a>
+                    <a href="products" className={`bg-black rounded-[6px] relative btn p-0 h-6 px-1 ml-3 self-end flex items-center ${product === 'related-products' ? 'mb-0.5' : 'mb-1'}`}>
+                        <span className="relative z-10 span inline-block text-center transition-colors text-white text-[12px] px-1">PRODUCTS</span>
+                    </a>
                 </div>
                 <div className='gap-6 grid grid-cols-2 xl:grid-cols-4'>
                     {products.map((p: any, i: number) => (
