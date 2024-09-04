@@ -10,6 +10,15 @@ const config: Config = {
     extend: {
       backgroundImage: {
       },
+      fontFamily: {
+        'panno': ['"Panno"'],
+        'robotoT': ['"RobotoT"'],
+        'robotoE': ['"RobotoE"'],
+        'robotoL': ['"RobotoL"'],
+        'roboto': ['"Roboto"'],
+        'lato': ['"Lato"'],
+        'latoL': ['"LatoL"'],
+      }
     },
   },
   plugins: [],

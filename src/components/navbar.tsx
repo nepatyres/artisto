@@ -25,11 +25,11 @@ export default function Navbar({ cartBtn, cart }) {
         <>
             <nav className="fixed h-16 top-3 w-[95%] bg-black/40 backdrop-blur-md rounded-3xl left-1/2 transform -translate-x-1/2 select-none z-[40]">
                 <div className="grid grid-cols-2 md:grid-cols-3 h-full">
-                    <a href="/" className="flex justify-start items-center text-white mix-blend-difference text-[35px] font-thin pl-10 cursor-pointer">àrtisto</a>
+                    <a href="/" className="flex justify-start items-center text-white mix-blend-difference text-[30px] font-robotoE pb-1 tracking-tight pl-10 cursor-pointer">àrtisto</a>
                     <ul className="hidden md:flex flex-row justify-center items-center gap-8">
                         {navbar.map((nav, i) => (
                             <li key={i} className="text-white">
-                                <a href={nav.link} className="cursor-pointer text-xl font-light">{nav.name}</a>
+                                <a href={nav.link} className="cursor-pointer text-xl font-robotoL tracking-tight">{nav.name}</a>
                             </li>
                         ))}
                     </ul>
@@ -57,7 +57,7 @@ export default function Navbar({ cartBtn, cart }) {
                         </svg>
                         <ul className="flex flex-col items-center justify-center h-full gap-8 z-[200]">
                             {navbar.map((nav, i) => (
-                                <a key={i} href={nav.link} className="text-7xl text-white/90 stroke-2 stroke-red">{nav.name}</a>
+                                <a key={i} href={nav.link} className="text-7xl text-white/90 stroke-2 stroke-red font-panno leading-4">{nav.name}</a>
                             ))}
                         </ul>
                     </div>

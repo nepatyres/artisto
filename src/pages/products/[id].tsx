@@ -80,7 +80,7 @@ export default function ProductPage() {
                 )}
                 <Footer />
             </>
-            {screenImg && <div className="absolute bg-black w-full h-screen z-[9999]">{screenImg}</div>}
+            {/* {screenImg && <div className="absolute bg-black w-full h-screen z-[9999]">{screenImg}</div>} */}
         </div>
     )
 

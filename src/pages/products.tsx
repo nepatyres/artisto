@@ -84,7 +84,7 @@ export default function Products() {
             <Navbar cartBtn={cartBtn} cart={cart} />
             <div className="flex min-h-[80vh] w-[90%] lg:w-[85%] 2xl:w-[80%] mx-auto mt-20 flex-col mb-20">
                 <div className="flex flex-row w-full justify-between items-center">
-                    <span className="text-4xl px-3 py-10">Products</span>
+                    <span className="text-4xl px-3 py-10 font-panno leading-4">Products</span>
                     <div className="flex flex-row lg:pt-8 self-center">
                         <span className="text-black/60 pr-3 lg:pr-6">{products.filter(products => products.display).length} Items</span>
                         <div>

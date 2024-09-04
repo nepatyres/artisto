@@ -2,6 +2,41 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+    font-family: "Panno";
+    src: url('../../public/fonts/panno/PannoText-Normal.ttf')format("truetype")
+  }
+
+  @font-face {
+    font-family: "RobotoL";
+    src: url('../../public/fonts/roboto/RobotoMono-Light.ttf')format("truetype")
+  }
+
+  @font-face {
+    font-family: "RobotoT";
+    src: url('../../public/fonts/roboto/RobotoMono-Thin.ttf')format("truetype")
+  }
+
+  @font-face {
+    font-family: "RobotoE";
+    src: url('../../public/fonts/roboto/RobotoMono-ExtraLight.ttf')format("truetype")
+  }
+
+  @font-face {
+    font-family: "Roboto";
+    src: url('../../public/fonts/roboto/RobotoMono-Regular.ttf')format("truetype")
+  }
+
+  @font-face {
+    font-family: "Lato";
+    src: url('../../public/fonts/lato/Lato-Regular.ttf')format("truetype")
+  }
+
+  @font-face {
+    font-family: "LatoL";
+    src: url('../../public/fonts/lato/Lato-Light.ttf')format("truetype")
+  }
+
 .no-scroll {
     overflow: hidden;
 }
