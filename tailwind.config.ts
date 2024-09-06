@@ -18,7 +18,13 @@ const config: Config = {
         'roboto': ['"Roboto"'],
         'lato': ['"Lato"'],
         'latoL': ['"LatoL"'],
-      }
+      },
+      colors: {
+        'dot6': 'rgba(255, 255, 255, .6)',
+        'dot7': 'rgba(255, 255, 255, .7)',
+        'dot8': 'rgba(255, 255, 255, .8)',
+        'dot9': 'rgba(255, 255, 255, .9)',
+      },
     },
   },
   plugins: [],

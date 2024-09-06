@@ -1,7 +1,7 @@
-import Navbar from '@/components/navbar'
 import '../app/globals.css'
-import React, { useState, useEffect } from 'react';
-import Footer from '@/components/footer'
+import React, {useState, useEffect} from 'react';
+import Footer from "@/components/footer";
+import Navbar from "@/components/navbar";
 export default function Terms() {
     useEffect(() => {
         (
@@ -41,6 +41,5 @@ export default function Terms() {
             </div>
             <Footer />
         </div>
-
     )
 }
