@@ -20,20 +20,6 @@ export default function ProductPage() {
     const [cart, setCart] = useState(false);
 
     useEffect(() => {
-        (
-            async () => {
-                const LocomotiveScroll = (await import('locomotive-scroll')).default
-                const locomotiveScroll = new LocomotiveScroll();
-                setTimeout(() => {
-                    setIsLoading(false);
-                    document.body.style.cursor = 'default'
-                    window.scrollTo(0, 0);
-                }, 2000)
-            }
-        )()
-    }, [])
-
-    useEffect(() => {
         const fetchProduct = async () => {
             try {
                 const response = await axios.get('/api/products/get');
@@ -43,15 +29,22 @@ export default function ProductPage() {
                     setImg(productData.images[0]);
                 }
                 setIsLoading(false);
+
+                // Refresh locomotive-scroll after content is loaded
+                const LocomotiveScroll = (await import('locomotive-scroll')).default;
+                const locomotiveScroll = new LocomotiveScroll();
+                locomotiveScroll.update(); // Refresh the scroll instance
             } catch (err) {
                 setError("Failed to load product data");
                 setIsLoading(false);
             }
         };
+
         if (id) {
             fetchProduct();
         }
     }, [id]);
+
 
     const cartBtn = () => {
         setCart(!cart);

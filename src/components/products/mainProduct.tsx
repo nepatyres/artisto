@@ -44,7 +44,7 @@ export default function MainProduct({ screenImg, product, img, cartBtn }) {
                     ))}
                 </div>
             </div>
-            <div className="w-full lg:h-screen lg:w-[45%] xl:w-[30%] flex flex-col sticky top-0 pt-10 lg:pt-20">
+            <div className="w-full lg:h-screen lg:w-[45%] xl:w-[30%] flex flex-col sticky top-0 pt-10 lg:pt-20 lg:pl-8">
                 <div className="flex-row pb-2 w-full gap-1 hidden xl:flex font-panno uppercase">
                     <a href="/products">products</a>
                     <span>/</span>

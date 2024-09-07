@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 export default function ProductAccordion() {
     const [delivery, setDelivery] = useState(false);
-    const [description, setDescription] = useState(true);
+    const [description, setDescription] = useState(false);
     const deliveryBtn = () => {
         setDelivery(!delivery);
     }

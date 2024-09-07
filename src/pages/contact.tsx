@@ -1,18 +1,32 @@
 import Navbar from '@/components/navbar'
 import '../app/globals.css'
 import Footer from '@/components/footer'
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 export default function Contact() {
     const [cart, setCart] = useState(false);
+
+    useEffect(() => {
+        (
+            async () => {
+                const LocomotiveScroll = (await import('locomotive-scroll')).default
+                const locomotiveScroll = new LocomotiveScroll();
+                setTimeout(() => {
+                    document.body.style.cursor = 'default'
+                    window.scrollTo(0, 0);
+                }, 2000)
+            }
+        )()
+    }, [])
+
     const cartBtn = () => {
         setCart(!cart);
     };
 
     return (
-        <div className="items-center justify-center flex w-full h-screen flex-col">
+        <div className="items-center justify-center flex w-full min:h-screen flex-col">
             <Navbar cartBtn={cartBtn} cart={cart} />
-            <div className='items-center flex justify-center w-full h-full flex-col'>
+            <div className='items-center flex justify-center w-full h-[100vh] flex-col'>
                 <div className="font-roboto text-black">
                     <span className="flex justify-center mt-[50px] mb-2 text-black/90 tracking-wider text-[35px] font-roboto">CALL US</span>
                     <div className="flex justify-center text-[30px]">+370 634 34 555</div>

@@ -21,7 +21,7 @@ export default function MoreProducts({ product }) {
     };
 
     return (
-        <div className="w-full h-auto bg-grey flex items-center mt-12 mb-20">
+        <div className="w-full h-auto bg-grey flex items-center mt-12 mb-32">
             <div className="justify-center w-[85%] lg:w-[80%] rounded-lg mx-auto flex flex-col self-center">
                 <div className={`flex flex-row ${product === 'related-products' ? 'w-[95%]' : 'w-[80%]'} mb-10 mt-10`}>
                     <span className="text-3xl lg:text-4xl font-lato">{product === 'related-products' ? 'Related products' : 'More products'}</span>
@@ -39,8 +39,8 @@ export default function MoreProducts({ product }) {
                                     </div>
                                 </div>
                                 <div className="flex flex-col text-start pt-2 pb-3 mx-2">
-                                    <span className="text-sm 2xl:text-2xl w-full font- text-black">{p.name} </span>
-                                    <span className="font-normal font-lato">€{formatPrice(p.price)} </span>
+                                    <span className="text-sm 2xl:text-2xl w-full font-lato text-black">{p.name} </span>
+                                    <span className="font-normal font-lato xl:text-xl">€{formatPrice(p.price)} </span>
                                 </div>
                             </a>
                         </div>
