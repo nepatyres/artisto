@@ -14,25 +14,25 @@ export default function Footer() {
             <div className='w-[80%] lg:w-[90%] 2xl:w-[60%] justify-between mx-auto flex flex-col lg:flex-row mt-8 mb-6'>
                 <div className=" flex flex-col w-[90%] pb-12 lg:hidden">
                     {footer.map((foot, i) => (
-                        <div key={i} className="flex flex-col w-full border-t mb-2 "
+                        <div key={i} className="flex flex-col border-t mb-2 "
                             onClick={() => { foot.name === 'Explore' ? toggleExplore() : foot.name === 'Help' ? toggleHelp() : foot.name === 'Contact' ? toggleContact() : ''; }}>
                             <div className="flex flex-row items-center justify-between cursor-pointer">
-                                <span className="text-xl my-2">{foot.name}</span>
+                                <span className="text-xl my-2 font-lato">{foot.name}</span>
                                 <svg xmlns="http://www.w3.org/2000/svg" className='h-7 w-7 fill-white' viewBox="0 0 24 24" >
                                     <g>
-                                        {foot.name === 'Explore' ? Explore : foot.name === 'Help' ? Help : foot.name === 'Contact' ? Contact : false ?
+                                        {
+                                        ((foot.name === 'Explore' && Explore) || (foot.name === 'Help' && Help) || (foot.name === 'Contact' && Contact)) ?
                                             <path id="Vector" d="M6 12H12M12 12H18M12" className="stroke-white stroke-[.6] fill-white" strokeLinecap="round" strokeLinejoin="round" /> :
                                             <path id="Vector" d="M6 12H12M12 12H18M12 12V18M12 12V6" className="stroke-white stroke-[.6]" strokeLinecap="round" strokeLinejoin="round" />
                                         }
                                     </g>
                                 </svg>
                             </div>
-                            {((foot.name === 'Explore' && Explore) ||
-                                (foot.name === 'Help' && Help) ||
-                                (foot.name === 'Contact' && Contact)) &&
+                            {
+                            ((foot.name === 'Explore' && Explore) || (foot.name === 'Help' && Help) || (foot.name === 'Contact' && Contact)) &&
                                 <>
                                     {foot.links.map((f, n) => (
-                                        <a key={n} href={`${f.link}`} className="text-dot8 mb-1" target={i === 2 ? "_blank" : ""} rel={i === 2 ? "noopener noreferrer" : ""}>{f.name}</a>
+                                        <a key={n} href={`${f.link}`} className="text-dot8 mb-1 afooter w-[160px] font-robotoL" target={i === 2 ? "_blank" : ""} rel={i === 2 ? "noopener noreferrer" : ""}>{f.name}</a>
                                     ))}
                                 </>
                             }
@@ -41,7 +41,7 @@ export default function Footer() {
                     ))}
                 </div>
                 <div className='flex flex-col justify-self-start'>
-                    <span className='text-xl mb-1'>Payment Methods</span>
+                    <span className='text-xl mb-1 font-lato'>Payment Methods</span>
                     <div className='flex flex-row gap-5'>
                         <svg xmlns="http://www.w3.org/2000/svg" className='w-[80px] h-[80px]' viewBox="0 -9 58 58">
                             <rect x="0.5" y="0.5" width="57" height="39" rx="3.5" fill="white" stroke="#F3F3F3" />
@@ -64,17 +64,17 @@ export default function Footer() {
                 </div>
                 <div className="grid-cols-3 flex-col xl:flex-row justify-between mx-auto items-start hidden lg:grid">
                     {footer.map((foot, i) => (
-                        <div key={i} className={`flex flex-col mx-5 ${i === 1 ? 'justify-self-center' : i === 2 ? 'justify-self-end' : ''}`}>
-                            <span className="text-xl mb-3">{foot.name}</span>
+                        <div key={i} className={`flex flex-col mx-5 ${i === 1 ? 'justify-self-center' : i === 2 ? 'justify-self-end' : ''} w-max`}>
+                            <span className="text-xl mb-3 font-Lato">{foot.name}</span>
                             {foot.links.map((f, n) => (
-                                <a key={n} href={`${f.link}`} className="text-dot8 mb-2" target={i === 2 ? "_blank" : ""} rel={i === 2 ? "noopener noreferrer" : ""}>{f.name}</a>
+                                <a key={n} href={`${f.link}`} className="text-dot8 mb-2 afooter font-robotoL" target={i === 2 ? "_blank" : ""} rel={i === 2 ? "noopener noreferrer" : ""}>{f.name}</a>
                             ))}
                         </div>
                     ))}
                 </div>
             </div>
             <div className="flex w-full mx-auto justify-center pt-5">
-                <span className="font-switzerL text-[15px]">Designed and developed by <a className="decoration-none cursor-pointer text-white/75" target="_blank" rel="noreferrer" href="https://julijus.com">Julijus</a></span>
+                <span className="font-robotoL text-[15px]">Designed and developed by <a className="decoration-none cursor-pointer text-white/75" target="_blank" rel="noreferrer" href="https://julijus.com">Julijus</a></span>
             </div>
         </footer>
     );

@@ -17,10 +17,10 @@ export default function Cart({ cart, cartBtn, updateCartItems }) {
     const formatPrice = (price) => {
         return new Intl.NumberFormat('en-US', {
             style: 'decimal',
-            minimumFractionDigits: 0,
-            maximumFractionDigits: 0,
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2,
         }).format(price);
-    };
+    }; 
 
     const handleAdd = (item) => {
         addToCart(item);
@@ -37,7 +37,7 @@ export default function Cart({ cart, cartBtn, updateCartItems }) {
     return (
         <div className={`fixed flex top-0 left-0 w-screen h-screen z-[100] backdrop-blur-lg select-none justify-end`}>
             <div className='2xl:w-[70%] h-full' onClick={cartBtn}></div>
-            <div className={`w-[80%] xl:w-[40%] 2xl:w-[30%] h-full bg-black/60 rounded-l-sm transition-all duration-[5000] transform ${cart ? "translate-x-0" : "translate-x-full"}`}>
+            <div className={`w-[80%] md:w-[60%] lg:w-[50%] xl:w-[40%] 2xl:w-[30%] h-full bg-black/60 rounded-l-sm transition-all duration-[5000] transform ${cart ? "translate-x-0" : "translate-x-full"}`}>
                 <div className="flex flex-col w-[90%] h-full mx-auto pr-2">
                     <div className="flex flex-row w-full justify-between items-center mx-auto px-6 mt-3 border-b border-b-white/70 pb-2">
                         <span className="text-3xl text-white">Cart</span>

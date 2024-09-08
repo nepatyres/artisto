@@ -4,6 +4,7 @@ import Footer from "@/components/footer";
 import Navbar from "@/components/navbar";
 
 export default function Terms() {
+    const [cart, setCart] = useState(false);
     useEffect(() => {
         (
             async () => {
@@ -16,9 +17,11 @@ export default function Terms() {
             }
         )()
     }, [])
+
+    const cartBtn = () => setCart(!cart);
     return (
         <div className="w-full min-h-full flex flex-col">
-            <Navbar />
+            <Navbar cartBtn={cartBtn} cart={cart} />
             <div className="flex flex-col mx-auto w-[80%] lg:w-[60%] xl:w-[50%] mt-40 mb-40 font-roboto h-min-[80vh]">
                 <h1 className='text-2xl font-semibold mb-1'>Terms and Conditions</h1>
                 <p className='mb-5'>These Terms and Conditions govern your use of our website, www.artisto.com, and the purchase of our products. By accessing or using our website and placing an order, you agree to be bound by these Terms and Conditions.</p>

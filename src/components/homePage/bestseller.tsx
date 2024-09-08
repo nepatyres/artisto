@@ -63,13 +63,13 @@ export default function Bestseller({ setIsLoading }) {
         window.location.href = `/products/${id}`;
     };
 
-    const formatPrice = (price: number) => {
+    const formatPrice = (price) => {
         return new Intl.NumberFormat('en-US', {
             style: 'decimal',
-            minimumFractionDigits: 0,
-            maximumFractionDigits: 0,
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2,
         }).format(price);
-    };
+    }; 
 
     return (
         <div className="w-full overflow-hidden bg-white mt-12">
@@ -83,11 +83,11 @@ export default function Bestseller({ setIsLoading }) {
                             <div ref={el => refs.current[i] && (refs.current[i].info = el)} className="absolute flex inset-0 justify-end items-end p-12 z-20">
                                 <div className="py-2 px-2 bg-white/70 z-30 rounded-2xl shadow-2xl">
                                     <div className="p-4 mx-auto flex flex-col">
-                                        <span className="text-[18px] leading-5">{product.name.toUpperCase()}</span>
-                                        <span className="text-[20px] leading-8">€{formatPrice(product.price)}</span>
+                                        <span className="text-[18px] leading-5 font-lato">{product.name.toUpperCase()}</span>
+                                        <span className="text-[20px] leading-8 font-lato">€{formatPrice(product.price)}</span>
                                         <div className="flex justify-end">
-                                            <button className="flex justify-center text-center items-center p-3 bg-black rounded-xl cursor-pointer">
-                                            <span className="relative z-10 text-md span inline-block text-center transition-colors text-white">Shop now</span>
+                                            <button className="relative btnB flex justify-center text-center items-center p-3 bg-black rounded-xl cursor-pointer">
+                                                <span className="relative z-10 text-md span inline-block text-center transition-colors text-white">Shop now</span>
                                             </button>
                                         </div>
                                     </div>

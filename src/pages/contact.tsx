@@ -19,9 +19,7 @@ export default function Contact() {
         )()
     }, [])
 
-    const cartBtn = () => {
-        setCart(!cart);
-    };
+    const cartBtn = () => setCart(!cart);
 
     return (
         <div className="items-center justify-center flex w-full min:h-screen flex-col">

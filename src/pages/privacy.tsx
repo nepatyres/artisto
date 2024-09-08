@@ -1,9 +1,10 @@
 import '../app/globals.css'
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import Footer from "@/components/footer";
 import Navbar from "@/components/navbar";
 
 export default function Privacy() {
+    const [cart, setCart] = useState(false);
     useEffect(() => {
         (
             async () => {
@@ -16,9 +17,11 @@ export default function Privacy() {
             }
         )()
     }, [])
+
+    const cartBtn = () => setCart(!cart);
     return (
         <div className="w-full min-h-full flex flex-col">
-            <Navbar />
+            <Navbar cartBtn={cartBtn} cart={cart} />
             <div className="flex flex-col mx-auto w-[80%] lg:w-[60%] xl:w-[50%] mt-40 mb-40 font-roboto h-min-[80vh]">
                 <h1 className='text-2xl font-semibold mb-1'>Privacy Policy</h1>
                 <p className='mb-5'>At Artisto, we are committed to protecting and respecting your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website, www.artisto.com. Please read this policy carefully to understand our views and practices regarding your personal data and how we will treat it.</p>

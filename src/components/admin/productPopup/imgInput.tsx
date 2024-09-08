@@ -28,9 +28,10 @@ export default function ImgInput({ setImages, imagePreviews, setImagePreviews, e
 
     const removeImgBtn = (index: number) => {
         const removedImage = imagePreviews[index];
-        if (existingImages.includes(removedImage)) {
+        if (Array.isArray(existingImages) && existingImages.includes(removedImage)) {
             setDeletedImages((prevDeleted: string[]) => [...prevDeleted, removedImage]);
         }
+
         setImages((prevImages: any[]) => prevImages.filter((_: any, i: number) => i !== index));
         setImagePreviews((prevPreviews: string[]) => prevPreviews.filter((_: any, i: number) => i !== index));
     };

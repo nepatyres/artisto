@@ -72,8 +72,8 @@ export default function Products() {
     const formatPrice = (price) => {
         return new Intl.NumberFormat('en-US', {
             style: 'decimal',
-            minimumFractionDigits: 0,
-            maximumFractionDigits: 0,
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2,
         }).format(price);
     };
     return (
@@ -84,7 +84,7 @@ export default function Products() {
             <Navbar cartBtn={cartBtn} cart={cart} />
             <div className="flex min-h-[80vh] w-[90%] lg:w-[85%] 2xl:w-[80%] mx-auto mt-20 flex-col mb-20">
                 <div className="flex flex-row w-full justify-between items-center">
-                    <span className="text-4xl px-3 py-10 font-panno leading-4">Products</span>
+                    <span className="text-4xl px-3 py-10 font-lato leading-4">Products</span>
                     <div className="flex flex-row lg:pt-8 self-center">
                         <span className="text-black/60 pr-3 lg:pr-6">{products.filter(products => products.display).length} Items</span>
                         <div>
@@ -110,8 +110,8 @@ export default function Products() {
                                     <img src={product.images[0]} className="h-full w-full object-cover object-center rounded-md" alt="" />
                                 </div>
                                 <div className="flex flex-col w-auto pt-2 pb-3">
-                                    <span className="text-md 2xl:text-md mx-auto">{product.name}</span>
-                                    <span className="mx-auto">€{formatPrice(product.price)}</span>
+                                    <span className="text-md 2xl:text-lg mx-auto font-lato">{product.name}</span>
+                                    <span className="mx-auto text-md font-lato">€{formatPrice(product.price)}</span>
                                 </div>
                             </div>
                         </div>

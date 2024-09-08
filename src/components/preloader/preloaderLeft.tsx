@@ -24,7 +24,7 @@ export default function PreloaderLeft() {
         <motion.div variants={slideLeft} initial='initial' exit='exit' className="h-screen w-screen bg-[#141516] fixed top-0 left-0 z-[99] text-white flex items-center justify-center">
             {dimension.width > 0 &&
                 <>
-                    <span className='text-[80px] absolute z-[1] flex'>àrtisto</span>
+                    <span className='text-[80px] absolute z-[1] flex font-lato'>àrtisto</span>
                     <svg className='absolute top-0 left-0 w-full svg-preload'>
                         <motion.path variants={curve} className='fill-[#141516]'></motion.path>
                     </svg>

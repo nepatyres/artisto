@@ -10,7 +10,7 @@ export default function ProductAccordion() {
         setDescription(!description);
     }
     return (
-        <div className=" flex flex-col w-[90%] pb-12">
+        <div className=" flex flex-col w-full lg:w-[90%] pb-12">
             <div className="flex flex-col w-full border-t">
                 <div className="flex flex-row items-center justify-between cursor-pointer my-3" onClick={descriptionBtn}>
                     <span className="text-sm text-black font-medium">Description</span>
@@ -23,7 +23,7 @@ export default function ProductAccordion() {
                         </g>
                     </svg>
                 </div>
-                {description && <span className="text-md text-black/60 mb-2">If something isn’t quite right, you have 14 days to send it back to us.</span>}
+                {description && <span className="text-md text-black/60 mb-2">This highly detailed 1:24 scale model kit offers an exciting challenge for enthusiasts, featuring realistic components such as rubber tires and intricate parts. Measuring approximately 19cm (7.5 inches) in length.</span>}
             </div>
             <div className="flex flex-col w-full border-y">
                 <div className="flex flex-row items-center justify-between cursor-pointer my-3" onClick={deliveryBtn}>

@@ -55,7 +55,7 @@ export default function Navbar({ cartBtn, cart }) {
                             <path
                                 d="M777.856 280.192l-33.92-33.952-231.872 231.872-231.84-231.872-33.984 33.888 231.872 231.904-231.84 231.84 33.888 33.984 231.904-231.904 231.84 231.872 33.952-33.888-231.872-231.904z" />
                         </svg>
-                        <ul className="flex flex-col items-center justify-center h-full gap-8 z-[200]">
+                        <ul className="flex flex-col items-center justify-center h-full gap-32 z-[200]">
                             {navbar.map((nav, i) => (
                                 <a key={i} href={nav.link} className="text-7xl text-white/90 stroke-2 stroke-red font-panno leading-4">{nav.name}</a>
                             ))}
