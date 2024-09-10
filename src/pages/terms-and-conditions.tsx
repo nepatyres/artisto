@@ -1,5 +1,6 @@
 import '../app/globals.css';
 import React, { useState, useEffect } from 'react';
+import Head from 'next/head';
 import Footer from "@/components/footer";
 import Navbar from "@/components/navbar";
 
@@ -21,6 +22,10 @@ export default function Terms() {
     const cartBtn = () => setCart(!cart);
     return (
         <div className="w-full min-h-full flex flex-col">
+            <Head>
+                <title>Terms and Conditions</title>
+                <link rel="icon" href="/favicon.png" />
+            </Head>
             <Navbar cartBtn={cartBtn} cart={cart} />
             <div className="flex flex-col mx-auto w-[80%] lg:w-[60%] xl:w-[50%] mt-40 mb-40 font-roboto h-min-[80vh]">
                 <h1 className='text-2xl font-semibold mb-1'>Terms and Conditions</h1>
@@ -56,7 +61,7 @@ export default function Terms() {
                 <h3 className='text-md ml-3'>If you have any questions or need assistance with your return or cancellation, please
                     <a href="/contact" className='cursor-hover font-semibold'> contact </a>
                     us at contactartisto@gmail.com. We’re here to help!</h3>
-            
+
             </div>
             <Footer />
         </div>

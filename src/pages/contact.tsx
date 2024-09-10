@@ -1,6 +1,7 @@
 import Navbar from '@/components/navbar'
-import '../app/globals.css'
-import Footer from '@/components/footer'
+import Head from 'next/head';
+import '../app/globals.css';
+import Footer from '@/components/footer';
 import React, { useState, useEffect } from 'react';
 
 export default function Contact() {
@@ -23,14 +24,18 @@ export default function Contact() {
 
     return (
         <div className="items-center justify-center flex w-full min:h-screen flex-col">
+            <Head>
+                <title>Contact us</title>
+                <link rel="icon" href="/favicon.png" />
+            </Head>
             <Navbar cartBtn={cartBtn} cart={cart} />
-            <div className='items-center flex justify-center w-full h-[100vh] flex-col'>
+            <div className='items-center flex justify-center w-full h-screen flex-col'>
                 <div className="font-roboto text-black">
-                    <span className="flex justify-center mt-[50px] mb-2 text-black/90 tracking-wider text-[35px] font-roboto">CALL US</span>
+                    <span className="flex justify-center mt-[50px] mb-2 text-black/90 tracking-wider text-4xl font-roboto">Call us</span>
                     <div className="flex justify-center text-[30px]">+370 634 34 555</div>
                 </div>
                 <div className="w-10/12 lg:w-[40%] xl:w-[30%]">
-                    <span className="flex justify-center mt-[30px] mb-2 text-black/90 tracking-wider text-[35px] font-roboto">MESSAGE US</span>
+                    <span className="flex justify-center mt-[30px] mb-2 text-black/90 tracking-wider text-4xl font-roboto">Message us</span>
                     <form action="/api/send-email" method="POST" className='items-center text-[20px] font-roboto'>
                         <div className="mb-3">
                             <input type="name" className="bg-white text-black py-[6px] px-3 focus:outline-2 focus:outline-blue-400 rounded-md focus:text-black border border-black/.70 w-full" id="name" placeholder="Name" name='name' required />

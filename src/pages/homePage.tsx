@@ -24,6 +24,10 @@ export default function HomePage() {
             <Hero />
             <Bestseller setIsLoading={setIsLoading} />
             <MoreProducts />
+            <div className="flex flex-col mx-auto w-[80%] lg:w-[60%] xl:w-[50%] mb-32 font-roboto min-h-[50vh] justify-center">
+                <span className="text-4xl px-2 pb-10 font-lato leading-4">About us</span>
+                <p className="text-2xl">At Artisto, we believe in the art of craftsmanship and the joy of creation. Founded on a passion for detail, we set out to offer products that inspire imagination, ignite creativity, and bring out the maker in everyone. Whether you’re an enthusiast, a hobbyist, or someone discovering the world of cars, we’re here to offer a range of meticulously designed products that blend quality with innovation.</p>
+            </div>
             <Footer />
         </>
     );

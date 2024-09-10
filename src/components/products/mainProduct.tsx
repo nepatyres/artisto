@@ -2,6 +2,7 @@ import CartBtn from "@/components/cart/cartBtn";
 import { Span } from "next/dist/trace";
 import React, { useState } from "react";
 import ProductAccordion from "./accordion";
+import CheckoutBtn from "../cart/checkoutBtn";
 export default function MainProduct({ screenImg, product, img, cartBtn }) {
     const [num, setNum] = useState(0);
     const formatPrice = (price) => {
@@ -35,7 +36,7 @@ export default function MainProduct({ screenImg, product, img, cartBtn }) {
         if (num - 1 >= 0) {
             setNum(num - 1);
         } else {
-            setNum(product.images.length -1);
+            setNum(product.images.length - 1);
         }
     }
 
@@ -80,17 +81,15 @@ export default function MainProduct({ screenImg, product, img, cartBtn }) {
                 <span className="text-3xl 2xl:text-4xl pt-2 font-lato">{product.name}</span>
                 <span className="text-2xl text-bdot9 lg:pt-3 pr-4 font-lato">€{formatPrice(product.price)}</span>
                 <div className="hidden lg:flex mt-10">
-                    <ProductAccordion />
+                    <ProductAccordion product={product} />
                 </div>
                 <div className="flex flex-col w-full lg:w-[90%] lg:mt-auto pt-10 lg:pt-0 mx-auto lg:mx-0">
-                    <button className="w-full rounded-md px-2 py-2 text-md btn relative text-center cursor-pointer mb-3 bg-gray-200">
-                        <span className="relative z-10 text-md span inline-block text-center transition-colors">BUY NOW</span>
-                    </button>
+                    <CheckoutBtn product={product} />
                     <CartBtn product={product} cartBtn={cartBtn} />
                     <span className="my-2 font-lato">In stock. Ships in 14-21 working days. Shipping worldwide.</span>
                 </div>
                 <div className="flex lg:hidden w-full mt-8">
-                    <ProductAccordion />
+                    <ProductAccordion product={product} />
                 </div>
             </div>
         </div>

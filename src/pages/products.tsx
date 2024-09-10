@@ -1,6 +1,7 @@
 'use client';
 import React, { useEffect, useState } from "react";
 import Navbar from "@/components/navbar";
+import Head from 'next/head';
 import '../app/globals.css'
 import axios from "axios";
 import Router from "next/router";
@@ -78,6 +79,10 @@ export default function Products() {
     };
     return (
         <div className="flex h-auto bg-white flex-col" onClick={sortClose}>
+            <Head>
+                <title>Products</title>
+                <link rel="icon" href="/favicon.png" />
+            </Head>
             <AnimatePresence mode='wait'>
                 {isLoading && <PreloaderLeft />}
             </AnimatePresence>

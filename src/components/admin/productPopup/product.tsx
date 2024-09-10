@@ -23,8 +23,9 @@ export default function Product({ setProducts, products, popupBtn }) {
     return (
         <div className="flex flex-col mb-40">
             <span className="text-2xl px-5">Products</span>
+            {products.length === 0 && <p className="mt-8 ml-8 text-xl">No products available.</p>}
             <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 h-auto w-full mx-auto">
-                {products.map((product: any, i: number) => (
+                {products && products.map((product: any, i: number) => (
                     <div key={product.id} onClick={() => popupBtn(product, 'PUT')} className="flex flex-row place-self-center relative mt-5 ml-5 w-[180px] h-[180px] md:h-[180px] md:w-[180px] xl:w-[230px] xl:h-[230px] 2xl:w-[290px] 2xl:h-[290px] shadow-2xl rounded-lg cursor-pointer">
                         <div className="top-0 left-0 w-full h-full">
                             <div className="cursor-pointer" onClick={(e) => { e.stopPropagation(); togglerBtn(product.id); }}>

@@ -1,5 +1,6 @@
 import '../app/globals.css'
 import React, { useState, useEffect } from 'react';
+import Head from 'next/head';
 import Footer from "@/components/footer";
 import Navbar from "@/components/navbar";
 
@@ -21,6 +22,10 @@ export default function Privacy() {
     const cartBtn = () => setCart(!cart);
     return (
         <div className="w-full min-h-full flex flex-col">
+            <Head>
+                <title>Privacy Policy</title>
+                <link rel="icon" href="/favicon.png" />
+            </Head>
             <Navbar cartBtn={cartBtn} cart={cart} />
             <div className="flex flex-col mx-auto w-[80%] lg:w-[60%] xl:w-[50%] mt-40 mb-40 font-roboto h-min-[80vh]">
                 <h1 className='text-2xl font-semibold mb-1'>Privacy Policy</h1>

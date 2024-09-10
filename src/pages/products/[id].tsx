@@ -1,7 +1,8 @@
 'use client';
 import React, { useEffect, useState } from "react";
 import Navbar from "@/components/navbar";
-import '../../app/globals.css'
+import Head from 'next/head';
+import '../../app/globals.css';
 import axios from "axios";
 import { useRouter } from 'next/router';
 import MainProduct from "@/components/products/mainProduct";
@@ -29,11 +30,9 @@ export default function ProductPage() {
                     setImg(productData.images[0]);
                 }
                 setIsLoading(false);
-
-                // Refresh locomotive-scroll after content is loaded
                 const LocomotiveScroll = (await import('locomotive-scroll')).default;
                 const locomotiveScroll = new LocomotiveScroll();
-                locomotiveScroll.update(); // Refresh the scroll instance
+                locomotiveScroll.update();
             } catch (err) {
                 setError("Failed to load product data");
                 setIsLoading(false);
@@ -56,6 +55,10 @@ export default function ProductPage() {
 
     return (
         <div className="h-screen flex flex-col">
+             <Head>
+                <title>{product ? product.name : "Loading..."}</title>
+                <link rel="icon" href="/favicon.png" />
+            </Head>
             <AnimatePresence mode='wait'>
                 {isLoading && <Preloader />}
             </AnimatePresence>
