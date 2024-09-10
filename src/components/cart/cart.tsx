@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { getCart, addToCart, removeFromCart } from '../../lib/cart';
+import CartCheckoutBtn from "./cartCheckoutBtn";
 
 export default function Cart({ cart, cartBtn, updateCartItems }) {
     const [cartItems, setCartItems] = useState([]);
@@ -75,7 +76,7 @@ export default function Cart({ cart, cartBtn, updateCartItems }) {
                             <span className="text-xl text-white">Subtotal</span>
                             <span className="text-white text-2xl font-light">€{formatPrice(sum)}</span>
                         </div>
-                        <a href="/checkout" className="w-full flex rounded-sm uppercase text-[14px] bg-white justify-center py-2">Proceed to checkout</a>
+                        <CartCheckoutBtn cartItems={cartItems}/>
                         <p className="text-white/80 text-[12px] pt-1 self-center">Taxes and shipping will be calculated at checkout</p>
                     </div>
                 </div>
