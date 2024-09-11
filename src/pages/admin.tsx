@@ -29,9 +29,9 @@ export default function Admin() {
             }
         }
     }, []);
-
+console.log(process.env.NEXT_PUBLIC_ADMIN_PASSWORD)
     const passCheck = () => {
-        if (password === 'a' && username === 'admin') {
+        if (password === pass && username === 'admin') {
             setIsLogged(true);
             const expirationTime = new Date().getTime() + sessionDuration;
             localStorage.setItem('sessionExpiration', expirationTime.toString());
