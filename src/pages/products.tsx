@@ -8,6 +8,7 @@ import Router from "next/router";
 import { AnimatePresence } from "framer-motion";
 import PreloaderLeft from "@/components/preloader/preloaderLeft";
 import Footer from "@/components/footer";
+import Image from 'next/image';
 
 export default function Products() {
     const [products, setProducts] = useState<any>([]);
@@ -111,8 +112,8 @@ export default function Products() {
                     {products.filter((product: any) => product.display).map((product: any, i: number) => (
                         <div key={i} className="w-full flex space-between">
                             <div className="flex mx-auto flex-col cursor-pointer" onClick={(e) => redirectBtn(product.id)}>
-                                <div className="w-[180px] h-[180px] sm:w-[250px] sm:h-[250px] md:w-[300px] md:h-[300px] lg:w-[280px] lg:h-[280px] xl:w-[320px] xl:h-[320px] 2xl:w-[400px] 2xl:h-[400px] rounded-lg mx-auto">
-                                    <img src={product.images[0]} className="h-full w-full object-cover object-center rounded-md" alt="" />
+                                <div className="w-[180px] relative h-[180px] sm:w-[250px] sm:h-[250px] md:w-[300px] md:h-[300px] lg:w-[280px] lg:h-[280px] xl:w-[320px] xl:h-[320px] 2xl:w-[400px] 2xl:h-[400px] rounded-lg mx-auto">
+                                    <Image layout="fill" src={product.images[0]} className="object-cover object-center rounded-md" alt="" />
                                 </div>
                                 <div className="flex flex-col w-auto pt-2 pb-3">
                                     <span className="text-md 2xl:text-lg mx-auto font-lato">{product.name}</span>

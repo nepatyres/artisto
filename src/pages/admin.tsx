@@ -5,7 +5,7 @@ import '../app/globals.css';
 import ProductPopup from "@/components/admin/productPopup/productPopup";
 import Product from "@/components/admin/productPopup/product";
 import Accordion from "@/components/admin/accordion/accordion";
-
+import Link from 'next/link';
 export default function Admin() {
     const [products, setProducts] = useState<any>([]);
     const [isLogged, setIsLogged] = useState<boolean>(false);
@@ -71,7 +71,7 @@ export default function Admin() {
         <div className="flex flex-col relative overflow-hidden min-h-screen w-[95%] md:w-[80%] mx-auto">
             {!isLogged &&
                 <>
-                    <a href="/" className="flex justify-start items-center text-black text-[30px] font-robotoE pb-1 tracking-tight cursor-pointer mt-4">àrtisto</a>
+                    <Link href="/" className="flex justify-start items-center text-black text-[30px] font-robotoE pb-1 tracking-tight cursor-pointer mt-4">àrtisto</Link>
                     <div className="h-full w-full flex flex-col my-auto">
                         <div className="w-full h-full flex justify-center my-auto">
                             <div className="flex w-1/4 h-full flex-col gap-3 self-place-center pb-20">

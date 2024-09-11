@@ -1,5 +1,5 @@
 import React, { useRef } from "react";
-
+import Image from 'next/image';
 export default function ImgInput({ setImages, imagePreviews, setImagePreviews, existingImages, setDeletedImages }: any) {
     const fileInputRef = useRef<HTMLInputElement | null>(null);
 
@@ -41,7 +41,7 @@ export default function ImgInput({ setImages, imagePreviews, setImagePreviews, e
                                     d="M777.856 280.192l-33.92-33.952-231.872 231.872-231.84-231.872-33.984 33.888 231.872 231.904-231.84 231.84 33.888 33.984 231.904-231.904 231.84 231.872 33.952-33.888-231.872-231.904z"
                                 />
                             </svg>
-                            <img src={preview} alt={`Uploaded ${i}`} className='w-full h-full object-cover object-center rounded-md' />
+                            <Image  layout="fill" src={preview} alt={`Uploaded ${i}`} className='w-full h-full object-cover object-center rounded-md' />
                         </div>
                     ))}
                     <input className='hidden' type="file" multiple onChange={handleImageChange} ref={fileInputRef} />

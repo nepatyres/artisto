@@ -8,6 +8,7 @@ import OneProduct from '@/components/checkout/oneProduct';
 import CartCheckout from '@/components/checkout/cartCheckout';
 import LeftSide from '@/components/checkout/leftSide';
 import { getCart } from '@/lib/cart';
+import Link from 'next/link';
 
 export default function Checkout() {
     const [cartItems, setCartItems] = useState([]);
@@ -58,7 +59,7 @@ export default function Checkout() {
             </Head>
             <div className='width-full flex flex-col'>
                 <div className='w-full h-[10vh] border-b justify-center items-center flex'>
-                    <a href="/" className=" text-black mix-blend-difference text-4xl font-robotoE pb-1 tracking-tight cursor-pointer">àrtisto</a>
+                    <Link href="/" className=" text-black mix-blend-difference text-4xl font-robotoE pb-1 tracking-tight cursor-pointer">àrtisto</Link>
                 </div>
                 <div className='w-full h-full grid lg:grid-cols-2 flex-col'>
                     <LeftSide footer={footer} />
@@ -92,7 +93,7 @@ export default function Checkout() {
                                     <div className='w-full mt-4 border-t flex lg:hidden'>
                                         <div className='flex w-full flex-row mt-4 justify-between px-4'>
                                             {footer[1].links.map((link, i) => (
-                                                <a key={i} href={link.link} className="text-bdot8 afooter font-robotoL text-[12px]">{link.name}</a>
+                                                <Link key={i} href={link.link} className="text-bdot8 afooter font-robotoL text-[12px]">{link.name}</Link>
                                             ))}
                                         </div>
                                     </div>

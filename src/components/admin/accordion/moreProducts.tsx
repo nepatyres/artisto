@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-
+import Image from 'next/image';
 export default function MoreProducts({ product, popupBtn }: any) {
     const [moreProducts, setMoreProducts] = useState<any>([]);
 
@@ -27,7 +27,7 @@ export default function MoreProducts({ product, popupBtn }: any) {
             <div className="grid grid-cols-2 md:grid-cols-4 w-full h-full gap-3 lg:gap-5 mb-5">
                 {moreProducts && moreProducts.map((moreProduct: any, i: number) => (
                     <div key={i} className="place-self-center h-[130px] w-[130px] md:h-[135px] md:w-[135px] lg:h-[180px] lg:w-[180px] xl:h-[220px] xl:w-[220px] 2xl:w-[300px] 2xl:h-[300px] border rounded-lg cursor-pointer flex relative">
-                        <img className="bg-cover w-full h-full object-center rounded-lg" src={moreProduct.image} alt="" />
+                        <Image layout="fill" className="bg-cover object-center rounded-lg" src={moreProduct.image} alt="" />
                         <div className="flex absolute top-3 right-3 bg-bdot4 py-2 px-2 rounded-full">
                             <svg xmlns="http://www.w3.org/2000/svg" onClick={() => removeBtn(moreProduct.id)} className="fill-white w-[30px] h-[30px]" viewBox="0 0 24 24">
                                 <path d="M1.5 3.75C1.08579 3.75 0.75 4.08579 0.75 4.5C0.75 4.91421 1.08579 5.25 1.5 5.25V3.75ZM22.5 5.25C22.9142 5.25 23.25 4.91421 23.25 4.5C23.25 4.08579 22.9142 3.75 22.5 3.75V5.25ZM1.5 5.25H22.5V3.75H1.5V5.25Z" />

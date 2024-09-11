@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import Head from 'next/head';
 import Footer from "@/components/footer";
 import Navbar from "@/components/navbar";
+import Link from 'next/link';
 
 export default function Privacy() {
     const [cart, setCart] = useState(false);
@@ -56,7 +57,7 @@ export default function Privacy() {
                 <h3 className='text-md ml-3'>5.4 Restriction: The right to request that we restrict the processing of your personal data.</h3>
                 <h3 className='text-md ml-3'>5.5 Objection: The right to object to our processing of your personal data.</h3>
                 <h3 className='text-md  ml-3'>To exercise any of these rights, please
-                    <a href="/contact" className='cursor-hover font-semibold'> contact </a>
+                    <Link href="/contact" className='cursor-hover font-semibold'> contact </Link>
                     us at contactartisto@gmail.com.</h3>
                 <h2 className='text-xl font-semibold mt-5'>Data Security</h2>
                 <h3 className='text-md ml-3'>Our website uses cookies to enhance your browsing experience. Cookies are small text files placed on your device that help us understand how our site is used and remember your preferences. You can control cookie settings through your browser.</h3>
@@ -66,7 +67,7 @@ export default function Privacy() {
                 <h3 className='text-md ml-3'>We may update this Privacy Policy from time to time to reflect changes in our practices or legal requirements. Any updates will be posted on this page, and the revised date will be updated at the top of the policy.</h3>
                 <h2 className='text-xl font-semibold mt-5'>Contact Us</h2>
                 <h3 className='text-md ml-3'>If you have any questions about this Privacy Policy or how we handle your personal data, please
-                    <a href="/contact" className='cursor-hover font-semibold'> contact </a>
+                    <Link href="/contact" className='cursor-hover font-semibold'> contact </Link>
                     us at contactartisto@gmail.com.</h3>
             </div>
             <Footer />

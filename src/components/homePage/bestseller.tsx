@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
 import axios from "axios";
+import Image from 'next/image';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -94,7 +95,7 @@ export default function Bestseller({ setIsLoading }: any) {
                                 </div>
                             </div>
                             <div ref={el => { refs.current[i] && (refs.current[i].bg = el) }} className="w-full h-full rounded-2xl">
-                                <img src={product.image} className="w-full h-full object-cover object-center rounded-2xl transition-transform duration-300 ease-in-out zoom" alt={product.name} />
+                                <Image src={product.image} layout="fill" className="object-cover object-center rounded-2xl transition-transform duration-300 ease-in-out zoom" alt={product.name} />
                             </div>
                         </div>
                     </div>

@@ -1,6 +1,7 @@
 import { footer } from '@/constants';
 import '../app/globals.css'
 import React, { useState } from 'react';
+import Link from 'next/link';
 export default function Footer() {
     const [Explore, setExplore] = useState(false);
     const [Help, setHelp] = useState(false);
@@ -32,7 +33,7 @@ export default function Footer() {
                             ((foot.name === 'Explore' && Explore) || (foot.name === 'Help' && Help) || (foot.name === 'Contact' && Contact)) &&
                                 <>
                                     {foot.links.map((f, n) => (
-                                        <a key={n} href={`${f.link}`} className="text-dot8 mb-1 afooter w-[160px] font-robotoL" target={i === 2 ? "_blank" : ""} rel={i === 2 ? "noopener noreferrer" : ""}>{f.name}</a>
+                                        <Link key={n} href={`${f.link}`} className="text-dot8 mb-1 afooter w-[160px] font-robotoL" target={i === 2 ? "_blank" : ""} rel={i === 2 ? "noopener noreferrer" : ""}>{f.name}</Link>
                                     ))}
                                 </>
                             }
@@ -45,7 +46,7 @@ export default function Footer() {
                         <div key={i} className={`flex flex-col mx-5 ${i === 1 ? 'justify-self-center' : i === 2 ? 'justify-self-end' : ''} w-max`}>
                             <span className="text-xl mb-3 font-Lato">{foot.name}</span>
                             {foot.links.map((f, n) => (
-                                <a key={n} href={`${f.link}`} className="text-dot8 mb-2 afooter font-robotoL" target={i === 2 ? "_blank" : ""} rel={i === 2 ? "noopener noreferrer" : ""}>{f.name}</a>
+                                <Link key={n} href={`${f.link}`} className="text-dot8 mb-2 afooter font-robotoL" target={i === 2 ? "_blank" : ""} rel={i === 2 ? "noopener noreferrer" : ""}>{f.name}</Link>
                             ))}
                         </div>
                     ))}

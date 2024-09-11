@@ -1,7 +1,7 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import MoreProducts from "../../../models/moreProducts";
 
-export default async (req: NextApiRequest, res: NextApiResponse) => {
+const postProduct =  async (req: NextApiRequest, res: NextApiResponse) => {
   if (req.method === "POST") {
     const { id, name, price, image } = req.body;
     console.log("Received Data:", { id, name, price, image });
@@ -23,3 +23,5 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     res.status(405).end(`Method ${req.method} Not Allowed`);
   }
 };
+
+export default postProduct;

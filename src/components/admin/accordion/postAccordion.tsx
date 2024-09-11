@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react"
 import axios from "axios";
+import Image from 'next/image';
 export default function PostAccordion({ setPopup, products, form }: any) {
     const [id, setId] = useState(0);
     const [name, setName] = useState('');
@@ -78,7 +79,7 @@ export default function PostAccordion({ setPopup, products, form }: any) {
                 {products && filteredProducts.map((product: any, i: number) => (
                     <button key={i} className='w-[100px] h-[100px] rounded-md relative cursor-pointer' onClick={() => updateBtn(product.id, product.name, product.price, product.images[0])}>
 
-                        <img src={product.images[0]} alt={`Uploaded ${i}`} className='w-full h-full object-cover object-center rounded-md' />
+                        <Image layout="fill" src={product.images[0]} alt={`Uploaded ${i}`} className='object-cover object-center rounded-md' />
                         <span>{product.name.slice(0, 7)}...</span>
                     </button>
                 ))}

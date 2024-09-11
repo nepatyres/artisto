@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import Head from 'next/head';
 import Footer from "@/components/footer";
 import Navbar from "@/components/navbar";
+import Link from 'next/link';
 export default function Terms() {
     const [cart, setCart] = useState(false);
     useEffect(() => {
@@ -44,7 +45,7 @@ export default function Terms() {
                 <h3 className='text-md ml-3'>Required Documentation: To process your return or cancellation, you must provide proof of purchase, such as your order number and receipt.</h3>
                 <h2 className='text-xl font-semibold mt-5'>Contact Information</h2>
                 <h3 className='text-md ml-3'>If you have any questions or need assistance with your return or cancellation, please
-                    <a href="/contact" className='cursor-hover font-semibold'> contact </a>
+                    <Link href="/contact" className='cursor-hover font-semibold'> contact </Link>
                     us at contactartisto@gmail.com. We’re here to help!</h3>
             </div>
             <Footer />

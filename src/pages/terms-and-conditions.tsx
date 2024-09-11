@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import Head from 'next/head';
 import Footer from "@/components/footer";
 import Navbar from "@/components/navbar";
+import Link from 'next/link';
 
 export default function Terms() {
     const [cart, setCart] = useState(false);
@@ -44,7 +45,7 @@ export default function Terms() {
                 <h3 className='text-md ml-3'>3.2 Delays: We are not responsible for delays in shipping due to unforeseen circumstances such as customs processing or postal service delays.</h3>
                 <h2 className='text-xl font-semibold mt-5'>Returns & Cancellations</h2>
                 <h3 className='text-md ml-3'>Please refer to our
-                    <a href="/return-and-cancellation" className='cursor-hover font-semibold'> Returns & Cancellation Policy </a>
+                    <Link href="/return-and-cancellation" className='cursor-hover font-semibold'> Returns & Cancellation Policy </Link>
                     for detailed information about returning or canceling an order.</h3>
                 <h2 className='text-xl font-semibold mt-5'>Intellectual Property</h2>
                 <h3 className='text-md ml-3'>4.1 Ownership: All content on this website, including text, images, logos, graphics, and other intellectual property, is the property of Artisto or our content providers. You may not reproduce, modify, or distribute any content from this website without our prior written consent.</h3>
@@ -59,7 +60,7 @@ export default function Terms() {
                 <h3 className='text-md ml-3'>We reserve the right to modify or update these Terms and Conditions at any time without prior notice. It is your responsibility to check this page periodically for any changes. Your continued use of the website after any modifications constitutes acceptance of the updated terms.</h3>
                 <h2 className='text-xl font-semibold mt-5'>Contact Information</h2>
                 <h3 className='text-md ml-3'>If you have any questions or need assistance with your return or cancellation, please
-                    <a href="/contact" className='cursor-hover font-semibold'> contact </a>
+                    <Link href="/contact" className='cursor-hover font-semibold'> contact </Link>
                     us at contactartisto@gmail.com. We’re here to help!</h3>
 
             </div>

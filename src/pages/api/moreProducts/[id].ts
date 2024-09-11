@@ -1,7 +1,7 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import MoreProducts from '../../../models/moreProducts';
 
-export default async (req: NextApiRequest, res: NextApiResponse) => {
+const deleteProduct = async (req: NextApiRequest, res: NextApiResponse) => {
     const { id } = req.query;
 
     if (req.method === 'DELETE') {
@@ -19,3 +19,5 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         res.status(405).end(`Method ${req.method} Not Allowed`);
     }
 };
+
+export default deleteProduct;

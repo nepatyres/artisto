@@ -24,7 +24,7 @@ export const config = {
     },
 };
 
-export default async (req: NextApiRequest | any, res: NextApiResponse) => {
+const postProducts =  async (req: NextApiRequest | any, res: NextApiResponse) => {
     if (req.method === 'POST') {
         upload(req as any, res as any, async (err) => {
             if (err) {
@@ -44,3 +44,5 @@ export default async (req: NextApiRequest | any, res: NextApiResponse) => {
         });
     }
 }
+
+export default postProducts;

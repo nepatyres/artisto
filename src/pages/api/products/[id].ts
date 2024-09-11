@@ -33,7 +33,7 @@ const deleteFiles = (filePaths: string[]) => {
     });
 };
 
-export default async (req: NextApiRequest | any, res: NextApiResponse) => {
+const deleteProducts =  async (req: NextApiRequest | any, res: NextApiResponse) => {
     const { id } = req.query;
 
     if (req.method  === 'PUT') {
@@ -99,3 +99,4 @@ export default async (req: NextApiRequest | any, res: NextApiResponse) => {
     }
 };
 
+export default deleteProducts;

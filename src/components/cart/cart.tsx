@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { getCart, addToCart, removeFromCart } from '../../lib/cart';
 import dynamic from 'next/dynamic';
-
+import Image from 'next/image';
 const CartCheckoutBtn = dynamic(() => import('./cartCheckoutBtn'), { ssr: false });
 
 export default function Cart({ cart, cartBtn, updateCartItems }: any) {
@@ -25,7 +25,7 @@ export default function Cart({ cart, cartBtn, updateCartItems }: any) {
         }).format(price);
     };
 
-    const handleAdd = (item : number) => {
+    const handleAdd = (item: number) => {
         addToCart(item);
         setCartItems(getCart());
         updateCartItems();
@@ -55,10 +55,12 @@ export default function Cart({ cart, cartBtn, updateCartItems }: any) {
                         {cartItems.length === 0 ? (
                             <p className="text-center text-white/90 text-[24px]">Your cart is empty.</p>
                         ) : (
-                            cartItems.map((item :any, index: number) => (
+                            cartItems.map((item: any, index: number) => (
                                 <div key={index} className="flex flex-row items-center justify-between my-4 border-b border-b-white/10 pb-4">
                                     <div className="flex">
-                                        <img src={item.images[0]} alt={item.name} className="w-[80px] h-[80px] rounded-lg object-cover" />
+                                        <div className="w-20 h-20 relative">
+                                            <Image layout="fill" src={item.images[0]} alt={item.name} className=" rounded-lg object-cover" />
+                                        </div>
                                         <div className="flex flex-col ml-8 justify-between">
                                             <span className="lg:text-lg place-self-start text-white/80">{item.name}</span>
                                             <div className="flex flex-row border border-white/20 w-min rounded-md">
@@ -78,7 +80,7 @@ export default function Cart({ cart, cartBtn, updateCartItems }: any) {
                             <span className="text-xl text-white">Subtotal</span>
                             <span className="text-white text-2xl font-light">€{formatPrice(sum)}</span>
                         </div>
-                        <CartCheckoutBtn cartItems={cartItems} />
+                        <CartCheckoutBtn />
                         <p className="text-white/80 text-[12px] pt-1 self-center">Taxes and shipping will be calculated at checkout</p>
                     </div>
                 </div>

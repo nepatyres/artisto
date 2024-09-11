@@ -1,7 +1,7 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import Product from '../../../models/product';
 
-export default async (req: NextApiRequest, res: NextApiResponse) => {
+const getProducts =  async (req: NextApiRequest, res: NextApiResponse) => {
   if (req.method === 'GET') {
     try {
       const products = await Product.findAll();
@@ -14,3 +14,5 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     res.status(405).end(`Method ${req.method} Not Allowed`);
   }
 };
+
+export default getProducts;
