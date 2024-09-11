@@ -10,6 +10,15 @@ export default function HomePage() {
     const [isLoading, setIsLoading] = useState<Boolean>(true);
 
     useEffect(() => {
+        // Dynamically import GSAP and ScrollTrigger
+        const loadScrollTrigger = async () => {
+            const gsap = (await import("gsap")).default;
+            const ScrollTrigger = (await import("gsap/ScrollTrigger")).default;
+            gsap.registerPlugin(ScrollTrigger);
+        };
+
+        loadScrollTrigger();
+
         setTimeout(() => {
             setIsLoading(false);
             document.body.style.cursor = 'default';
@@ -32,6 +41,7 @@ export default function HomePage() {
         </>
     );
 }
+
 
 
 
