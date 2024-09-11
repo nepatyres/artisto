@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
-import Hero from "../components/homePage/hero";
-import Bestseller from "../components/homePage/bestseller";
-import MoreProducts from "@/components/homePage/moreProducts";
+const Hero = dynamic(() => import('../components/homePage/hero'), { ssr: false });
+const Bestseller = dynamic(() => import('../components/homePage/bestseller'), { ssr: false });
+const MoreProducts = dynamic(() => import('@/components/homePage/moreProducts'), { ssr: false });
 import Preloader from "@/components/preloader/preloader";
 import { AnimatePresence } from "framer-motion";
 import Footer from "@/components/footer";
+import dynamic from 'next/dynamic';
 
 export default function HomePage() {
     const [isLoading, setIsLoading] = useState<Boolean>(true);
