@@ -47,7 +47,7 @@ export default function MainProduct({ screenImg, product, img, cartBtn }: any) {
             <div className="w-full flex flex-col lg:flex-row lg:h-full lg:w-[55%] xl:w-[65%] mx-auto lg:border-r lg:border-top-black justify-center ">
                 <div className="flex-col gap-3 justify-start sticky lg:h-screen top-0 pt-20 pr-1 hidden lg:flex">
                     {product.images.map((image: string, i: number) => (
-                        <div className="w-[100px] h-20 relative">
+                        <div key={i} className="w-[100px] h-20 relative">
                             <Image layout="fill" key={i} src={image} className="cursor-pointer rounded-sm object-center" onClick={() => selectImg(i)} alt="" />
                         </div>
                     ))}
@@ -72,7 +72,7 @@ export default function MainProduct({ screenImg, product, img, cartBtn }: any) {
                 </div>
                 <div className="w-full flex-col lg:h-[80%] 2xl:h-full mx-auto xl:mx-0 gap-1 pt-20 hidden lg:flex relative">
                     {product.images.map((img: string, i: number) => (
-                        <img layout="fill" alt="" id={`image-${i}`} src={img} key={i} className="object-center" />
+                        <img  alt="" id={`image-${i}`} src={img} key={i} className="h-full w-yyyyyfull object-center" />
                     ))}
                 </div>
             </div>

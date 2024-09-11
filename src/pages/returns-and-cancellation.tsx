@@ -46,7 +46,7 @@ export default function Terms() {
                 <h2 className='text-xl font-semibold mt-5'>Contact Information</h2>
                 <h3 className='text-md ml-3'>If you have any questions or need assistance with your return or cancellation, please
                     <Link href="/contact" className='cursor-hover font-semibold'> contact </Link>
-                    us at contactartisto@gmail.com. We’re here to help!</h3>
+                    us at contactartisto@gmail.com. We&rsquo;re here to help!</h3>
             </div>
             <Footer />
         </div>

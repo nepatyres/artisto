@@ -53,7 +53,7 @@ export default function Terms() {
                 <h2 className='text-xl font-semibold mt-5'>Limitation of Liability</h2>
                 <h3 className='text-md ml-3'>To the fullest extent permitted by law, Artisto and its affiliates, directors, employees, or agents shall not be liable for any indirect, incidental, special, or consequential damages arising out of or in connection with the use or inability to use our website, products, or services.</h3>
                 <h2 className='text-xl font-semibold mt-5'>Indemnification</h2>
-                <h3 className='text-md ml-3'>You agree to indemnify, defend, and hold harmless Artisto and its affiliates from any claim, demand, or damage, including reasonable attorneys' fees, arising out of your use of the website, your breach of these Terms and Conditions, or your violation of any law or the rights of a third party.</h3>
+                <h3 className='text-md ml-3'>You agree to indemnify, defend, and hold harmless Artisto and its affiliates from any claim, demand, or damage, including reasonable attorneys&rsquo; fees, arising out of your use of the website, your breach of these Terms and Conditions, or your violation of any law or the rights of a third party.</h3>
                 <h2 className='text-xl font-semibold mt-5'>Governing Law</h2>
                 <h3 className='text-md ml-3'>These Terms and Conditions are governed by and construed in accordance with the laws of Lithuania. Any disputes arising from these terms or your use of the website will be subject to the exclusive jurisdiction of the courts of Lithuania.</h3>
                 <h2 className='text-xl font-semibold mt-5'>Changes to Terms</h2>
@@ -61,7 +61,7 @@ export default function Terms() {
                 <h2 className='text-xl font-semibold mt-5'>Contact Information</h2>
                 <h3 className='text-md ml-3'>If you have any questions or need assistance with your return or cancellation, please
                     <Link href="/contact" className='cursor-hover font-semibold'> contact </Link>
-                    us at contactartisto@gmail.com. We’re here to help!</h3>
+                    us at contactartisto@gmail.com. We&rsquo;re here to help!</h3>
 
             </div>
             <Footer />
