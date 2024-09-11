@@ -37,7 +37,7 @@ export default function Products() {
         setIsLoading(false);
     }, []);
 
-    const redirectBtn = (id) => {
+    const redirectBtn = (id: number) => {
         Router.push(`/products/${id}`);
     }
 
@@ -62,7 +62,7 @@ export default function Products() {
     }
 
     const sortNewestBtn = () => {
-        setProducts([...products].sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt)));
+        setProducts([...products].sort((a, b) => new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime()));
         setSort(false);
     }
 
@@ -70,7 +70,7 @@ export default function Products() {
         setCart(!cart);
     };
 
-    const formatPrice = (price) => {
+    const formatPrice = (price: number) => {
         return new Intl.NumberFormat('en-US', {
             style: 'decimal',
             minimumFractionDigits: 2,
@@ -87,11 +87,11 @@ export default function Products() {
                 {isLoading && <PreloaderLeft />}
             </AnimatePresence>
             <Navbar cartBtn={cartBtn} cart={cart} />
-            <div className="flex min-h-[80vh] w-[90%] lg:w-[85%] 2xl:w-[80%] mx-auto mt-20 flex-col mb-20">
+            <div className="flex min-h-screen w-[90%] lg:w-[85%] 2xl:w-[80%] mx-auto mt-20 flex-col mb-20">
                 <div className="flex flex-row w-full justify-between items-center">
                     <span className="text-4xl px-3 py-10 font-lato leading-4">Products</span>
                     <div className="flex flex-row lg:pt-8 self-center">
-                        <span className="text-black/60 pr-3 lg:pr-6">{products.filter(products => products.display).length} Items</span>
+                        <span className="text-black/60 pr-3 lg:pr-6">{products.filter((products: any) => products.display).length} Items</span>
                         <div>
                             <button onClick={sortBtn} className={`z-[9999] cursor-pointer flex items-center ${sort ? 'text-black/70' : 'text-black'}`}>Sort by
                                 <svg xmlns="http://www.w3.org/2000/svg" className="w-[18px] h-[18px] ml-0.5 mt-0.5" viewBox="0 0 24 24" fill="none">
@@ -108,7 +108,7 @@ export default function Products() {
                     </div>
                 </div>
                 <div className="w-full grid grid-cols-2 lg:grid-cols-3 mx-auto gap-5 2xl:mt-10">
-                    {products.filter(product => product.display).map((product: any, i: number) => (
+                    {products.filter((product: any) => product.display).map((product: any, i: number) => (
                         <div key={i} className="w-full flex space-between">
                             <div className="flex mx-auto flex-col cursor-pointer" onClick={(e) => redirectBtn(product.id)}>
                                 <div className="w-[180px] h-[180px] sm:w-[250px] sm:h-[250px] md:w-[300px] md:h-[300px] lg:w-[280px] lg:h-[280px] xl:w-[320px] xl:h-[320px] 2xl:w-[400px] 2xl:h-[400px] rounded-lg mx-auto">

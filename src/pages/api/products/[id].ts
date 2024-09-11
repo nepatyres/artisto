@@ -33,57 +33,43 @@ const deleteFiles = (filePaths: string[]) => {
     });
 };
 
-export default async (req: NextApiRequest, res: NextApiResponse) => {
+export default async (req: NextApiRequest | any, res: NextApiResponse) => {
     const { id } = req.query;
 
-    if (req.method === 'PUT') {
-        upload(req, res, async (err) => {
+    if (req.method  === 'PUT') {
+        upload(req as any, res as any, async (err) => {
             if (err) {
                 console.error('Multer error:', err);
                 return res.status(500).json({ error: err.message });
             }
             const { name, description, price, stock, deletedImages } = req.body;
-            let imagePaths = req.files.map(file => `/uploads/${file.filename}`);
+            let imagePaths = req.files.map((file: any) => `/uploads/${file.filename}`);
             const deletedImagesArray = JSON.parse(deletedImages || "[]");
-
             try {
-                const product = await Product.findByPk(id as string);
+                const product = await Product.findByPk(id as string) as any;
                 if (!product) {
                     return res.status(404).json({ error: 'Product not found' });
                 }
                 if (imagePaths.length > 0) {
-                    imagePaths = [...product.images.filter(img => !deletedImagesArray.includes(img)), ...imagePaths];
+                    imagePaths = [...product.images.filter((img: string) => !deletedImagesArray.includes(img)), ...imagePaths];
                 } else {
-                    imagePaths = product.images.filter(img => !deletedImagesArray.includes(img));
+                    imagePaths = product.images.filter((img: string) => !deletedImagesArray.includes(img));
                 }
-                deleteFiles(deletedImagesArray.map(img => img.replace('/uploads/', 'public/uploads/')));
-
-                await product.update({
-                    name,
-                    description,
-                    price: parseFloat(price),
-                    stock: parseInt(stock, 10),
-                    images: imagePaths
-                });
-
+                deleteFiles(deletedImagesArray.map((img: string) => img.replace('/uploads/', 'public/uploads/')));
+                await product.update({ name, description, price: parseFloat(price), stock: parseInt(stock, 10), images: imagePaths });
                 res.status(200).json(product);
             } catch (error) {
                 console.error('Database error:', error);
             }
         });
-
     } else if (req.method === 'PATCH') {
         try {
-            const product = await Product.findByPk(id as string);
+            const product = await Product.findByPk(id as string) as any;
             if (!product) {
                 return res.status(404).json({ error: 'Product not found' });
             }
-
-            // Toggle the display field
             const newDisplayValue = !product.display;
-
             await product.update({ display: newDisplayValue });
-
             res.status(200).json({ success: true, display: newDisplayValue });
         } catch (error) {
             console.error('Database error:', error);
@@ -91,11 +77,11 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         }
     } else if (req.method === 'DELETE') {
         try {
-            const product = await Product.findByPk(id as string);
+            const product = await Product.findByPk(id as string) as any;
             if (!product) {
                 return res.status(404).json({ error: 'Product not found' });
             }
-            deleteFiles(product.images.map(img => img.replace('/uploads/', 'public/uploads/')));
+            deleteFiles(product.images.map((img: string) => img.replace('/uploads/', 'public/uploads/')));
             await product.destroy();
         } catch (error) {
             console.error('Database error:', error);

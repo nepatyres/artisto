@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
-export default function MoreProducts({product, popupBtn}) {
-    const [moreProducts, setMoreProducts] = useState([]);
+export default function MoreProducts({ product, popupBtn }: any) {
+    const [moreProducts, setMoreProducts] = useState<any>([]);
 
     useEffect(() => {
         const fetchMoreProducts = async () => {
@@ -25,10 +25,10 @@ export default function MoreProducts({product, popupBtn}) {
         <div className="flex flex-col w-full px-8 py-5 mb-5">
             <span className="text-xl mb-3">Edit more products</span>
             <div className="grid grid-cols-2 md:grid-cols-4 w-full h-full gap-3 lg:gap-5 mb-5">
-                {moreProducts && moreProducts.map((moreProduct, i) => (
+                {moreProducts && moreProducts.map((moreProduct: any, i: number) => (
                     <div key={i} className="place-self-center h-[130px] w-[130px] md:h-[135px] md:w-[135px] lg:h-[180px] lg:w-[180px] xl:h-[220px] xl:w-[220px] 2xl:w-[300px] 2xl:h-[300px] border rounded-lg cursor-pointer flex relative">
                         <img className="bg-cover w-full h-full object-center rounded-lg" src={moreProduct.image} alt="" />
-                        <div className="flex absolute top-3 right-3">
+                        <div className="flex absolute top-3 right-3 bg-bdot4 py-2 px-2 rounded-full">
                             <svg xmlns="http://www.w3.org/2000/svg" onClick={() => removeBtn(moreProduct.id)} className="fill-white w-[30px] h-[30px]" viewBox="0 0 24 24">
                                 <path d="M1.5 3.75C1.08579 3.75 0.75 4.08579 0.75 4.5C0.75 4.91421 1.08579 5.25 1.5 5.25V3.75ZM22.5 5.25C22.9142 5.25 23.25 4.91421 23.25 4.5C23.25 4.08579 22.9142 3.75 22.5 3.75V5.25ZM1.5 5.25H22.5V3.75H1.5V5.25Z" />
                                 <path d="M9.75 1.5V0.75V1.5ZM8.25 3H7.5H8.25ZM7.5 4.5C7.5 4.91421 7.83579 5.25 8.25 5.25C8.66421 5.25 9 4.91421 9 4.5H7.5ZM15 4.5C15 4.91421 15.3358 5.25 15.75 5.25C16.1642 5.25 16.5 4.91421 16.5 4.5H15ZM15.75 3H16.5H15.75ZM14.25 0.75H9.75V2.25H14.25V0.75ZM9.75 0.75C9.15326 0.75 8.58097 0.987053 8.15901 1.40901L9.21967 2.46967C9.36032 2.32902 9.55109 2.25 9.75 2.25V0.75ZM8.15901 1.40901C7.73705 1.83097 7.5 2.40326 7.5 3H9C9 2.80109 9.07902 2.61032 9.21967 2.46967L8.15901 1.40901ZM7.5 3V4.5H9V3H7.5ZM16.5 4.5V3H15V4.5H16.5ZM16.5 3C16.5 2.40326 16.2629 1.83097 15.841 1.40901L14.7803 2.46967C14.921 2.61032 15 2.80109 15 3H16.5ZM15.841 1.40901C15.419 0.987053 14.8467 0.75 14.25 0.75V2.25C14.4489 2.25 14.6397 2.32902 14.7803 2.46967L15.841 1.40901Z" />
@@ -39,14 +39,14 @@ export default function MoreProducts({product, popupBtn}) {
                         </div>
                     </div>
                 ))}
-                {moreProducts.length <= 3 && 
-                <div className="place-self-center h-[160px] w-[160px] md:h-[135px] md:w-[135px] lg:h-[180px] lg:w-[180px] xl:h-[220px] xl:w-[220px] 2xl:w-[300px] 2xl:h-[300px] border border-black/30 rounded-lg cursor-pointer flex justify-center items-center" onClick={() => popupBtn(product, 'GETMOREPRODUCTS')}>
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-24 w-24" viewBox="0 0 24 24" fill="none">
-                        <g id="Edit / Add_Plus">
-                            <path id="Vector" d="M6 12H12M12 12H18M12 12V18M12 12V6" className="stroke-black/70 stroke-[.6]" strokeLinecap="round" strokeLinejoin="round" />
-                        </g>
-                    </svg>
-                </div>}
+                {moreProducts.length <= 3 &&
+                    <div className="place-self-center h-[160px] w-[160px] md:h-[135px] md:w-[135px] lg:h-[180px] lg:w-[180px] xl:h-[220px] xl:w-[220px] 2xl:w-[300px] 2xl:h-[300px] border border-black/30 rounded-lg cursor-pointer flex justify-center items-center" onClick={() => popupBtn(product, 'GETMOREPRODUCTS')}>
+                        <svg xmlns="http://www.w3.org/2000/svg" className="h-24 w-24" viewBox="0 0 24 24" fill="none">
+                            <g id="Edit / Add_Plus">
+                                <path id="Vector" d="M6 12H12M12 12H18M12 12V18M12 12V6" className="stroke-black/70 stroke-[.6]" strokeLinecap="round" strokeLinejoin="round" />
+                            </g>
+                        </svg>
+                    </div>}
             </div>
         </div>
     )

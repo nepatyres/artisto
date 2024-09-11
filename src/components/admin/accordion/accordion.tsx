@@ -3,7 +3,7 @@ import axios from "axios";
 import Bestseller from "./bestseller";
 import MoreProducts from "./moreProducts";
 
-export default function Accordion({ popupBtn, product }) {
+export default function Accordion({ popupBtn, product }: any) {
     const [accordion, setAccordion] = useState<boolean>(false);
 
     const accordionBtn = () => {

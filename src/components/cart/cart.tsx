@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { getCart, addToCart, removeFromCart } from '../../lib/cart';
-import CartCheckoutBtn from "./cartCheckoutBtn";
+import dynamic from 'next/dynamic';
 
-export default function Cart({ cart, cartBtn, updateCartItems }) {
-    const [cartItems, setCartItems] = useState([]);
+const CartCheckoutBtn = dynamic(() => import('./cartCheckoutBtn'), { ssr: false });
+
+export default function Cart({ cart, cartBtn, updateCartItems }: any) {
+    const [cartItems, setCartItems] = useState<any>([]);
     const [sum, setSum] = useState(0);
 
     useEffect(() => {
@@ -12,24 +14,24 @@ export default function Cart({ cart, cartBtn, updateCartItems }) {
     }, []);
 
     useEffect(() => {
-        setSum(cartItems.reduce((acc, item) => acc + item.price * item.quantity, 0));
+        setSum(cartItems.reduce((acc: number, item: any) => acc + item.price * item.quantity, 0));
     }, [cartItems])
 
-    const formatPrice = (price) => {
+    const formatPrice = (price: number) => {
         return new Intl.NumberFormat('en-US', {
             style: 'decimal',
             minimumFractionDigits: 2,
             maximumFractionDigits: 2,
         }).format(price);
-    }; 
+    };
 
-    const handleAdd = (item) => {
+    const handleAdd = (item : number) => {
         addToCart(item);
         setCartItems(getCart());
         updateCartItems();
     };
 
-    const handleRemove = (itemId) => {
+    const handleRemove = (itemId: number) => {
         removeFromCart(itemId);
         setCartItems(getCart());
         updateCartItems();
@@ -53,7 +55,7 @@ export default function Cart({ cart, cartBtn, updateCartItems }) {
                         {cartItems.length === 0 ? (
                             <p className="text-center text-white/90 text-[24px]">Your cart is empty.</p>
                         ) : (
-                            cartItems.map((item, index) => (
+                            cartItems.map((item :any, index: number) => (
                                 <div key={index} className="flex flex-row items-center justify-between my-4 border-b border-b-white/10 pb-4">
                                     <div className="flex">
                                         <img src={item.images[0]} alt={item.name} className="w-[80px] h-[80px] rounded-lg object-cover" />
@@ -76,7 +78,7 @@ export default function Cart({ cart, cartBtn, updateCartItems }) {
                             <span className="text-xl text-white">Subtotal</span>
                             <span className="text-white text-2xl font-light">€{formatPrice(sum)}</span>
                         </div>
-                        <CartCheckoutBtn cartItems={cartItems}/>
+                        <CartCheckoutBtn cartItems={cartItems} />
                         <p className="text-white/80 text-[12px] pt-1 self-center">Taxes and shipping will be calculated at checkout</p>
                     </div>
                 </div>

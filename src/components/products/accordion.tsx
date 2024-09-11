@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-export default function ProductAccordion({ product }) {
+export default function ProductAccordion({ product }:any) {
     const [delivery, setDelivery] = useState(false);
     const [descriptions, setDescription] = useState(false);
     const deliveryBtn = () => {

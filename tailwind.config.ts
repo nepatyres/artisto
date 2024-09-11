@@ -26,6 +26,7 @@ const config: Config = {
         'dot9': 'rgba(255, 255, 255, .9)',
         'bdot9': 'rgba(0, 0, 0, .9)',
         'bdot8': 'rgba(0, 0, 0, .8)',
+        'bdot4': 'rgba(0, 0, 0, .4)',
       },
     },
   },

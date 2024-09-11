@@ -1,10 +1,11 @@
 import { useRouter } from "next/router";
-export default function CheckoutBtn({ product }) {
+export default function CheckoutBtn({ product }:any) {
     const router = useRouter();
-
     const handleCheckout = () => {
-        localStorage.setItem('selectedProduct', JSON.stringify(product));
-        router.push('/checkout');
+        router.push({
+            pathname: '/checkout',
+            query: { product: JSON.stringify(product) }
+        });
     };
     return (
         <button onClick={handleCheckout} className="w-full rounded-md px-2 py-2 text-md btn relative text-center cursor-pointer mb-3 bg-gray-200">

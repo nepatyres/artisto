@@ -3,9 +3,9 @@ import { Span } from "next/dist/trace";
 import React, { useState } from "react";
 import ProductAccordion from "./accordion";
 import CheckoutBtn from "../cart/checkoutBtn";
-export default function MainProduct({ screenImg, product, img, cartBtn }) {
+export default function MainProduct({ screenImg, product, img, cartBtn }: any) {
     const [num, setNum] = useState(0);
-    const formatPrice = (price) => {
+    const formatPrice = (price: number) => {
         return new Intl.NumberFormat('en-US', {
             style: 'decimal',
             minimumFractionDigits: 2,
@@ -13,7 +13,7 @@ export default function MainProduct({ screenImg, product, img, cartBtn }) {
         }).format(price);
     };
 
-    const selectImg = (index) => {
+    const selectImg = (index: number) => {
         const largeImage = document.getElementById(`image-${index}`);
 
         if (largeImage) {
@@ -44,7 +44,7 @@ export default function MainProduct({ screenImg, product, img, cartBtn }) {
         <div className="flex flex-wrap flex-col lg:flex-row w-[95%] h-min-screen lg:h-auto lg:w-full mx-auto">
             <div className="w-full flex flex-col lg:flex-row lg:h-full lg:w-[55%] xl:w-[65%] mx-auto lg:border-r lg:border-top-black justify-center ">
                 <div className="flex-col gap-3 justify-start sticky lg:h-screen top-0 pt-20 pr-1 hidden lg:flex">
-                    {product.images.map((image, i) => (
+                    {product.images.map((image: string, i: number) => (
                         <img key={i} src={image} className="w-[100px] h-[80px] cursor-pointer rounded-sm object-center" onClick={() => selectImg(i)} alt="" />
                     ))}
                 </div>
@@ -54,20 +54,20 @@ export default function MainProduct({ screenImg, product, img, cartBtn }) {
                     <a href="" className="bfooter">{product.name}</a>
                 </div>
                 <div className="w-full h-[400px] sm:h-[500px] md:h-[600px] flex-col flex mx-auto xl:mx-0 gap-1 lg:pt-20 lg:hidden relative">
-                    <img src={product.images[num]} className="w-full h-full object-center rounded-md" />
-                    <div className="absolute flex z-10 w-20 h-full justify-self-start items-center cursor-pointer" onClick={prevImageBtn}>
-                        <svg xmlns="http://www.w3.org/2000/svg" className="w-20 h-20 fill-current text-white z-20 stroke-[.01px] stroke-bdot9" viewBox="0 0 24 24" >
-                            <path xmlns="http://www.w3.org/2000/svg" d="M14.2893 5.70708C13.8988 5.31655 13.2657 5.31655 12.8751 5.70708L7.98768 10.5993C7.20729 11.3805 7.2076 12.6463 7.98837 13.427L12.8787 18.3174C13.2693 18.7079 13.9024 18.7079 14.293 18.3174C14.6835 17.9269 14.6835 17.2937 14.293 16.9032L10.1073 12.7175C9.71678 12.327 9.71678 11.6939 10.1073 11.3033L14.2893 7.12129C14.6799 6.73077 14.6799 6.0976 14.2893 5.70708Z" />
+                    <img src={product.images[num]} className="w-full h-full object-center rounded-md select-none" />
+                    <div className="absolute flex z-10 h-full justify-self-start items-center cursor-pointer" onClick={prevImageBtn}>
+                        <svg xmlns="http://www.w3.org/2000/svg" className="w-16 h-16 fill-current text-white z-20 stroke-[.1px] stroke-bdot9" viewBox="0 0 24 24" >
+                            <path xmlns="http://www.w3.org/2000/svg" d="M16.1795 3.26875C15.7889 2.87823 15.1558 2.87823 14.7652 3.26875L8.12078 9.91322C6.94952 11.0845 6.94916 12.9833 8.11996 14.155L14.6903 20.7304C15.0808 21.121 15.714 21.121 16.1045 20.7304C16.495 20.3399 16.495 19.7067 16.1045 19.3162L9.53246 12.7442C9.14194 12.3536 9.14194 11.7205 9.53246 11.33L16.1795 4.68297C16.57 4.29244 16.57 3.65928 16.1795 3.26875Z" />
                         </svg>
                     </div>
-                    <div className="absolute flex z-10 w-20 h-full justify-self-end self-end items-center cursor-pointer" onClick={nextImageBtn}>
-                        <svg xmlns="http://www.w3.org/2000/svg" className="w-20 h-20 fill-current text-white z-20 stroke-[.01px] stroke-bdot9" viewBox="0 0 24 24" >
-                            <path xmlns="http://www.w3.org/2000/svg" d="M9.71069 18.2929C10.1012 18.6834 10.7344 18.6834 11.1249 18.2929L16.0123 13.4006C16.7927 12.6195 16.7924 11.3537 16.0117 10.5729L11.1213 5.68254C10.7308 5.29202 10.0976 5.29202 9.70708 5.68254C9.31655 6.07307 9.31655 6.70623 9.70708 7.09676L13.8927 11.2824C14.2833 11.6729 14.2833 12.3061 13.8927 12.6966L9.71069 16.8787C9.32016 17.2692 9.32016 17.9023 9.71069 18.2929Z" />
+                    <div className="absolute flex z-10 h-full justify-self-end self-end items-center cursor-pointer" onClick={nextImageBtn}>
+                        <svg xmlns="http://www.w3.org/2000/svg" className="w-16 h-16 fill-current text-white z-20 stroke-[.1px] stroke-bdot9" viewBox="0 0 24 24" >
+                            <path xmlns="http://www.w3.org/2000/svg" d="M7.82054 20.7313C8.21107 21.1218 8.84423 21.1218 9.23476 20.7313L15.8792 14.0868C17.0505 12.9155 17.0508 11.0167 15.88 9.84497L9.3097 3.26958C8.91918 2.87905 8.28601 2.87905 7.89549 3.26958C7.50497 3.6601 7.50497 4.29327 7.89549 4.68379L14.4675 11.2558C14.8581 11.6464 14.8581 12.2795 14.4675 12.67L7.82054 19.317C7.43002 19.7076 7.43002 20.3407 7.82054 20.7313Z"/>
                         </svg>
                     </div>
                 </div>
                 <div className="w-full flex-col lg:h-[80%] 2xl:h-full mx-auto xl:mx-0 gap-1 pt-20 hidden lg:flex">
-                    {product.images.map((img, i) => (
+                    {product.images.map((img: string, i: number) => (
                         <img id={`image-${i}`} src={img} key={i} className="w-full h-full object-center" />
                     ))}
                 </div>

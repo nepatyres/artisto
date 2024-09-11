@@ -16,7 +16,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
       res.status(201).json(moreProducts);
     } catch (error) {
       console.error("Database error:", error);
-      res.status(500).json({ error: error.message });
+      res.status(500).json({ error: (error as Error).message });
     }
   } else {
     res.setHeader("Allow", ["POST"]);

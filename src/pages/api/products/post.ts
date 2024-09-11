@@ -24,29 +24,22 @@ export const config = {
     },
 };
 
-export default async (req: NextApiRequest, res: NextApiResponse) => {
+export default async (req: NextApiRequest | any, res: NextApiResponse) => {
     if (req.method === 'POST') {
-        upload(req, res, async (err) => {
+        upload(req as any, res as any, async (err) => {
             if (err) {
                 console.error('Multer error:', err);
                 return res.status(500).json({ error: err.message });
             }
-
             const { name, description, price, stock } = req.body;
-            const imagePaths = req.files.map(file => `/uploads/${file.filename}`);
+            const imagePaths = req.files.map((file: any) => `/uploads/${file.filename}`);
 
             try {
-                const product = await Product.create({
-                    name,
-                    description,
-                    price: parseFloat(price),
-                    stock: parseInt(stock, 10),
-                    images: imagePaths
-                });
+                const product = await Product.create({ name, description, price: parseFloat(price), stock: parseInt(stock, 10), images: imagePaths } as any);
                 res.status(201).json(product);
             } catch (error) {
                 console.error('Database error:', error);
-                res.status(500).json({ error: error.message });
+                res.status(500).json({ error: (error as Error).message });
             }
         });
     }

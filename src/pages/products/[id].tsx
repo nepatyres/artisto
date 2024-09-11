@@ -24,7 +24,7 @@ export default function ProductPage() {
         const fetchProduct = async () => {
             try {
                 const response = await axios.get('/api/products/get');
-                const productData = response.data.find((data: any) => data.id === parseInt(id));
+                const productData = response.data.find((data: any) => data.id === parseInt(id as any));
                 setProduct(productData);
                 if (productData && productData.images) {
                     setImg(productData.images[0]);
@@ -49,7 +49,7 @@ export default function ProductPage() {
         setCart(!cart);
     };
 
-    const screenImg = (i) => {
+    const screenImg = (i:number) => {
         screenImg(product.images[i])
     }
 

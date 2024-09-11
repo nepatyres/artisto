@@ -4,7 +4,7 @@ import CartSvg from "./svg/cart";
 import Cart from "./cart/cart";
 import { getCart } from "@/lib/cart";
 
-export default function Navbar({ cartBtn, cart }) {
+export default function Navbar({ cartBtn, cart }: any) {
     const [toggler, setToggler] = useState(false);
     const [cartItems, setCartItems] = useState([]);
 
@@ -34,7 +34,9 @@ export default function Navbar({ cartBtn, cart }) {
                         ))}
                     </ul>
                     <div className="flex justify-end items-center pr-5">
-                        <button className="mr-2 pb-[2px]" onClick={cartBtn}><CartSvg updateCartItems={updateCartItems} numItems={cartItems.reduce((acc, item) => acc + item.quantity, 0)} /></button>
+                        <button className="mr-2 pb-[2px]" onClick={cartBtn}>
+                            <CartSvg updateCartItems={updateCartItems} numItems={cartItems.reduce((acc, item: any) => acc + item.quantity, 0)} />
+                        </button>
                         <svg xmlns="http://www.w3.org/2000/svg" onClick={togglerBtn} className='md:hidden h-[33px] w-[33px] rounded-full stroke-white stroke-[1.5] cursor-pointer'
                             viewBox="0 0 23 16">
                             <g className='h-4 w-4' fillRule="evenodd" strokeLinecap="round">

@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function CartSvg({ updateCartItems, numItems }) {
+export default function CartSvg({ updateCartItems, numItems }:any) {
     return (
         <svg className="w-[30px] h-[30px] fill-none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" onClick={() => updateCartItems()}>
             <g>

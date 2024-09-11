@@ -1,6 +1,6 @@
 import React from "react";
 import { addToCart } from '../../lib/cart';
-export default function CartBtn({ product, cartBtn }) {
+export default function CartBtn({ product, cartBtn }:any) {
     const handleAddToCart = () => {
         addToCart(product);
         cartBtn();

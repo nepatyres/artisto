@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
-export default function MoreProducts({ product }) {
+export default function MoreProducts({ product }:any) {
     const [products, setProducts] = useState<any>([]);
 
     useEffect(() => {
@@ -12,7 +12,7 @@ export default function MoreProducts({ product }) {
         fetchProducts();
     }, []);
 
-    const formatPrice = (price) => {
+    const formatPrice = (price:number) => {
         return new Intl.NumberFormat('en-US', {
             style: 'decimal',
             minimumFractionDigits: 2,

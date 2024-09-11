@@ -7,7 +7,7 @@ import { AnimatePresence } from "framer-motion";
 import Footer from "@/components/footer";
 
 export default function HomePage() {
-    const [isLoading, setIsLoading] = useState(true);
+    const [isLoading, setIsLoading] = useState<Boolean>(true);
 
     useEffect(() => {
         setTimeout(() => {

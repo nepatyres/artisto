@@ -1,15 +1,7 @@
 import React, { useRef } from "react";
 
-interface Props {
-    setImages: any,
-    imagePreviews: any,
-    setImagePreviews: any,
-    existingImages: any,
-    setDeletedImages: any
-}
-
-export default function ImgInput({ setImages, imagePreviews, setImagePreviews, existingImages, setDeletedImages }: Props) {
-    const fileInputRef = useRef(null);
+export default function ImgInput({ setImages, imagePreviews, setImagePreviews, existingImages, setDeletedImages }: any) {
+    const fileInputRef = useRef<HTMLInputElement | null>(null);
 
     const handleImageChange = (e: any) => {
         if (e.target.files && e.target.files.length > 0) {
