@@ -47,7 +47,7 @@ export default function Contact() {
                             <textarea className="bg-white text-black py-[6px] px-3 focus:outline-2 focus:outline-blue-400 rounded-md focus:text-black border border-black/.70 w-full" id="message" rows={6} placeholder="Your message" name='message' required></textarea>
                         </div>
                         <div className='email-btn'>
-                            <button className='relative bg-black btn items-center flex font-ubuntuL font-thin text-[20px] text-white text-md rounded-md' type="submit">
+                            <button className='relative bg-black btnB items-center flex font-ubuntuL font-thin text-[20px] text-white text-md rounded-md' type="submit">
                                 <span className="relative z-10 text-[15px] span inline-block text-center transition-colors text-white px-2 py-1">Submit</span>
                             </button>
                         </div>
