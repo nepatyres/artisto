@@ -5,7 +5,9 @@ export default function handler(req: any, res: any) {
 
     if (username === adminUsername && password === adminPassword) {
         res.status(200).json({ success: true });
+        console.log(adminPassword)
     } else {
         res.status(401).json({ success: false });
+        console.log(adminPassword)
     }
 }
