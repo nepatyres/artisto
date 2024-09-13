@@ -74,7 +74,7 @@ export default function Admin() {
 
     return (
         <div className="flex flex-col relative overflow-hidden min-h-screen w-[95%] md:w-[80%] mx-auto">
-            {isLogged &&
+            {!isLogged &&
                 <>
                     <Link href="/" className="flex justify-start items-center text-black text-[30px] font-robotoE pb-1 tracking-tight cursor-pointer mt-4">àrtisto</Link>
                     <div className="h-full w-full flex flex-col my-auto">
@@ -93,7 +93,7 @@ export default function Admin() {
 
                     </div>
                 </>}
-            {!isLogged &&
+            {isLogged &&
                 <>
                     <Head>
                         <title>Admin</title>
