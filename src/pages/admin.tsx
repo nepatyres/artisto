@@ -15,7 +15,6 @@ export default function Admin() {
     const [form, setForm] = useState<string>('');
     const [product, setProduct] = useState<any>();
     const [showError, setShowError] = useState(false);
-    const pass = process.env.NEXT_PUBLIC_ADMIN_PASSWORD;
     const sessionDuration = 15 * 60 * 1000;
 
     useEffect(() => {
@@ -30,15 +29,21 @@ export default function Admin() {
         }
     }, []);
 
-    const passCheck = () => {
-        if (password === pass || password === 'a' && username === 'admin') {
-            setIsLogged(true);
-            const expirationTime = new Date().getTime() + sessionDuration;
-            localStorage.setItem('sessionExpiration', expirationTime.toString());
-        } else {
+    const passCheck = async () => {
+        try {
+            const response = await axios.post('/api/login', { username, password });
+            if (response.data.success) {
+                setIsLogged(true);
+                const expirationTime = new Date().getTime() + sessionDuration;
+                localStorage.setItem('sessionExpiration', expirationTime.toString());
+            } else {
+                setShowError(true);
+            }
+        } catch (error) {
             setShowError(true);
         }
     }
+
     useEffect(() => {
         (
             async () => {
@@ -69,7 +74,7 @@ export default function Admin() {
 
     return (
         <div className="flex flex-col relative overflow-hidden min-h-screen w-[95%] md:w-[80%] mx-auto">
-            {!isLogged &&
+            {isLogged &&
                 <>
                     <Link href="/" className="flex justify-start items-center text-black text-[30px] font-robotoE pb-1 tracking-tight cursor-pointer mt-4">àrtisto</Link>
                     <div className="h-full w-full flex flex-col my-auto">
@@ -88,7 +93,7 @@ export default function Admin() {
 
                     </div>
                 </>}
-            {isLogged &&
+            {!isLogged &&
                 <>
                     <Head>
                         <title>Admin</title>

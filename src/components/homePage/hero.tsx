@@ -19,7 +19,7 @@ export default function Hero() {
                     start: '+=300px center',
                     end: '+=600px',
                     scrub: true,
-                    markers: true
+                    // markers: true
                 }
             });
 
