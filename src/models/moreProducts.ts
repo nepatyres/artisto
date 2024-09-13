@@ -8,7 +8,7 @@ interface MoreProductsAttributes {
   image?: string;
 }
 
-interface MoreProductsCreationAttributes extends Optional<MoreProductsAttributes, 'image'> {}
+interface MoreProductsCreationAttributes extends Optional<MoreProductsAttributes, 'image'> { }
 
 class MoreProducts extends Model<MoreProductsAttributes, MoreProductsCreationAttributes> implements MoreProductsAttributes {
   public id!: number;
@@ -39,7 +39,7 @@ MoreProducts.init(
   },
   {
     sequelize,
-    tableName: 'moreProducts',
+    tableName: 'moreproducts',
     timestamps: false,
   }
 );

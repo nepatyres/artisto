@@ -101,7 +101,7 @@ export default function Bestseller({ setIsLoading }: any) {
                     </div>
                 ))
             ) : (
-                <div>No bestsellers available.</div>
+                <div></div>
             )}
         </div>
     );
