@@ -48,7 +48,7 @@ export default function Contact() {
                         </div>
                         <div className='email-btn'>
                             <button className='relative bg-black btnB items-center flex font-ubuntuL font-thin text-[20px] text-white text-md rounded-md' type="submit">
-                                <span className="relative z-10 text-[15px] span inline-block text-center transition-colors text-white px-2 py-1">Submit</span>
+                                <span className="relative z-10 text-[15px] span inline-block text-center transition-colors text-white px-2 py-1" >Submit</span>
                             </button>
                         </div>
                     </form>
