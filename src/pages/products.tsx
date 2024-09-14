@@ -117,7 +117,7 @@ export default function Products() {
                                 </div>
                                 <div className="flex flex-col w-auto pt-2 pb-3">
                                     <span className="text-md 2xl:text-lg mx-auto font-lato">{product.name}</span>
-                                    <span className="mx-auto text-md font-lato">€{formatPrice(product.price)}</span>
+                                    <span className="mx-auto text-md font-lato">€{formatPrice(product.price)} </span>
                                 </div>
                             </div>
                         </div>
