@@ -5,3 +5,5 @@ const sequelize = new Sequelize(process.env.DB_NAME, process.env.DB_USER, proces
     dialect: 'mysql',
     dialectModule: require('mysql2'),
 });
+
+export default sequelize;
