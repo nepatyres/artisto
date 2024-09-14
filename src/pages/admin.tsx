@@ -35,7 +35,7 @@ export default function Admin() {
             if (response.data.success) {
                 setIsLogged(true);
                 const expirationTime = new Date().getTime() + sessionDuration;
-                localStorage.setItem('sessionExpiration', expirationTime.toString() );
+                localStorage.setItem('sessionExpiration', expirationTime.toString());
             } else {
                 setShowError(true);
             }
