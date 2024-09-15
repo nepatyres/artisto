@@ -60,7 +60,7 @@ export default function Terms() {
                 <h3 className='text-md ml-3'>We reserve the right to modify or update these Terms and Conditions at any time without prior notice. It is your responsibility to check this page periodically for any changes. Your continued use of the website after any modifications constitutes acceptance of the updated terms.</h3>
                 <h2 className='text-xl font-semibold mt-5'>Contact Information</h2>
                 <h3 className='text-md ml-3'>If you have any questions or need assistance with your return or cancellation, please
-                    <Link href="/contact" className='cursor-hover font-semibold'> contact </Link>
+                    <Link href="/contact" className='cursor-hover font-semibold'> contact  </Link>
                     us at contactartisto@gmail.com. We&rsquo;re here to help!</h3>
 
             </div>
