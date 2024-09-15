@@ -28,7 +28,7 @@ export default function Terms() {
             </Head>
             <Navbar cartBtn={cartBtn} cart={cart} />
             <div className="flex flex-col mx-auto w-[80%] lg:w-[60%] xl:w-[50%] mt-40 mb-40 font-roboto h-min-[80vh]">
-                <h1 className='text-2xl font-semibold mb-1'>Returns & Cancellation Policy</h1>
+                <h1 className='text-2xl font-semibold mb-1'>Returns & Cancellation Policy </h1>
                 <p className='mb-5'>At Artisto, we strive to ensure that you are fully satisfied with your purchase of our products. If you are not completely happy with your order, we’re here to help.</p>
                 <h2 className='text-xl font-semibold mt-5'>Returns</h2>
                 <h3 className='text-md ml-3'>1.1 Return Period: You have 14 days from the date you receive your item to request a return.</h3>
