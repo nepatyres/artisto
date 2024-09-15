@@ -8,7 +8,7 @@ import Product from '../../../models/product';
 const storage = new Storage({
     projectId: process.env.GOOGLE_CLOUD_PROJECT_ID,
     credentials: process.env.GOOGLE_APPLICATION_CREDENTIALS
-        ? JSON.parse(process.env.GOOGLE_APPLICATION_CREDENTIALS)
+        ? JSON.parse(process.env.GOOGLE_APPLICATION_CREDENTIALS.replace(/\\n/g, '\n'))
         : undefined,
 });
 
@@ -56,37 +56,37 @@ const uploadToGCS = async (file: Express.Multer.File): Promise<string> => {
 
 const postProducts = async (req: MulterRequest, res: NextApiResponse) => {
     if (req.method === 'POST') {
-      upload(req as any, res as any, async (err) => {
-        if (err) {
-          console.error('Multer error:', err);
-          return res.status(500).json({ error: err.message });
-        }
-  
-        const { name, description, price, stock } = req.body;
-        const files = req.files;
-  
-        try {
-            const uploadPromises = files.map((file: MulterFile) => uploadToGCS(file as any));
-          const imagePaths = await Promise.all(uploadPromises);
-  
-          const product = await Product.create({
-            name,
-            description,
-            price: parseFloat(price),
-            stock: parseInt(stock, 10),
-            images: imagePaths
-          } as any);
-  
-          res.status(201).json(product);
-        } catch (error) {
-          console.error('Upload or database error:', error);
-          res.status(500).json({ error: (error as Error).message });
-        }
-      });
+        upload(req as any, res as any, async (err) => {
+            if (err) {
+                console.error('Multer error:', err);
+                return res.status(500).json({ error: err.message });
+            }
+
+            const { name, description, price, stock } = req.body;
+            const files = req.files;
+
+            try {
+                const uploadPromises = files.map((file: MulterFile) => uploadToGCS(file as any));
+                const imagePaths = await Promise.all(uploadPromises);
+
+                const product = await Product.create({
+                    name,
+                    description,
+                    price: parseFloat(price),
+                    stock: parseInt(stock, 10),
+                    images: imagePaths
+                } as any);
+
+                res.status(201).json(product);
+            } catch (error) {
+                console.error('Upload or database error:', error);
+                res.status(500).json({ error: (error as Error).message });
+            }
+        });
     } else {
-      res.setHeader('Allow', ['POST']);
-      res.status(405).end(`Method ${req.method} Not Allowed`);
+        res.setHeader('Allow', ['POST']);
+        res.status(405).end(`Method ${req.method} Not Allowed`);
     }
-  };
+};
 
 export default postProducts;
