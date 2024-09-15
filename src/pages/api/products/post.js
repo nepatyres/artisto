@@ -1,4 +1,4 @@
-import { NextApiRequest, NextApiResponse } from 'next';
+import { NextApiRequest, NextApiResponse} from 'next';
 import { Storage } from '@google-cloud/storage';
 import multer from 'multer';
 import { Readable } from 'stream';
@@ -22,7 +22,7 @@ export const config = {
     },
 };
 
-const uploadToGCS = async (file: Express.Multer.File): Promise<string> => {
+const uploadToGCS = async (file) => {
     const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
     const fileName = `${uniqueSuffix}-${file.originalname}`;
     const fileUpload = bucket.file(fileName);
@@ -53,9 +53,9 @@ const uploadToGCS = async (file: Express.Multer.File): Promise<string> => {
     });
 };
 
-const postProducts = async (req: NextApiRequest, res: NextApiResponse) => {
+const postProducts = async (req, res) => {
     if (req.method === 'POST') {
-        upload(req as any, res as any, async (err) => {
+        upload(req, res, async (err) => {
             if (err) {
                 console.error('Multer error:', err);
                 return res.status(500).json({ error: err.message });
@@ -65,7 +65,7 @@ const postProducts = async (req: NextApiRequest, res: NextApiResponse) => {
             const files = req.files;
 
             try {
-                const uploadPromises = files.map((file: any) => uploadToGCS(file));
+                const uploadPromises = files.map((file) => uploadToGCS(file));
                 const imagePaths = await Promise.all(uploadPromises);
 
                 const product = await Product.create({
@@ -74,12 +74,12 @@ const postProducts = async (req: NextApiRequest, res: NextApiResponse) => {
                     price: parseFloat(price),
                     stock: parseInt(stock, 10),
                     images: imagePaths
-                } as any);
+                });
 
                 res.status(201).json(product);
             } catch (error) {
                 console.error('Upload or database error:', error);
-                res.status(500).json({ error: (error as Error).message });
+                res.status(500).json({ error: (error).message });
             }
         });
     } else {
