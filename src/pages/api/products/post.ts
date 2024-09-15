@@ -1,22 +1,20 @@
 import { NextApiRequest, NextApiResponse } from 'next';
+import { Storage } from '@google-cloud/storage';
 import multer from 'multer';
-import path from 'path';
-import fs from 'fs';
+import { Readable } from 'stream';
 import Product from '../../../models/product';
 
-const upload = multer({
-    storage: multer.diskStorage({
-        destination: (req, file, cb) => {
-            const uploadPath = path.join(process.cwd(), 'public', 'uploads');
-            fs.mkdirSync(uploadPath, { recursive: true });
-            cb(null, uploadPath);
-        },
-        filename: (req, file, cb) => {
-            const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
-            cb(null, `${uniqueSuffix}-${file.originalname}`);
-        }
-    })
-}).array('images', 10);
+const storage = new Storage({
+    projectId: process.env.GOOGLE_CLOUD_PROJECT_ID,
+    credentials: process.env.GOOGLE_APPLICATION_CREDENTIALS
+        ? JSON.parse(process.env.GOOGLE_APPLICATION_CREDENTIALS)
+        : undefined,
+});
+
+const bucket = storage.bucket(process.env.GOOGLE_CLOUD_BUCKET_NAME || '');
+
+const multerGoogleStorage = multer.memoryStorage();
+const upload = multer({ storage: multerGoogleStorage }).array('images', 10);
 
 export const config = {
     api: {
@@ -24,25 +22,70 @@ export const config = {
     },
 };
 
-const postProducts =  async (req: NextApiRequest | any, res: NextApiResponse) => {
+const uploadToGCS = async (file: Express.Multer.File): Promise<string> => {
+    const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
+    const fileName = `${uniqueSuffix}-${file.originalname}`;
+    const fileUpload = bucket.file(fileName);
+
+    const stream = fileUpload.createWriteStream({
+        metadata: {
+            contentType: file.mimetype,
+        },
+    });
+
+    return new Promise((resolve, reject) => {
+        stream.on('error', (error) => {
+            console.error('GCS upload error:', error);
+            reject(error);
+        });
+
+        stream.on('finish', () => {
+            const publicUrl = `https://storage.googleapis.com/${bucket.name}/${fileName}`;
+            resolve(publicUrl);
+        });
+
+        const readable = new Readable();
+        readable._read = () => { }; // _read is required but you can noop it
+        readable.push(file.buffer);
+        readable.push(null);
+
+        readable.pipe(stream);
+    });
+};
+
+const postProducts = async (req: NextApiRequest, res: NextApiResponse) => {
     if (req.method === 'POST') {
         upload(req as any, res as any, async (err) => {
             if (err) {
                 console.error('Multer error:', err);
                 return res.status(500).json({ error: err.message });
             }
+
             const { name, description, price, stock } = req.body;
-            const imagePaths = req.files.map((file: any) => `/uploads/${file.filename}`);
+            const files = req.files;
 
             try {
-                const product = await Product.create({ name, description, price: parseFloat(price), stock: parseInt(stock, 10), images: imagePaths } as any);
+                const uploadPromises = files.map((file: any) => uploadToGCS(file));
+                const imagePaths = await Promise.all(uploadPromises);
+
+                const product = await Product.create({
+                    name,
+                    description,
+                    price: parseFloat(price),
+                    stock: parseInt(stock, 10),
+                    images: imagePaths
+                } as any);
+
                 res.status(201).json(product);
             } catch (error) {
-                console.error('Database error:', error);
+                console.error('Upload or database error:', error);
                 res.status(500).json({ error: (error as Error).message });
             }
         });
+    } else {
+        res.setHeader('Allow', ['POST']);
+        res.status(405).end(`Method ${req.method} Not Allowed`);
     }
-}
+};
 
 export default postProducts;
