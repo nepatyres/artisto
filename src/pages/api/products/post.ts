@@ -1,8 +1,22 @@
-import type { NextApiRequest, NextApiResponse } from 'next';
-import { IncomingForm } from 'formidable';
-import type { Fields, Files, File } from 'formidable';
-import { put } from '@vercel/blob';
+import { NextApiRequest, NextApiResponse } from 'next';
+import multer from 'multer';
+import path from 'path';
+import fs from 'fs';
 import Product from '../../../models/product';
+
+const upload = multer({
+    storage: multer.diskStorage({
+        destination: (req, file, cb) => {
+            const uploadPath = path.join(process.cwd(), 'public', 'uploads');
+            fs.mkdirSync(uploadPath, { recursive: true });
+            cb(null, uploadPath);
+        },
+        filename: (req, file, cb) => {
+            const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
+            cb(null, `${uniqueSuffix}-${file.originalname}`);
+        }
+    })
+}).array('images', 10);
 
 export const config = {
     api: {
@@ -10,72 +24,25 @@ export const config = {
     },
 };
 
-interface ProductFormFields {
-    name?: string;
-    description?: string;
-    price?: string;
-    stock?: string;
-}
-
-const postProducts = async (req: NextApiRequest, res: NextApiResponse) => {
-    if (req.method !== 'POST') {
-        res.setHeader('Allow', ['POST']);
-        return res.status(405).end(`Method ${req.method} Not Allowed`);
-    }
-
-    return new Promise<void>((resolve, reject) => {
-        const form = new IncomingForm();
-
-        form.parse(req, async (err, fields: Fields, files: Files) => {
+const postProducts =  async (req: NextApiRequest | any, res: NextApiResponse) => {
+    if (req.method === 'POST') {
+        upload(req as any, res as any, async (err) => {
             if (err) {
-                console.error('Form parsing error:', err);
-                res.status(500).json({ error: 'Error parsing form data' });
-                return resolve();
+                console.error('Multer error:', err);
+                return res.status(500).json({ error: err.message });
             }
-
-            const productFields: ProductFormFields = {
-                name: fields.name?.[0],
-                description: fields.description?.[0],
-                price: fields.price?.[0],
-                stock: fields.stock?.[0],
-            };
-
-            if (!productFields.name || !productFields.description || !productFields.price || !productFields.stock) {
-                res.status(400).json({ error: 'Missing required fields' });
-                return resolve();
-            }
+            const { name, description, price, stock } = req.body;
+            const imagePaths = req.files.map((file: any) => `/uploads/${file.filename}`);
 
             try {
-                const imagePaths: string[] = [];
-                const imageFiles = files.images as File[] | File | undefined;
-
-                if (imageFiles) {
-                    const fileArray = Array.isArray(imageFiles) ? imageFiles : [imageFiles];
-                    for (const file of fileArray) {
-                        if (file.filepath && file.originalFilename) {
-                            const blob = await put(file.originalFilename, file as any, { access: 'public' });
-                            imagePaths.push(blob.url);
-                        }
-                    }
-                }
-
-                const product = await Product.create({
-                    name: productFields.name,
-                    description: productFields.description,
-                    price: parseFloat(productFields.price),
-                    stock: parseInt(productFields.stock, 10),
-                    images: imagePaths,
-                } as any);
-
+                const product = await Product.create({ name, description, price: parseFloat(price), stock: parseInt(stock, 10), images: imagePaths } as any);
                 res.status(201).json(product);
             } catch (error) {
-                console.error('Database or upload error:', error);
+                console.error('Database error:', error);
                 res.status(500).json({ error: (error as Error).message });
-            } finally {
-                resolve();
             }
         });
-    });
-};
+    }
+}
 
 export default postProducts;
