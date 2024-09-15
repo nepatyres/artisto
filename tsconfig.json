@@ -21,6 +21,6 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["next-env.d.ts","global.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/lib/db.js", "src/pages/api/index.js", "src/pages/api/test.js", "src/pages/api/products.ts", "src/pages/api/products/post.js"],
+  "include": ["next-env.d.ts","global.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/lib/db.js", "src/pages/api/index.js", "src/pages/api/test.js", "src/pages/api/products.ts", "src/pages/api/products/post.ts"],
   "exclude": ["node_modules"]
 }

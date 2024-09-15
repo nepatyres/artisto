@@ -1,6 +1,7 @@
-import { NextApiRequest, NextApiResponse} from 'next';
+import { NextApiRequest, NextApiResponse } from 'next';
 import { Storage } from '@google-cloud/storage';
 import multer from 'multer';
+import MulterRequest, { MulterFile } from '../../../models/types';
 import { Readable } from 'stream';
 import Product from '../../../models/product';
 
@@ -22,7 +23,7 @@ export const config = {
     },
 };
 
-const uploadToGCS = async (file) => {
+const uploadToGCS = async (file: Express.Multer.File): Promise<string> => {
     const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
     const fileName = `${uniqueSuffix}-${file.originalname}`;
     const fileUpload = bucket.file(fileName);
@@ -53,39 +54,39 @@ const uploadToGCS = async (file) => {
     });
 };
 
-const postProducts = async (req, res) => {
+const postProducts = async (req: MulterRequest, res: NextApiResponse) => {
     if (req.method === 'POST') {
-        upload(req, res, async (err) => {
-            if (err) {
-                console.error('Multer error:', err);
-                return res.status(500).json({ error: err.message });
-            }
-
-            const { name, description, price, stock } = req.body;
-            const files = req.files;
-
-            try {
-                const uploadPromises = files.map((file) => uploadToGCS(file));
-                const imagePaths = await Promise.all(uploadPromises);
-
-                const product = await Product.create({
-                    name,
-                    description,
-                    price: parseFloat(price),
-                    stock: parseInt(stock, 10),
-                    images: imagePaths
-                });
-
-                res.status(201).json(product);
-            } catch (error) {
-                console.error('Upload or database error:', error);
-                res.status(500).json({ error: (error).message });
-            }
-        });
+      upload(req as any, res as any, async (err) => {
+        if (err) {
+          console.error('Multer error:', err);
+          return res.status(500).json({ error: err.message });
+        }
+  
+        const { name, description, price, stock } = req.body;
+        const files = req.files;
+  
+        try {
+            const uploadPromises = files.map((file: MulterFile) => uploadToGCS(file as any));
+          const imagePaths = await Promise.all(uploadPromises);
+  
+          const product = await Product.create({
+            name,
+            description,
+            price: parseFloat(price),
+            stock: parseInt(stock, 10),
+            images: imagePaths
+          } as any);
+  
+          res.status(201).json(product);
+        } catch (error) {
+          console.error('Upload or database error:', error);
+          res.status(500).json({ error: (error as Error).message });
+        }
+      });
     } else {
-        res.setHeader('Allow', ['POST']);
-        res.status(405).end(`Method ${req.method} Not Allowed`);
+      res.setHeader('Allow', ['POST']);
+      res.status(405).end(`Method ${req.method} Not Allowed`);
     }
-};
+  };
 
 export default postProducts;
